@@ -1,1496 +1,219 @@
-I have extracted every linguistic rule and all specialized vocabulary explicitly categorized in the sources (including Malayo-Polynesian words, Arabic loanwords, idioms, neologisms, and composite words). **Please note:** Van Selms’ text contains a 23-page index (Registers I and II) comprising roughly 1,500 general Dutch/Afrikaans words (such as *aarde*, *agter*, *almal*). Due to strict output length limits, it is impossible to list every single general Afrikaans word from those registers here. I have instead listed **every single rule** and **every single specialized vocabulary word** detailed in the texts.
+**Part 1: Linguistic Rules of Cape Muslim Afrikaans**
 
-### Part 1: Every Single Linguistic Rule
+**Phonological Rules**
+*   The diphthong **ui** [oey] is pronounced as **ei** [ei] (e.g., *uiwe* becomes *eiwe*).
+*   The past tense prefix **ge-** [xə] shifts to **ga-** [xa].
+*   A double **d** or **t** located in the middle of a word is pronounced as **r** (e.g., *middag* becomes *marrag*, *bottel* becomes *borrel*).
+*   Older 19th-century creolized Cape Dutch pronunciations are preserved, such as using *twalf* instead of standard Afrikaans *twaalf*.
 
-**Phonological Rules (Pronunciation shifts in Cape Muslim Afrikaans):**
-*   The standard Afrikaans diphthong **ui** [oey] is pronounced as **ei** [ei] (e.g., *uiwe* > *eiwe*).
-*   The standard Afrikaans past tense prefix **ge-** [xə] is pronounced as **ga-** [xa].
-*   A double **d** or **t** in the middle of a word is pronounced as **r** (e.g., *middag* becomes *marrag*; *middel* becomes *mirrel*; *bottel* becomes *borrel*).
+**Morphological and Syntactical Rules**
+*   **Base Syntax:** The language strictly uses the Indo-Germanic Subject-Object-Verb (SOV) order, allowing the blending of Dutch with Malayo-Polynesian and Arabic lexicons.
+*   **Adverbs of Degree:** Created by combining an Arabic noun with the Afrikaans suffix **-ste** (e.g., *sahiehste*).
+*   **Pluralization:** Foreign nouns are integrated using the Afrikaans suffix **-s** (e.g., *salaahs*, *boetas*) or diminutive **-tjie** (e.g., *boetatjies*).
+*   **Abstract Nouns:** Formed by adding the Afrikaans suffix **-heid** or **-skap** to an Arabic/Malayo-Polynesian word (e.g., *soppangheid*, *warraiskap*).
+*   **Nouns from Verbs:** Created by adding the Afrikaans suffix **-er** to a Malayo-Polynesian verb (e.g., *slamblie-er*).
+*   **Adjectives:** Formed by attaching the Afrikaans suffix **-se** to foreign words (e.g., *djapandoeliese*).
+*   **Past Tense Verbs (Morphological Integration):** The intensity of integration is marked by adding the Afrikaans past-tense prefix **ge-** to Arabic or Malayo-Polynesian root verbs (e.g., *gesouwe*, *gelamba*, *ge-ghoesl*, *ge-batcha*, *genieyat*).
+*   **Composite Syntactical Reversal:** When building composite words, the language discards the traditional Arabic/Malayo-Polynesian Noun-Adjective order, reversing it to fit the Afrikaans Adjective-Noun order (e.g., *ouwal-moereeds* instead of *moereeds-ouwal*, *asal-niesaab* instead of *niesaab-asal*, *slamse skool*).
+*   **Functional Dualism:** Speakers use Malayo-Polynesian and Arabic equivalents for the same concept interchangeably based on nuance (e.g., using Malayu *abdas* for ablution, but Arabic *ghoesl* for the full bath).
 
-**Morphological and Syntactical Rules:**
-*   **Adverbs of degree:** Arabic noun + Afrikaans suffix **-ste** (e.g., *sahieh* + *ste* = *sahiehste*).
-*   **Pluralization:** Arabic noun + Afrikaans suffix **-s** (e.g., *salaah* + *s* = *salaahs*; *hoekoem* + *s* = *hoekoems*).
-*   **Abstract Nouns from Adjectives/Verbs:** Arabic/Malayo-Polynesian word + Afrikaans suffix **-heid** or **-skap** (e.g., *waadjieb* + *gheid* = *waadjiebgheid*; *soppang* + *heid* = *soppangheid*; *nabee* + *skap* = *nabeeskap*; *warrais* + *skap* = *warraiskap*).
-*   **Nouns from Verbs:** Malayo-Polynesian verb + Afrikaans suffix **-er** (e.g., *slamblee* + *er* = *slamblie-er*).
-*   **Past Tense Verbs:** Afrikaans prefix **ge-** + Arabic/Malayo-Polynesian verb (e.g., *ge* + *nieyat* = *genieyat*; *ge* + *salaah* = *gesalaah*; *ge* + *goedbah* = *gegoetbah*; *ge* + *talak* = *getalak*).
-*   **Adjectives:** Malayo-Polynesian word + Afrikaans suffix **-se** (e.g., *djapandoelie* + *se* = *djapandoeliese*).
-*   **Composite Syntactical Order:** When creating composites, the language uses the Afrikaans Subject-Object-Verb (SOV) / Adjective-Noun order rather than the Malayo-Polynesian/Arabic Noun-Adjective order (e.g., *ouwal-moereeds* instead of *moereeds-ouwal*; *mannie-kamer* instead of *kamer-mannie*).
+**Orthographic and Transcription Rules (Arabic Script for Afrikaans)**
+*   **Consonants:** 'b', 'd', 'f', 'h', 'j', 'k', 'l', 'm', 'n', 'r', 't' correspond to standard Arabic letters; 'g' (guttural) = *kha*; 'g' (hard) = modified *kaf* with an upper stroke; 'ng' = *kaf* shifted left; 'p' = *pe* (Persian); 's' = *sin* (except emphatic *sad* for *netsoes*); 'tj' = *che* (Persian); 'v' = *fa*; 'w' = *waw* or *fa*; 'z' is absent.
+*   **Short Vowels:** 'a' = *fatha*; 'i' = *kasra*; 'oe' = *damma* + *waw*; 'o' = *fatha* + *damma*.
+*   **Long Vowels & Diphthongs:** 'aa' = *fatha* + *alif*; 'ie' = *kasra* + *ya*; 'e' = *fatha* + *kasra*; 'eu' = *fatha* + *kasra* + *waw*; 'ai' = *fatha* + *ya*; 'ei' = *fatha* + *kasra* + *ya*; 'au' = *fatha* + *waw*; 'oei' = *waw* + *ya*; 'aai' = *fatha* + *alif* + *ya* + *hamza*. Initial vowels must use an *alif* carrier.
+*   **Punctuation & Grammar Marks:** *Sukun* is used for vowelless consonants, *tashdid* (doubling) is entirely ignored, Arabic noun endings (*tanwin/ta'marbuta*) are discarded, numerals are spelled out, and capitalization does not exist. A horizontal dash marks a full stop, a double colon separates languages, and a four-dot diamond marks paragraphs.
 
-*   **Gemination & Punctuation:** No Arabic *tashdid* (doubling of consonants) is used; repeated letters are simply written twice or avoided. Capital letters are absent, and sentence breaks are rarely indicated except by a horizontal dash or double colon (:). Words starting with a vowel take an *alif* as a carrier.
+***
+
+**Part 2: Exhaustive Extracted Vocabulary** 
+*(Note: As requested, where multiple phonetic creolized spellings exist for the same word, only the single most apt representative spelling has been retained to avoid redundancy, while preserving every unique semantic definition).*
+
+**Malayo-Polynesian, Persian & Indian Inherited Words**
+*abdas* (ablution), *agama* (religion), *amper* (almost), *atjar* (pickles), *baadjie* (jacket), *baie* (many), *bakaiyer* (sword playing), *baklei* (fight), *bang* (call to prayer), *bapang* (uncle), *barakat* (gift parcel), *batcha* (to read), *biengoe* (confused), *blatjang* (chutney), *boeber* (sweet milk drink), *boeka* (breaking fast), *boeta* (brother/older male), *chaya* (face/expression), *djalantoes* (disorderly), *djamang* (toilet), *djapandoelie* (ancient), *doekum* (spiritual healer), *gamaningal* (died), *ghabaar* (news), *ghielap* (lightning), *ghomma* (drum), *ghuntum* (thunder), *graana* (eclipse), *guru* (master), *hiempoe* (bring together), *jalang* (to walk), *jawap* (answer/participate), *kabaai* (garment), *kaffang* (shroud), *kalie* (river), *kanala* (please), *kaparangs* (wooden clogs), *kapok* (snow), *katjiepiering* (gardenia), *krabbetjie* (earring), *kris* (dagger), *laagoe* (tune), *labarang* (Eid festival), *lamba* (engaged), *lang-ar* (prayer room), *lanza* (fluent), *latchoe* (bad luck), *ling-oe* (cushion dance), *mandi* (bath), *mantra* (spiritual healing), *maskaavi* (dowry), *merang* (feast), *mesang* (tombstone), *mienta* (hope/wish), *moeli-at* (watch out!), *motjie* (wife/woman), *nonna* (young woman), *obat* (medicine), *pasang* (announce), *piejara* (meeting), *pondok* (hut), *porring* (pudding), *pwasa* (fasting), *rampies* (scented leaves), *sadjie* (serve), *samba* (inflicted by evil spirit), *slamat* (congratulations/safe), *soembain* (to pray), *soempa* (oath), *sopang* (dignified), *tamaai* (huge), *tamang* (limp), *tjap* (stamp), *tjommel* (chatter), *toelies* (write), *top* (prayer shirt), *tramakasie* (thank you), *twang* (mister/sir).
+
+**Arabic Loanwords & Religious Terminology**
+*aadaab* (manners), *aagirat* (afterlife), *aglaaq* (virtue), *ajjal* (time of death), *alaihi-ssalam* (peace be upon him), *al'ilmu* (knowledge), *allahu* (Allah), *alqudratu* (power), *arwaag* (souls/spirits), *ashrakal* (praising Prophet), *assal* (lineage), *auliya* (saints), *auwal* (first), *ayda* (waiting period), *badal* (after), *balig* (of age), *banaa* (recited water), *barries* (vowel marks), *batil* (invalid), *bayt* (house), *bilal* (caller to prayer), *daggal* (Antichrist), *dalil* (proof), *dars* (lecture), *din* (religion), *doenya* (world), *dua* (supplication), *faida* (benefit), *fard* (prescription), *fasaad* (moral wrong), *fietna* (mischief/gossip), *gaajat* (gathering), *gaamiel* (pregnant), *gaatam* (completion), *gadj* (pilgrimage), *gahannam* (hell), *galaal* (permissible), *galaas* (over/finished), *galiefa* (teacher), *gannat* (paradise), *garaam* (forbidden), *garaf* (letter), *gasad* (jealousy), *ghoesl* (ritual bath), *gidayat* (guidance), *gielaaf* (disagreement), *goekum* (ruling), *gwaanja* (jinn), *hadit* (tradition), *ibaadat* (worship), *ieblies* (devil), *iftiqar* (dependence), *ilm* (knowledge), *imam* (leader), *iman* (faith), *islam*, *jaahil* (ignorant), *jamaa* (congregation), *janaza* (funeral), *jieke* (thikr/chanting), *joos* (part of Quran), *juma-aat* (Friday prayer), *kafir* (unbeliever), *kalam* (speech/pen), *kalima* (testimony), *kiebla* (direction of prayer), *kiefait* (funeral), *kitab* (book), *koebus* (grave), *koedrat* (power), *koefija* (fez), *kramat* (shrine), *layla tul qadr* (Night of Power), *maaf* (forgive), *magrib* (west), *malaikats* (angels), *masiet* (mosque), *mathalan* (for example), *mayet* (body), *miedourah* (head gear), *mielayah* (scarf), *miesfal* (scarf), *moerieks* (attendees), *moesla* (prayer mat), *moulit* (celebration of birth), *mukallaf* (responsible person), *munafiq* (hypocrite), *munaayat* (supplication), *musaafir* (traveller), *mustajab* (accepted), *nabi* (prophet), *nafs* (self), *niekah* (marriage), *niesaab* (taxable property), *nifka* (financial support), *niyat* (intention), *nur* (light), *oeder* (excuse), *oegtie* (sister), *oemie* (mother), *poejies* (glorifying words), *qaala* (to talk), *qiyam* (existence), *qiyamat* (resurrection), *qurbaan* (sacrifice), *qur'an*, *rakams* (portraits), *ramadan*, *rasul* (messenger), *riwayat* (narrations), *ruh* (spirit), *rukun* (pillar), *saaba* (patience), *saalieg* (pious), *sabab* (reason), *sadaka* (charity), *sahadat* (testimony), *sahih* (correct), *salaah* (prayer), *salaam* (peace), *shaitan* (devil), *sifat* (attribute), *sirat* (path), *soeloeg* (make amends), *soenat* (circumcise), *soerat* (book), *sorbaan* (turban), *souwe* (pre-dawn meal), *sunnat* (tradition), *talak* (divorce), *tallie* (guide dying), *tamat* (well versed), *tasbie* (rosary), *taurat* (Torah), *tielawat* (recitation), *toubat* (repent), *trawie* (night prayer), *waajieb* (obligatory), *waktoe* (prayer time), *wallaahi* (swear by Allah), *wugud* (existence), *zagma* (crowd), *zakat* (charity), *zina* (adultery).
+
+**Creolized Composites, Neologisms, & Idioms**
+*aansit* (pretentious), *abdastplek* (ablution place), *afriekenskap* (accounting), *aitwaghdieren* (eternal), *asal-niesaab* (original taxable property), *aspris* (living without purpose), *boekatyd* (time to break fast), *breggat* (braggart), *bus* (busybody), *busry* (gossip), *denningvleis* (meat stew), *die toit* (one's wife), *doep maal* (name giving), *faam-maak* (memorize), *gesig verkoep* (currying favor), *gienage* (the one), *graana-salaah* (eclipse prayer), *huisbou* (dragging out story), *kart skiet* (tall tale), *kastai* (tease), *kepies is beretjies* (subtle differences), *kiefait klops* (burial society), *kiefait kos* (stew), *kierie-slaam* (best greetings), *koeberplaas* (burial ground), *kop* (out of mind), *korbaanvleis* (sacrifice meat), *kraghtagh* (All-powerful), *kwaai lappies* (well done), *laa die daa* (upper class), *laai-laai* (cheeky), *labarangbox* (Eid present), *labarangsuit* (Eid suit), *lekker bet* (eating well), *liewendag* (living), *luisgat* (lazy), *maaksloon* (creation reward), *manieng-al* (stupid/dead brain), *mie-angtessie* (incense pot), *motjie imaam* (imam's wife), *motjie kok* (cook), *on-er karle* (good conversationalist), *opbouwens* (systematic construction), *oppie berg* (fasted 15 days), *oppie tippie* (last moment), *ougat* (cute), *ouwal-moereeds* (first members), *poenang-kies* (pretty), *poep op 'n lappie* (absolutely nothing), *poewasa-aramanakie* (Ramadaan calendar), *pop* (taking someone for fool), *reent* (saying something stupid), *rizieq-giever* (giver of bounty), *saman werk* (group supplication), *slamblee* (untrustworthy), *slamse skool* (Madrasa), *soeboegsalaah* (morning prayer), *soembai-ingtapyt* (prayer mat), *spaai* (underestimate), *strygeit* (conflict), *tang a lang* (wasting time), *toe* (oblivious), *toeka-manie* (washer of dead), *tuankoeber* (gravedigger), *tweiwelheid* (doubtfulness), *verghinskap* (divine gift), *waajieb-niesaab* (necessary tax), *warraiskap* (psychological worry), *werksloon* (reward/good deeds), *wieter* (All-knowledgeable), *wiler* (One who Wills), *zakaatmaker* (giver of charity), *zie-jaaratplekke* (pilgrimage places).
+
+**Creolized / Phonetic Dutch-Afrikaans Vocabulary** *(The most apt representative spelling per standard English equivalent)*
+*afghafaraagh* (interrogate), *afghakaum* (descended), *afghariekent* (settled), *afghaskap* (abolished), *afghawiegh* (weighed), *afkaum* (origin), *aghtir* (after), *aghtirsetaalaghie* (remaining), *aindei* (end), *ait* (out), *ait sapark* (pronounce), *ait sist* (explain), *alien* (alone), *alif* (eleven), *alkan* (each), *altiwie* (both), *amal* (everyone), *ammirikans* (marks), *anpir* (almost), *antighief* (submit), *anyoert* (answer), *ardei* (earth), *arfghanaam* (heir), *aum* (in order to), *baitan* (outside), *balaas* (blow), *balang* (white/blank), *bilaif* (stay), *balosain* (blushing), *banjak* (many), *basinamait* (business), *bawaisain* (proofs), *bergei* (mountains), *bistaanir* (existing), *bidierif* (spoil), *biemakandir* (together), *bierig* (bridge), *bietir* (better), *bifrait* (freed), *bighantsel* (begin), *bikant* (known), *bilint* (blind), *biraidija gham* (bridegroom), *bistei* (best), *bistiering* (governance), *bistierte* (appearances), *boedie* (buttocks), *boerie* (procreate), *broedirs* (brothers), *breng* (bring), *daanaatoe* (thereto), *dafiranta* (different), *daisant* (thousand), *dauje* (dead), *daum* (mute), *diedalik* (clear), *die ghienaghai* (those), *dierdei* (third), *diertagh* (thirty), *diraagh* (carry), *dirak* (press), *dirang* (drink), *diweng ghait* (coercion), *djaar* (year), *djansie* (demons), *djoeili* (you plural), *djonkitjies* (little boys), *doef* (deaf), *doeghtir* (daughter), *doewat* (dead), *dors* (thirst), *faadirs* (fathers), *faatir* (water), *faif* (five), *fantifoerai* (preceding), *faraagh* (ask), *faulkoem* (perfect), *firiksloen* (works), *feul birang* (fulfill), *fienstar* (window), *fierdie* (fourth), *fiertagh* (forty), *firai* (free), *firau* (wife), *firbai* (past), *firfirdiel* (divide), *firghaan* (perish), *firghit* (negligence), *firkoep* (sell), *firlie* (embarrassed), *firstant* (intellect), *firtel* (tell), *firtrau wantait* (faithfulness), *firwoenir* (amaze), *fit baar* (fitting), *flei* (flatter), *foel* (bird), *ghabelaas* (blown), *ghabier* (happen), *ghabigharaaye* (buried), *ghaboerai* (born), *ghadaghtie* (thought), *ghadaigai* (testimony), *ghadawing* (forced), *ghadieltai* (portions), *ghadierti* (animal), *ghadjaag* (hurried), *ghafirhais* (moved), *ghafirtal* (told), *ghaghief* (given), *ghaheim* (secret), *ghakarai* (got), *ghaken* (known), *ghakoem* (came), *ghalaikins* (equals), *ghalait* (sound), *ghalek* (luck), *ghaliefstei* (beloved), *ghaloef* (believe), *ghamaak* (made), *ghamaniekal* (deceased), *ghamiendie* (despised), *ghanoem* (named), *gha'oedir* (commanded), *ghaparaat* (spoken), *gharoetie* (great one), *ghasien* (seen), *ghaskaapandei* (created), *ghastier* (sent), *ghataal* (ratio), *ghatbilaif* (stay), *ghatiel* (bred), *ghasiet* (sat), *ghau* (quick), *ghawies* (been), *ghawietanskaap* (knowledge), *ghawoert* (became), *ghibreng* (brought), *ghief* (give), *ghoeraun* (ground), *ghoet* (good), *haakei* (hooks), *haarei* (hair), *handie* (hands), *harat* (heart), *hatloep* (run), *hiemlas* (heaven), *hienang* (honey), *hiet* (heat), *hoefiel* (how much), *hoegai* (high), *hoeili* (they), *hoendirt* (hundred), *ienirs* (agreeing), *ierstei* (first), *ietas* (something), *iftifaraagh* (interrogate), *ismoer* (merely), *kaik* (look), *kalainie* (little), *kilier* (color), *karaaghir* (exerts power), *karaktei* (character), *kaupaldir* (bloodletter), *kayaai* (angry), *kerai* (receive), *kiedis* (children), *kier* (time), *kilab* (slap), *kinai koepai* (kneecaps), *kiraarie* (clothes), *kiraip* (crawl), *klipai* (stones), *koer* (court), *laastei* (last), *lagh* (light), *laif* (body), *langei* (long), *legh tei* (lights), *liegh* (lie), *lieng* (connect), *liewendagh* (living), *lighaamas* (bodies), *likarghait* (pleasantness), *loei jar* (tanner), *maakir* (maker), *maalkoens* (creations), *maisis* (girls), *makandir* (each other), *makieraan* (lack), *manierei* (manner/being), *maniertei* (attributes), *maskie* (even though), *melka* (milk), *mienanka* (opinion), *moeghlik* (possible), *miensei* (people), *minirghait* (minority), *mistaik* (mistake), *moedirs* (mothers), *moets walieghait* (willfulness), *nasier* (seeing), *natsoes* (exactly so), *naugh* (still), *niegei* (nine), *noeuait* (never), *oedir* (command), *oegei* (eyes), *oeghapal* (apple of eye), *oegh kinip* (blink), *oem ghahoersaam* (disobedient), *oen moeghiliek* (impossible), *oensei* (our), *oepan baar* (public), *oepghamaak* (opened), *oep reg* (sincere), *oerghat* (ear-hole), *oersindir* (overseer), *om fir tirau wantait* (unfaithfulness), *palaka* (place), *pansie* (bellies), *paraat* (speak), *pasierirs* (passers-by), *raika* (rich), *rayant* (around), *riedei* (reason), *risie pert* (racehorse), *roei* (red), *saimei* (same), *salaanier* (strike down), *salaap* (sleep), *satirkai* (strong), *sayaagheit* (weakness), *seighin* (bless), *sekaal* (scale), *sepoedagh* (prosperous), *setaan pilak* (standing place), *setaum ghait* (ignorance), *siektei* (sickness), *sienir* (seeing), *sies* (six), *sikaadawei* (shadow), *sikiraiwis* (writers), *sikoen* (clean), *silaawei* (slaves), *silim ghait* (wisdom), *soendei* (sin), *sistagh* (sixty), *sitaraaf* (punishment), *siyaarghait* (heaviness), *siyiet* (sweat), *soertai* (sorts), *streide* (opposite), *tarampitir* (trumpet), *tariefil* (journey), *tarigh* (return), *taung* (tongue), *taweifal* (doubt), *twie* (two), *tawiedei* (second), *tiel* (procreate), *tien* (ten), *twintagh* (twenty), *payaasa* (fast), *fiertagh* (forty), *firfirdiel* (divide), *firlie* (embarrassed), *firwoenir* (amaze), *waarait* (truth), *yakir* (awake), *wanier* (when), *warim tei* (warmth), *waghbilaif* (stay away), *weigh stiek* (hide), *wiereksloen* (works), *ghawietanskaapir* (scientist), *woenang* (dwelling).
+
+*(Extra English/French creolizations):* *aspris* (expres), *davarent* (different), *ghamixte* (mixed), *kardoesie* (cartouche), *promis* (promise), *sa-vette* (serviette), *saimde* (same), *tamaletjie* (tablette), *tronk* (trunka).
+Here is the ultimate, exhaustive extraction of **every single rule and vocabulary word** that was provided in the newest sources but missed in the previous list. 
+
+### Part 1: Linguistic and Syntactical Rules Missed
+
+**1. Intensity of Integration via Morphemes**
+The strength of bridging an Arabic or Malayo-Polynesian loanword into Cape Muslim Afrikaans is determined by its grammatical usage. Affixing Afrikaans grammatical morphemes (like adding *-s* for plurals, *ge-* for past tense, or *-heid/-skap* for abstract nouns) indicates how intensely a foreign word has been integrated into the dialect.
+
+**2. Expanded Composite Syntax Rule (Syntactical Reversal)**
+When creating bilingual composites, the language completely discards the traditional Arabic/Malayo-Polynesian Noun-Adjective order. Instead, it strictly enforces the Afrikaans Adjective-Noun order. For example, the Arabic "original taxable property" (*niesaab-asal*) and "necessary tax" (*niesaab-waajieb*) are forcibly reversed to **asal-niesaab** and **waajieb-niesaab** to match Afrikaans syntax.
+
+**3. The Base Syntactical Rule (SOV Framework)**
+The language strictly utilizes the Indo-Germanic Dutch/Afrikaans Subject-Object-Verb (SOV) word order. This framework acts as the common denominator allowing the seamless blending of Dutch with Malayo-Polynesian languages.
+
+**4. The Malayo-Polynesian Lexical Inheritance Rule**
+To supplement the limitations of its 19th-century Cape Dutch core vocabulary, the dialect directly brings in inherited words from the ancestral slave languages (Sanskrit, Sunda, Malayu) rather than translating them.
+
+**5. The Arabic Lexical Borrowing Rule**
+Arabic words, specifically regarding religion, are never translated into Afrikaans. The original Arabic keywords are wholly preserved as fundamental concepts (e.g., using *masiet* and *Qiblah* instead of Dutch equivalents).
+
+**6. Phonetic Creolization (Orthoepic Rules)**
+The language deliberately preserves older, 19th-century creolized Cape Dutch pronunciations that never made it into Standard Afrikaans (such as writing and saying *twalf* instead of *twaalf*).
 
 ---
-List of words in arabic afrikaans in the order modern afrikaans word =cape afrikaans equivalent(1860sWord)|(english meaning)
 
-Man = Man | (man)
-Met = Met |  (with)
-Niet = Niet |  (not)
-Sien = Sien |  (see)
-Kwaai = Kawaai |  (angry)
-Gou = Ghau | (quick)
-Dors = Dors |  (thirst)
-Hoë = Hoegie | - (high)
-Eksistensie = Yugud | - (existence)
-Wat = Fat | - (what)
-Eerste = Ierstei | - (first)
-Noodsaaklik = Yagib | - (necessary)
-Op = Oep | - (on)
-In = Ein | - (in)
-Te ken = Takin | - (to know)
-Kan nie = Kanie | - (cannot)
-Wees = Wies | - (be)
-Betekenis = Mienang | - (meaning)
-Dat = Lat | - (that)
-Bewyse = Biwaisein | بِيْوَاسِيْن (proofs)
-Verstand = Firstant | - (understanding)
-Kry = Karai | - (get)
-Geskapene = Ghaskaapandie | - (created)
-Hulle = Hoeili | هُويْلِ (they)
-Koran = Qur'an | - (Quran)
-Sê = Siegh | - (say)
-En = Ien | - (and)
-Maak = Maak | - (make)
-Ook so = Oek soe | - (also so)
-Twyfel = Taweifal | - (doubt)
-Sonder = Soendir | - (without)
-Nuut = Hadit | - (new)
-Naamlik = Ja'ni | - (namely)
-Agter = Aghtar | - (after)
-Na = Naa | - (after)
-Laat = Lat | - (let)
-Baar = Boerie | - (give birth)
-Teel = Tiel | - (breed)
-Bly = Bilaif | - (remain)
-Hierdie = Dietsei | - (these)
-Maaksels = Maalkoens | - (creations)
-Deurentyd = Dier in tait | - (continuously)
-Kleur = Kalier | - (color)
-Different = Difirant | - (different)
-Daarmee = Daarmain | - (therewith)
-Plek = Palaka | پ (place)
-Net = Nat | - (just)
-Lewend = Liewandagh | - (living)
-Self = Salwei | - (self)
-Een = Ein | - (one)
-Krag = Kiraagh | - (power)
-Netsoos = Natsoes | ص (just as)
-Dood = Doeuoet | - (dead)
-Hoorder = Yoerar | - (hearer)
-Weter = Wietir | - (knower)
-Gesig = Oegei | - (eyes)
-Siende = Sienir | - (seeing)
-Blind = Bilent | - (blind)
-Swakheid = Sayaka ghait | - (weakness)
-Gepraat = Paraatei | - (speech)
-Geluid = Ghalait | - (sound)
-Oor = Oer | - (ear)
-Onwetendheid = Sitoem ghait | - (ignorance)
-Stomheid = Daum ghait | - (muteness)
-Gelykenis = Ghalaik nis | - (similarity)
-Ongelowige = Kafir | - (unbeliever)
-Huigelaar = Munafiq | - (hypocrite)
-Vriende = Ashabs | - (friends)
-Familie = Familtjeis | - (family)
-Verhoor = Afghafaraagh | - (heard)
-Afgekom = Afghakaum | - (came down)
-Afgereken = Afghariekent | - (settled)
-Afgeskaf = Afghaskaf | - (abolished)
-Afgeweeg = Afghawiegh | - (weighed)
-Afkoms = Afkaum | - (descent)
-Uiteinde = Ait aindie | - (end)
-Uitgelaat = Ait ghalaat | - (left out)
-Uitset = Ait sist | - (set out)
-Ambag = Anbaagh | - (trade)
-Amper = Anpir | - (almost)
-Antwoord = Anyoert | - (answer)
-As = As | - (if)
-Om = Aum | - (to)
-Openbare = Aupanbaarei | - (public)
-Blaas = Balaas | - (blow)
-Blosend = Balosain | - (blushing)
-Besigheid = Basighait | - (business)
-Bestaande = Bestaanir | - (existing)
-Beter = Bietir | - (better)
-Bevry = Bifrait | - (freed)
-Bekend = Bikent | - (known)
-Bruidegom = Biraidija gham | - (bridegroom)
-Broeders = Boeroediris | - (brothers)
-Bring = Breng | - (bring)
-Daarin = Daarein | - (therein)
-Dag = Dagh | - (day)
-Duisend = Daisant | - (thousand)
-Dooie = Dauje | - (dead)
-Duidelik = Diedalik | - (clear)
-Diegene = Die ghienaghai | - (those)
-Derde = Dierdei | - (third)
-Dertig = Diertagh | - (thirty)
-Dinge = Dingie | - (things)
-Dra = Diraagh | - (carry)
-Drink = Dirang | - (drink)
-Drie = Dirie | - (three)
-Dwang = Diwang ghait | - (coercion)
-Jaar = Djaar | - (year)
-Jy = Djai | - (you)
-Demone = Djansie | - (demons)
-Seuntjies = Djonkitjies | - (boys)
-Dogter = Doeghtir | - (daughter)
-Doodwees = Doeuyot ghait | - (death)
-Elke = Alkan | - (each)
-Almal = Amal | - (all)
-Kentekens = Ammirikans | - (marks)
-Erfgenaam = Arfghanaam | - (heir)
-Buite = Baitan | - (outside)
-Behalwe = Baiten | - (except)
-By = Bai | - (by)
-Berge = Bergei | - (mountains)
-Bymekaar = Biemakandir | - (together)
-Brug = Bierig | - (bridge)
-Gedierte = Ghadiertie | - (beast)
-Gedwing = Ghadiwank | - (forced)
-Gejaag = Ghadjaag | - (hunted)
-Verhuis = Ghafirhais | - (moved)
-Vertel = Ghafirtal | - (told)
-Gegee = Ghaghaif | - (given)
-Gehaak = Ghahaak | - (hooked)
-Geheim = Ghaheim | - (secret)
-Geen = Gha'ien | - (none)
-Gekry = Ghakarai | - (got)
-Gekom = Ghakoem | - (came)
-Gelykes = Ghalaikins | - (equals)
-Geluk = Ghalek | - (luck)
-Geliefste = Ghaliefstei | - (beloved)
-Geloof = Ghaloef | - (faith)
-Oorlede = Ghamaniekal | - (deceased)
-Veragte = Ghamiendie | - (despised)
-Genoem = Ghanoem | - (named)
-Beveel = Gha'oedir | - (ordered)
-Grote = Gharoetie | - (great)
-Gesien = Ghasien | - (seen)
-Gestuur = Ghastier | - (sent)
-Getal = Ghataal | - (number)
-Verhouding = Ghatbilaif | - (relationship)
-Geteel = Ghatiel | - (bred)
-Gesit = Ghasiet | - (sat)
-Kennis = Ghawietanskaap | - (knowledge)
-Geword = Ghawoert | - (become)
-Gebring = Ghibreng | - (brought)
-Gee = Ghief | - (give)
-Glo = Ghiloef | - (believe)
-Grond = Ghoeraun | - (ground)
-Goed = Ghoet | - (good)
-Gouer = Ghoeyir | - (quicker)
-Hake = Haakei | - (hooks)
-Hare = Haarei | - (hair)
-Hy = Hai | - (he)
-Hande = Handie | - (hands)
-Hart = Harat | - (heart)
-Hard = Harit | - (hard)
-Hê = Hat | - (have)
-Hardloop = Hatloep | - (run)
-Hou = Hau | - (hold)
-Hemel = Hiemlas | - (heaven)
-Heuning = Hienang | - (honey)
-Hitte = Hiet | - (heat)
-Hoe = Hoe | - (how)
-Hoeveel = Hoefiel | - (how much)
-Hoogste = Hoeghastei | - (highest)
-Hom = Hoem | - (him)
-Honderd = Hoendirt | - (hundred)
-Ooreenstemmend = Ienars | - (corresponding)
-Iets = Ietas | - (something)
-Sake = Ietsei | - (matters)
-Af te vra = Iftifaraagh | - (interrogate)
-Ander = Indir | - (other)
-Is maar = Ismoer | - (is but)
-Kyk = Kaik | - (look)
-Kleine = Kalainie | - (small)
-Kom = Kam | - (come)
-Kant = Kant | - (side)
-Karakter = Karaktei | - (character)
-Setter van bloedsuiers = Kaupaldir | - (blood-letter)
-Kinders = Kiedis | - (children)
-Keer = Kier | - (time/turn)
-Klap = Kilab | - (slap)
-Kniekoppe = Kinai koepai | - (kneecaps)
-Klere = Kiraarie | - (clothes)
-Kruip = Kiraip | - (crawl)
-Kwaad = Kiyaat | - (angry)
-Klippe = Klipai | - (stones)
-Koop = Koep | - (buy)
-Geregshof = Koer | - (court)
-Knobbel-lepra = Laas roes | - (leprosy)
-Lig = Lagh | - (light)
-Lyf = Laif | - (body)
-Lange = Langei | - (long)
-Ligte = Legh tei | - (light)
-Lief = Lief | - (love)
-Lieg = Liegh | - (lie)
-Verbind = Lieng | - (connect)
-Leer = Lier | - (learn)
-Liggaam = Lighaam | - (body)
-Lekkerheid = Likarghait | - (sweetness)
-Leerlooier = Loei jar | - (tanner)
-Loop = Loep | - (walk)
-Maker = Maakir | - (maker)
-Man = Maan | - (man)
-My = Mai | - (my)
-Meissies = Maisis | - (girls)
-Mekaar = Makandir | - (each other)
-Makeer = Makieraan | - (lack)
-Wese = Manierei | - (being)
-Manier = Manier | - (manner)
-Gesteldheid = Maniertei | - (condition)
-Ook al = Maskie | - (even though)
-Meer = Meidir | - (more)
-Melk = Melka | - (milk)
-Moontlik = Moeghlik | - (possible)
-Mense = Miensei | - (people)
-Minderheid = Mindirangghait | - (deficiency)
-Vergissing = Mistaik | - (mistake)
-Moeders = Moedirs | - (mothers)
-Moenie = Moenie | - (must not)
-Moedswilligheid = Moets walieghait | - (intentionality)
-Naby = Nabie | - (near)
-Nou = Nau | - (now)
-Nog = Naugh | - (still)
-Nege = Niegei | نِيْغِي (nine)
-Nooit = Noe'iet | نُويْت (never)
-O = Oe | - (oh)
-Of = Oef | - (or)
-Oogappel = Oeghapal | - (pupil of eye)
-Oogknip = Oegh kinip | - (blink)
-Ook = Oek | - (also)
-Om = Oem | أَوْم (to/for)
-Omtrent = Oemtirant | - (about)
-Ongehoorsaam = Oem ghahoersaam | - (disobedient)
-Onmoontlik = Oen moeghiliek | - (impossible)
-Ons = Oens | - (us)
-Openbaar = Oepan baar | - (public)
-Openbaringe = Oepen baarins | - (revelations)
-Oopgemaak = Oepghamaak | - (opened)
-Opreg = Oep reg | - (sincere)
-Oorgat = Oerghat | - (ear hole)
-Oorpasseer = Oerpasier | - (cross over)
-Opsigter = Oersindir | - (overseer)
-Ontrou = Om fir tirau wantait | - (infidelity)
-Opkom = Op kom | - (arise)
-Pense = Pansie | - (stomachs)
-Pad = Parat | - (path)
-Passeer = Pasier | - (pass)
-Passeerders = Pasierirs | - (passersby)
-Vas = Payaasa | - (fast)
-Pen = Pen | - (pen)
-Praat = Piraat | - (talk)
-Sprekende = Paraatir | - (speaking)
-Ryk = Raika | - (rich)
-Rond = Rayant | - (round)
-Reg = Regh | - (right)
-Rede = Riedei | - (reason)
-Renperd = Risie pert | - (racehorse)
-Rooi = Roei | - (red)
-Sal = Sabal | - (shall)
-Selfde = Saimei | - (same)
-Sy = Sain | سَيْن (his/her)
-Slaan neer = Salaanier | - (strike down)
-Slaap = Salaap | - (sleep)
-Self = Salaf | - (self)
-Staan = Sataan | - (stand)
-Sterke = Satirkai | - (strong)
-Swarte = Sayaatie | - (black)
-Skaal = Sekaal | - (scale)
-Voorspoedig = Sepoedagh | - (prosperous)
-Staanplek = Setaan pilak | - (standing place)
-Onwetend = Setoem | - (ignorant)
-Seën = Sieghan | - (blessing)
-Siekte = Siektei | - (illness)
-Ses = Sies | - (six)
-Skaduwee = Sikaadawei | - (shadow)
-Skrywers = Sikiraiwis | - (writers)
-Skoon = Sikoen | - (clean)
-Slawe = Silaawei | - (slaves)
-Wysheid = Silim ghait | - (wisdom)
-Sonde = Sindie | - (sin)
-Sestig = Sistagh | - (sixty)
-In stand hou = Sitaan baar maak | - (maintain)
-Straf = Sitaraaf | - (punishment)
-So = Soe | - (so)
-Son = Soen | - (sun)
-Soorte = Soertai | - (kinds)
-Soeter = Soetir | - (sweeter)
-Teengestelde = Streide | - (opposite)
-Tyd = Tait | تَيْت (time)
-Trompet = Tarampitir | - (trumpet)
-Reis = Tariefil | - (journey)
-Terug = Tarigh | - (back)
-Tong = Taung | - (tongue)
-Twee = Tawie | - (two)
-Te = Te | - (to)
-Tevrede = Tifiriede | - (satisfied)
-Trou = Tirau | - (marry)
-Tussen = Tisein | - (between)
-Tot = Toet | - (until)
-Twintig = Twantagh | - (twenty)
-Wakker = Yakir | - (awake)
-Waar = Waar | - (true/where)
-Waarheid = Waarait | - (truth)
-Wegbly = Waghbilaif | - (stay away)
-Wyd = Wait | - (wide)
-Wanneer = Wanier | - (when)
-Warmte = Warim tei | - (warmth)
-Vat = Wat | - (take)
-Weg = Weigh | - (away)
-Wegsteek = Weigh stiek | - (hide)
-Wind = Went | - (wind)
-Weer = Wier | - (again)
-Werke = Wiereksloen | - (works)
-Woning = Woenang | - (dwelling)
-Hoor = Woer | - (hear)
-Word = Woerat | - (become)
-Manners = Aadaab | - (manners/respect)
-Ablution = Abdas | - (ablution)
-Best = Afdal | - (preferable/better)
-Afterlife = Aagirat | - (afterlife)
-Morality = Aglaaq | - (virtue/morality)
-Misfortune = Ajipes | - (weird/misfortune)
-Death moment = Ajjal | - (moment of death)
-Amulet = Ajoemat | - (talisman/amulet)
-Vocal trills = Akeltjies | - (additional pitch turns)
-Sign = Alaamat | - (sign/token)
-Answer greeting = Alaikom Salaam | - (greeting answer)
-Paternal aunt = Amatie | - (paternal aunt)
-Paternal uncle = Amie | - (paternal uncle)
-Deceased = Aragam | - (deceased person)
-Hair = Ariyas | - (hair)
-Thikr for deceased = Arwaag | - (supplication for deceased)
-Saudi policemen = Asgharies | - (Saudi policemen)
-Praising Prophet = Ashrakal | - (invoking Allah's blessings)
-Lineage = Assal | - (lineage)
-First = Auwal-Owwal | - (among the first)
-Period of waiting = Ayda | - (seclusion after death/divorce)
-Learning Arabic = Ay-yah | - (struggling to read Arabic)
-After = Badal | - (after)
-Blessed water = Banaa Water | - (water recited over)
-Call to prayer = Bang | - (call to prayer)
-Father = Bapa | - (father/grandfather)
-Blessing parcel = Barakat | - (bag with cakes)
-Arabic vowel marks = Barries | - (diacritical marks)
-House = Bayt | - (apartment in Makkah)
-Read Arabic = Batcha | - (recite in Arabic)
-Waiters = Bedieners | - (reception waiters)
-Curtaining = Behangsels | - (curtaining/bedding)
-Invite to wedding = Bekend maak | - (invite to own wedding)
-Father = Bieja | - (father)
-Prayer caller = Bilal | - (person who calls to prayer)
-Sweet milk drink = Boeber | - (sweet milk drink)
-Evening supper = Boeka | - (Ramadaan evening supper)
-Oldest Brother = Boeta | - (oldest brother/form of respect)
-Spicy sauce = Blatjang | - (sweet sour spicy sauce)
-Bridal chamber = Bruidskamer | - (bridal chamber)
-Face = Chaya | - (angry expression)
-Lecture = Das | - (lecture)
-Spiritual healer = Doekum | - (spiritual healer)
-Baby naming = Doep Maal | - (baby name giving)
-World = Doenya | - (this world)
-Big trouble = Doenya trouble | - (very big trouble)
-Supplication = Dua | - (personal prayer)
-Memorize = Faam Maak | - (memorize/become fluent)
-Benefit = Faida | - (profit/gain)
-Punishment = Falaka | - (special hiding method)
-Moral wrong = Fasaad | - (morally wrong)
-Gossip = Fitna | - (gossip)
-News = Gaaba gaaba | - (message/news)
-Pregnant = Gaamiel | - (pregnant)
-Complete recitation = Gaatam | - (complete Quran recitation)
-Pilgrimage = Gadj | - (pilgrimage to Mecca)
-Acceptable = Gadj Makbool | - (acceptable)
-Accepted = Gadj Mabroor | - (accepted)
-Permissible = Galaal | - (permissible food)
-Group supplication = Gadat | - (special group supplication)
-Finished = Galaas | - (over)
-Maternal aunt = Galatie | - (maternal aunty)
-Madrassa teacher = Galiefa | - (Madrassa teacher)
-Died = Gamaningal | - (died)
-Female pilgrim = Gajjah | - (female pilgrim)
-Forbidden = Garaam | - (sinful)
-Arabic letter = Garaf | - (arabic letter)
-Jealousy = Gasad | - (envy)
-Manners = Ge-aate | - (manners)
-Leather Socks = Goefs | - (leather socks)
-Eclipse = Graana | - (eclipse)
-Greet family = Groet | - (greet before pilgrimage)
-Proud = Groos | - (proud)
-Malicious = Geniepstag | - (bitchy/spiteful)
-Dispute = Gielaaf | - (trouble/quarrel)
-Lightning = Ghielap | - (lightning)
-Henna = Giena | - (nail/hair powder)
-Judgement = Goekum | - (judging/ruling)
-Pilgrims = Gujjaaj | - (plural of Hadjie)
-Thunder = Ghuntum | - (thunder)
-Thunder and lightning = Ghuntum & Ghielap | - (thunder and lightning)
-Teacher = Guru | - (master)
-Male pilgrim = Hadjie | - (male pilgrim)
-Go on = Gwaan | - (go on)
-Tease = Gwarra | - (tease)
-How are you = Hoe Faa | - (how are you)
-Worship acts = Ibaadat | - (acts of worship)
-Menstruating = I'm Out | - (monthly periods)
-Devil = Ieblies | - (devil)
-Ignorant person = Jaahil | - (ignorant person)
-Walk = Jalang | - (go for a walk)
-Very old = Jalantoe se tyd | - (very old)
-Toilet = Jamang | - (toilet)
-Participate in thikr = Jawap | - (recite in unison)
-Praise singing = Jieke | - (singing praises)
-Quranic part = Joos | - (Quran division)
-Friday prayer = Juma-Aat | - (Friday prayer)
-Bier = Kaatel | - (coffin)
-Shroud = Kaffang | - (linen pieces)
-Pointer pen = Kalam | - (wooden pointer pen)
-Testimonial word = Kalima Shahadat | - (Islamic creed)
-Please = Kanala | - (please)
-Free service = Kanala jobbies | - (service without pay)
-Wooden clogs = Kaparangs | - (wooden clogs)
-Long message = Kapetel | - (formality message)
-Cotton swabs = Kapas | - (cotton wool swabs)
-Muslim saint = Karaamat | - (saintly person title)
-Prayer direction = Kiebla | - (direction to Kaaba)
-Funeral = Kiefait | - (funeral)
-Burial society = Kiefait klops | - (burial society)
-Stew = Kiefait kos | - (carrot and pea stew)
-Greetings = Kierie slam | - (give Salaams at home)
-Graveyard = Koebus | - (Muslim graveyard)
-Power = Koedrat | - (All Powerful)
-Fez = Koefija | - (fez)
-Madrasa lessons = Koples | - (Islamic knowledge lessons)
-Shrine = Kramat | - (Mausoleum)
-Tune = Laagoe | - (melodious voice)
-Eid of sacrifice = Labarang Gadjie | - (Eid of sacrifice)
-Eid of Ramadaan = Labarang Ramadaan | - (Eid of Ramadaan)
-Engaged = Lamba | - (engaged)
-Fluent = Lanza | - (fluent)
-Sloppy = Lappies Kasarm | - (not well put together)
-Bad luck = Latchoe | - (bad luck)
-Excuse me = Maaf | - (sorry)
-Next partner = Maaroe | - (after you partner)
-Tassel slippers = Madasters | - (slipper with a tassel)
-Secret eater = Magal Bak | - (private eater during fast)
-Angels = Malaikats | - (angels)
-Death announcer = Malboet | - (announcer of death)
-Bath = Mandi | - (bath)
-Mosque = Masiet | - (mosque)
-Dowry = Maskaavi | - (dowry)
-Ingredients = Metejale | - (food ingredients)
-For example = Mathalan | - (for example)
-Body = Mayet | - (deceased body)
-Precocious girl = Même | - (young female acting older)
-Feast = Merang | - (food event)
-Tombstone = Mesang | - (tombstone)
-Bride head gear = Miedourah | - (decorative head gear)
-Big scarf = Mielayah | - (big women's scarf)
-Wish = Mienta | - (wish)
-Less decorative scarf = Miesfal | - (less decorative scarf)
-Decorative garb = Modeering | - (beaded Islamic garb)
-Attendees = Moerieks | - (mosque attendees)
-Prayer mat = Moesla | - (prayer mat)
-Prophet birth celebration = Moulit | - (birth celebration)
-Wife = Motjie | - (wife)
-Imam's wife = Motjie Imaam | - (wife of imam)
-Community cook = Motjie kok | - (community lady cook)
-Puberty = Mukallaf | - (religiously responsible age)
-Ramadaan supplication = Munaayat | - (supplication before Taraweeg)
-Traveller = Musaafir | - (traveller)
-Accepted prayer = Mustajab | - (accepted)
-Incense = Myang | - (incense)
-Incense holder = Myang Tessie | - (incense holder)
-Financial support = Nifka | - (Islamic financial support)
-Medicine = Obat | - (healing substance)
-Excuse = Oeder | - (reason)
-Sister = Oegtie | - (sister)
-Mother = Oemie | - (mother)
-Invite = Oenang | - (invite)
-Deodorant = Ollie kalollie | - (eau de cologne)
-Fifteenth day of fast = Oppie berg | - (15th day of fasting)
-Ouch = Owala | - (pain expression)
-Malay man = Pang | - (malay man)
-Frequent = Pang ghoeru | - (frequent a mosque)
-Glorifications = Poejies | - (glorifying recitations)
-Pudding = Porring | - (pudding)
-Fast = Pwasa | - (fast)
-Risking fast break = Pwasa waterag | - (risking breaking fast)
-Talker = Qaala | - (likes to talk about religion)
-Slaughter = Korrebaan | - (animal slaughter)
-Portraits = Rakams | - (Islamic portraits)
-Orange leaves = Rampies | - (cut orange leaves in oils)
-Khaliefah display = Ratieb | - (sharp object display)
-Narrations = Riwayat | - (book of narrations)
-Patience = Saaba | - (patience)
-Pious = Saalieg | - (virtuous/God-fearing)
-Reason = Sabab | - (cause)
-Voluntary charity = Sadaka | - (charity)
-Towel = Safet | - (towel)
-Rows = Safs | - (mosque rows)
-Preparation = Sajie | - (food preparation)
-Peace greeting = Salaam | - (peace greeting)
-Safe = Salaamat | - (free of danger)
-Peace be unto you = Salama Laikom | - (peace be unto you)
-Group supplication = Saman Werk | - (special group supplication)
-Demonized = Samba | - (demonized)
-Seven days = Sewe Aande | - (commemorating seven days)
-Forty days = Veertag Dae | - (commemorating forty days)
-Hundred days = Honderd Dae | - (commemorating hundred days)
-Year = Jaar Getal | - (commemorating year)
-Elderly lady = Sies | - (address elderly lady)
-Money given = Slaawat | - (money for funeral/hadj)
-Congratulation = Slamat | - (congratulation)
-Slaughter Halal = Slamblier | - (declare animal halaal)
-Madrasa = Slamse Skool | - (madrasa)
-Make peace = Soeloeg maak | - (make peace)
-Swear by = Soemba | - (swear by)
-Pray = Soembain | - (pray)
-Prayer mat = Soembain tapyt | - (prayer mat)
-Circumcise = Soenat | - (circumcise)
-Beginners Arabic book = Soerat | - (beginners book)
-Oath = Soewallai Kassam | - (utter an oath)
-Humble = Sopang | - (dignified)
-Turban = Sorbaan | - (turban scarf)
-Pre-dawn meal = Souwe | - (pre-dawn meal)
-Eye pencil = Swart Maate | - (eye pencil)
-Divorce = Talak | - (divorce)
-Kalimah guidance = Tallie | - (guide dying person)
-Excuse me = Tamaaf | - (sorry)
-Well versed = Tamat | - (recited whole quraan)
-Limp = Tamang | - (limp)
-Cemetery = Tana Baru | - (cemetery)
-Rosary = Tasbie | - (rosary)
-Nice outfit = Tawetjie | - (nice outfit)
-Aunty = Tie | - (short for tietie)
-Quran recitation = Tielawat | - (recitation)
-Turlington = Teelaton | - (Dutch medicine)
-Oldest Sister = Tietie | - (oldest sister)
-Bad occurrence = Tjiewas | - (bad thing happen)
-Washer of deceased = Toeka Manie | - (person who washes deceased)
-Write = Toelies | - (write in Arabic)
-Thobe = Top | - (prayer shirt)
-Repent = Toubat Maak | - (repent)
-Thank you = Tramakasie | - (thank you)
-Night prayer = Trawie | - (night prayer)
-Gravedigger = Twang Koeber | - (gravedigger)
-Mister = Twang | - (Malay title of respect)
-Exorcise = Uit Mantra | - (exorcise)
-Life = Umr | - (life)
-Prayer time = Waktoe | - (specific time for prayer)
-Swear by Allah = Wallaahi | - (swear by Allah)
-Thikr = Werk | - (supplication)
-Huge crowd = Zagma | - (huge crowd)
-Adultery = Zina | - (unlawful sexual intercourse)
-Uie = Uiwe | - (onions)
-Maskie = Maskie | - (even though)
-Ver-effe = Ver-effe | - (a little while ago)
-Goeie dade = Werksloon | - (good deeds)
-Aspris = Aspris | - (on purpose)
-Kardoesie = Kardoesie | - (packet)
-Handdoeke = Sa-vette | - (towels)
-Tamaletjie = Tamaletjie | - (a sweet)
-Dieselfde = Saimde | - (the same)
-Belofte = Promis | - (promise)
-Different = Davarent | - (different)
-Gemengde = Ghamixte | - (mixed)
-Geestelike ablusie = Abdast | - (spiritual ablution)
-Godsdiens = Agama | - (religion)
-Piekels = Atjar | - (fruit/vegetable pickles)
-Swaard speel = Bakaiyer | - (playing with the swords)
-Gebedroep = Bang | - (giving the call for prayer)
-Padkos = Barakat | - (a parcel of cakes)
-Lees = Batja | - (to read)
-Verward = Biengoe | - (disoriented)
-Vas breek = Boeka | - (breaking the fast)
-Buite werking = Djalantoes | - (out of order)
-Toilet = Djamang | - (toilet)
-Antiek = Djapandoelie | - (ancient)
-Boodskap = Ghabaar | - (message or news)
-Weerlig = Ghielap | - (lightening)
-Donderweer = Ghoentoem | - (thunder)
-Verduistering = Graana | - (eclipse)
-Saambring = Hiempoe | - (bring together)
-Doodskleed = Kafang | - (linen shroud)
-Rivier = Kalie | - (river)
-Asseblief = Kanalla | - (please)
-Begrafnis = Kiefai-jat | - (funeral)
-Feeste = Labarang | - (general name for Eid)
-Verloof = Lambar | - (engaged)
-Gebedskamer = Lang-ar | - (prayer room)
-Vlot = Lanja | - (fluent)
-Slegte geluk = Lat-tjoe | - (bad luck)
-Kussing dans = Ling-oe | - (Balanese cushion dance)
-Gesterf = Manieng-al | - (died)
-Bad = Mannie | - (bath)
-Geestelike genesing = Mantra | - (spiritual healing)
-Bruidskat = Maskawi | - (dowry)
-Fees = Merang | - (feast)
-Grafsteen = Mesang | - (tombstone)
-Hoop = Mienta | - (hope)
-Verskoon my = Mienta-maaf | - (excuse me)
-Pasop = Moeli-at | - (watch-out)
-Vrou = Motjie | - (woman or wife)
-Man = Pang | - (man or uncle)
-Aankondig = Pasang | - (announce)
-Konferensie = Piejara | - (conference)
-Vas = Poewasa | - (fast)
-Bedien = Sadjie | - (serve)
-Bose gees = Samba | - (inflicted with evil spirit)
-Gelukwens = Slamat | - (congratulations)
-Bid = Soembai-ing | - (pray)
-Sweer = Soempa | - (make an oath)
-Waardig = Soppang | - (dignified)
-Gesig = Tjaija | - (face)
-Skryf = Toelies | - (write)
-Gebedshemp = Top | - (prayer shirt)
-Dankie = Tramakasie | - (thank you)
-Abdasplek = Abdasplek | - (place for ablution)
-Boeka-tyd = Boekatyd | - (time to break fast)
-Denningvleis = Denningvleis | - (meat stew)
-Koeberplaas = Koeberplaas | - (burial ground)
-Korbaanvleis = Korbaanvleis | - (sacrifice meat)
-Labarang-boks = Labarangbox | - (Eid present)
-Labarang-pak = Labarangsuit | - (Eid suit)
-Wierookpotjie = Mie-angtessie | - (incense pot)
-Eerste lede = Ouwal-moereeds | - (first members)
-Ramadaan-kalender = Poewasa-aramanakie | - (Ramadaan calender)
-Gewer van oorvloed = Rizieq-giever | - (giver of bounty)
-Oggendgebed = Soeboegsalaah | - (morning prayer)
-Gebedstapyt = Soembai-ingtapyt | - (prayer mat)
-Grafgrawer = Tuankoeber | - (gravedigger)
-Almoesgewer = Zakaatmaker | - (giver of charity)
-Pelgrimstog plekke = Zie-jaaratplekke | - (places of pilgrimage)
-Onreinheid sorge = Warraiskap | - (psychological worry)
-Gawe van voorsienigheid = Verghinskap | - (divine gift)
-Ewigheid = Aitwaghdieren | - (eternity)
-Alwetend = Wieter | - (The All-knowledgeable)
-Almagtig = Kraghtagh | - (The All-powerful)
-Willer = Wiler | - (The One who Wills)
-Ooglopend = Aansit | - (pretentious)
-Opsielik = Aspris | - (on purpose)
-Spoggert = Breggat | - (braggard)
-Nuuskierige = Bus | - (busybody)
-Skinder = Busry | - (gossip)
-Vrou = Die toit | - (your wife)
-Gunsies soek = Gesig verkoep | - (curry favour)
-Uitrek = Huisbou | - (drag out a story)
-Lieg = Kart skiet | - (tell a fantastic story)
-Terg = Kastai | - (tease)
-Subtiele verskille = Kepies is beretjies | - (subtle differences)
-Mal idee = Kop | - (out of your mind)
-Mooi so = Kwaai lappies | - (Well done)
-Hoër klas = Laa die daa | - (upper class people)
-Parmantig = Laai-laai | - (cheeky)
-Eet lekker = Lekker bet | - (eats well)
-Niksnuts = Luisgat | - (no-good)
-Dom = Manieng-al | - (stupid)
-Mooi praatjies = On-er karle | - (tall stories)
-Laaste nippertjie = Oppie tippie | - (last moment)
-Oulik = Ougat | - (cute)
-Pragtig = Poenang-kies | - (pretty)
-Niks = Poep op 'n lappie | - (absolutely nothing)
-Dwaas = Pop | - (fool)
-Onvanpas = Reent | - (inappropriate statement)
-Onbetroubaar = Slamblee | - (untrustworthy)
-Onderskat = Spaai | - (underestimate)
-Mors tyd = Tang a lang | - (wasting time)
-Onkundig = Toe | - (no comprehension)
-Geen = Gha-nie-saam-nie | - (nobody) 
-Na = Aaghtir | - (after).
-Aarde = Aardei | - (earth).
-Afgekom = Afghakaum | - (came down).
-Afgekom = Afghakoem | - (came down).
-Afgereken = Afghariekent | - (settled).
-Afgeskaf = Afghaskap | - (abolished).
-Afkoms = Afkaum | - (descent).
-Afkoms = Afkoem | - (descent).
-Afvraag = Afraagh | - (interrogation).
-Nadat = Aghtar | - (after).
-Nadat = Aghtir | - (after).
-Orige = Aghtirsetaalaghie | - (remaining).
-Einde = Aint | - (end).
-Uit = Ait | - (out).
-Uiteinde = Ait aindie | - (end).
-Uitgelaat = Ait ghalaat | - (left out).
-Uitkom = Ait koem | - (come out).
-Uitspreek = Ait sapark | - (pronounce).
-Uitset = Ait siet | - (set out).
-In = Ain | - (in).
-Einde = Aindei | - (end).
-Aldie = Aldei | - (all the).
-Aldie = Aldie | - (all the).
-Alleen = Alien | - (alone).
-Elf = Alif | - (eleven).
-Elke = Alkan | - (each).
-Elke = Alkin | - (each).
-Altwee = Altiwie | - (both).
-Al wat = Alwat | - (all that).
-Almal = Amal | - (all).
-Aan = An | - (to/on).
-Ambag = Anbaagh | - (trade).
-Ander = Andir | - (other).
-Amper = Anpir | - (almost).
-In te gee = Antighief | - (to yield).
-Antwoord = Anyoert | - (answer).
-Aarde = Ardei | - (earth).
-Erfgenaam = Arfghanaam | - (heir).
-As = As | - (if/except/equal).
-Om = Aum | - (to).
-Openbare = Aupanbaarei | - (public).
-By = Bai | - (by).
-Buik = Baik | - (belly).
-Behalwe = Baitan | - (except/outside).
-Buite = Baiten | - (outside).
-Buite = Baitin | - (outside).
-Blaas = Balaas | - (blow).
-Blase = Balaasei | - (bladders).
-Blank = Balang | - (white).
-Bly = Baleif | - (remain).
-Blosend = Balosain | - (blushing).
-Baie = Banjak | - (many).
-Besigheid = Basighait | - (business).
-Besigheid = Basinamait | - (business).
-Opsê = Batjat | - (recite).
-Bewyse = Bawaisain | - (proofs).
-By = Bei | - (by).
-Buite = Beitan | - (outside).
-Berge = Bergei | - (mountains).
-Bestaande = Bestaanir | - (existing).
-Bederf = Bidierif | - (corrupt).
-By = Bie | - (by).
-Bymekaar = Biemakandir | - (together).
-Brug = Bierig | - (bridge).
-Beter = Bietir | - (better).
-Bevry = Bifrait | - (freed).
-Begin = Bighansil | - (begin).
-Begin = Bighantsel | - (begin).
-Begin = Bighantsil | - (begin).
-Bekend = Bikant | - (known).
-Beken = Bikent | - (confess/known).
-Bly = Bilaif | - (remain).
-Blind = Bilant | - (blind).
-Blind = Bilent | - (blind).
-Blind = Bilint | - (blind).
-Blindheid = Bilint ghait | - (blindness).
-Bruidegom = Biraidija gham | - (bridegroom).
-Bestaande = Bistaanir | - (existing).
-Beste = Bistei | - (best).
-Bestiering = Bistierang | - (governance).
-Bestiering = Bistiering | - (governance).
-Voorkomste = Bistierte | - (appearances).
-Boude = Boedie | - (buttocks).
-Baar = Boerie | - (give birth/breed).
-Broeders = Boeroediris | - (brothers).
-Bring = Breng | - (bring).
-Broeders = Broedirs | - (brothers).
-Daarnatoe = Daanaatoe | - (thereto).
-Daar = Daar | - (there).
-Daarin = Daarein | - (therein).
-Daarvan = Daarfan | - (thereof).
-Daarmee = Daarmain | - (therewith).
-Verskillend = Dafiranta | - (different).
-Dag = Dagh | - (day).
-Duisend = Daisant | - (thousand).
-Dan = Dan | - (then).
-Dit = Dat | - (this/that).
-Dooie = Dauje | - (dead).
-Stom = Daum | - (mute).
-Stomheid = Daum ghait | - (muteness).
-Die = Di- | - (the).
-Daardie = Die | - (that).
-Duidelik = Diedalik | - (clear).
-Diegene = Die ghienaghai | - (those).
-Diegene = Die ghienaghei | - (those).
-Diegene = Die ghienaghie | - (those).
-Hierdie = Dienie | - (these).
-Deurentyd = Die(r) in tait | - (continuously).
-Derde = Dierdei | - (third).
-Dertig = Diertagh | - (thirty).
-Hierdie = Diesai | - (these).
-Hierdie = Diesei | - (these).
-Hierdie = Dietsei | - (these).
-Verskillend = Difirant | - (different).
-Verskillend = Difiranta | - (different).
-Verskillend = Difirint | - (different).
-Verskillend = Difrinst | - (different).
-Dit = Din | - (this).
-Dinge = Dingie | - (things).
-Dra = Diraagh | - (carry).
-Druk = Dirak | - (print/press).
-Drink = Dirang | - (drink).
-Drie = Dirie | - (three).
-Hierdie = Disei | - (these).
-Dit = Dit | - (it/this).
-Dwang = Diwang ghait | - (coercion).
-Dwang = Diweng ghait | - (coercion).
-Jaar = Djaar | - (year).
-Jy = Djai | - (you).
-Demone = Djansie | - (demons).
-Julle = Djoeili | - (you plural).
-Julle = Djoejali | - (you plural).
-Julle = Djoelie | - (you plural).
-Seuntjies = Djonkitjies | - (boys).
-Doof = Doef | - (deaf).
-Doofheid = Doef ghait | - (deafness).
-Dogter = Doeghtir | - (daughter).
-Dood = Doet | - (dead).
-Dood = Doeuoet | - (dead).
-Dood = Doeuot | - (dead).
-Doodwees = Doeuot ghait | - (death).
-Dood = Doewat | - (dead).
-Dors = Dors | - (thirst).
-Dooie = Douie | - (dead).
-Drink = Dreng | - (drink).
-Drink = Dring | - (drink).
-'n = Ein | - (a/in).
-Einde = Eindei | - (end).
-'n = Eit | - (a).
-En = En | - (and/in).
-As = Es | - (if).
-Is = Es | - (is).
-Vaders = Faadirs | - (fathers).
-Water = Faatir | - (water).
-Vyf = Faif | - (five).
-Familie = Familtjeis | - (family).
-Van = Fan | - (of).
-Voorafgaande = Fantifoerai | - (preceding).
-Vra = Faraagh | - (ask).
-Wat = Fat | - (what).
-Volkome = Faulkoem | - (perfect).
-Werke = Ferksloen | - (works).
-Volbring = Feul birang | - (fulfill).
-Nie = Fie | - (not).
-Venster = Fienstar | - (window).
-Venster = Fienstir | - (window).
-Vier = Fier | - (four/fire).
-Vierde = Fierdie | - (fourth).
-Veertig = Fiertagh | - (forty).
-Vir = Fir | - (for).
-Vir = Fira | - (for).
-Vra = Firaagh | - (ask).
-Vraer = Firaaghir | - (asker).
-Vry = Firai | - (free).
-Vrywillig = Firai wilagh | - (voluntary).
-Vrou = Firau | - (woman).
-Voorby = Firbai | - (past).
-Verdeel = Firfirdiel | - (divide).
-Vergaan = Firghaan | - (perish).
-Nalatigheid = Firghit | - (negligence).
-Werke = Firiksloen | - (works).
-Verkoop = Firkoep | - (sell).
-Verleë = Firlie | - (embarrassed).
-Verstand = Firstant | - (understanding).
-Vertel = Firtel | - (tell).
-Vertel = Firtil | - (tell).
-Getrouheid = Firtrau wantait | - (faithfulness).
-Verwonder = Firwoenir | - (amaze).
-Passend = Fit baar | - (fitting).
-Vlei = Flei | - (swamp).
-Voël = Foel | - (bird).
-Volbring = Foel breng | - (fulfill).
-Volkome = Foelkoem | - (perfect).
-Volkomentheid = Foelkoem ghait | - (perfection).
-Volkomentste = Foelkoemstei | - (most perfect).
-Vir = Foer | - (for/before).
-Gaan = Ghaan | - (go).
-Geantwoord = Gha'anyoert | - (answered).
-Gaan = Ghaat | - (go).
-Geblaas = Ghabelaas | - (blown).
-Gebeur = Ghabier | - (happen).
-Begrawe = Ghabigharaaye | - (buried).
-Geblaas = Ghabilaas | - (blown).
-Gebore = Ghaboerai | - (born).
-Gebore = Ghaboerei | - (born).
-Gedagte = Ghadaghtie | - (thought).
-Getuienis = Ghadaigai | - (testimony).
-Gedwing = Ghadawing | - (forced).
-Gedwing = Ghadawink | - (forced).
-Gedeeltes = Ghadieltai | - (parts).
-Gedeeltes = Ghadieltei | - (parts).
-Gedeeltes = Ghadieltie | - (parts).
-Dier = Ghadiert | - (animal).
-Dier = Ghadierti | - (animal).
-Gedierte = Ghadiertie | - (beast).
-Gedwing = Ghadiwank | - (forced).
-Gejaag = Ghadjaag | - (hunted).
-Verhuis = Ghafirhais | - (moved).
-Vertel = Ghafirtal | - (told).
-Gegee = Ghaghaif | - (given).
-Gegee = Ghaghief | - (given).
-Gehaak = Ghahaak | - (hooked).
-Geheim = Ghaheim | - (secret).
-Geen = Gha'ien | - (none).
-Gekry = Ghakarai | - (got).
-Geken = Ghaken | - (known).
-Gekom = Ghakoem | - (came).
-Gekom = Ghakom | - (came).
-Gelykes = Ghalaikins | - (equals).
-Gelykenis = Ghalaiknis | - (similarity).
-Geluid = Ghalait | - (sound).
-Geluide = Ghalaite | - (sounds).
-Geluk = Ghalek | - (luck).
-Geliefste = Ghaliefstei | - (beloved).
-Geliefste = Ghalifstei | - (beloved).
-Geluk = Ghalik | - (luck).
-Glo = Ghaloef | - (believe).
-Gemaak = Ghamaak | - (made).
-Oorlede = Ghamaniekal | - (deceased).
-Veragte = Ghamiendie | - (despised).
-Genoem = Ghanoem | - (named).
-Beveel = Gha'oedir | - (ordered).
-Gepraat = Ghaparaat | - (talked).
-Grote = Gharoetie | - (great).
-Gesien = Ghasien | - (seen).
-Geskapene = Ghaskaapandei | - (created).
-Geskapene = Ghaskaapandie | - (created).
-Gestuur = Ghastier | - (sent).
-Getal = Ghataal | - (number).
-Gaan bly = Ghatbilaif | - (remain).
-Geteel = Ghatiel | - (bred).
-Gesit = Ghasiet | - (sat).
-Gou = Ghau | - (quick).
-Gewees = Ghawies | - (been).
-Kennis = Ghawietanskaap | - (knowledge).
-Een wat wetenskap besit = Ghawietansikaapir | - (knower).
-Geword = Ghawoert | - (become).
-Geloof = Gheloef | - (faith).
-Gewees = Ghewies | - (been).
-Gebring = Ghibreng | - (brought).
-Gee = Ghief | - (give).
-Glo = Ghiloef | - (believe).
-Gekom = Ghoekoem | - (come).
-Glo = Ghoeloef | - (believe).
-Grond = Ghoeraun | - (ground).
-Grote = Ghoeroetie | - (great).
-Goed = Ghoet | - (good).
-Gouer = Ghoeyir | - (quicker).
-Hake = Haakei | - (hooks).
-Hare = Haarei | - (hair).
-Hy = Hai | - (he).
-Hande = Handie | - (hands).
-Hart = Harat | - (heart).
-Hard = Harit | - (hard).
-Hê = Hat | - (have/has).
-Hardloop = Hatloep | - (run).
-Hou = Hau | - (hold).
-Sien wil hê = Hei | - (see will have).
-Het = Het | - (has).
-Hemel = Hiemlas | - (heaven).
-Hemel = Hiemlis | - (heaven).
-Hemel = Hiemls | - (heaven).
-Heuning = Hienang | - (honey).
-Hitte = Hiet | - (heat).
-Hart = Hirt | - (heart).
-Het = Hit | - (has).
-Hoe = Hoe | - (how).
-Hoeveel = Hoefiel | - (how much).
-Hoë = Hoegai | - (high).
-Hoogste = Hoeghastei | - (highest).
-Hoë = Hoegie | - (high).
-Hulle = Hoeil | - (they).
-Hulle = Hoeili | - (they).
-Hulle = Hoejali | - (they).
-Hom = Hoem | - (him).
-Honderd = Hoendirt | - (hundred).
-Hom = Hom | - (him).
-U = Ie | - (you formal).
-'n = Ien | - (a/in).
-Ooreenstemmend = Ienars | - (corresponding).
-Ooreenstemmend = Ienirs | - (corresponding).
-Eerste = Ien stei | - (first).
-Eerste = Ien stie | - (first).
-Eerste = Ierstai | - (first).
-Eerste = Ierstei | - (first).
-Eet = Iet | - (eat).
-Saak = Ietas | - (thing).
-Sake = Ietsei | - (things).
-Sake = Ietsie | - (things).
-Af te vra = Iftifaraagh | - (interrogate).
-En = In | - (and).
-Ander = Indir | - (other).
-Is = Is | - (is).
-Is maar = Ismoer | - (is but).
-Eet = It | - (eat).
-Ja = Jaa | - (yes).
-Kyk = Kaik | - (look).
-Kleine = Kalainie | - (small).
-Kleur = Kalier | - (color).
-Kom = Kam | - (come).
-Kan = Kan | - (can).
-Kan nie = Kanie | - (cannot).
-Kant = Kant | - (side).
-Een wat krag uitoefen = Karaaghir | - (empowered).
-Kry = Karai | - (get).
-Karakter = Karaktei | - (character).
-Dat = Kat | - (that).
-Kwaai = Kayaai | - (angry).
-Kom = Kaum | - (come).
-Setter van bloedsuiers = Kaupaldir | - (blood-letter).
-Kry = Kerai | - (get).
-Kinders = Kiedis | - (children).
-Kinders = Kiedris | - (children).
-Keer = Kier | - (turn).
-Klap = Kilab | - (slap).
-Kleur = Kilier | - (color).
-Ken = Kin | - (know).
-Kniekoppe = Kinai koepai | - (kneecaps).
-Kinders = Kindirs | - (children).
-Kniekoppe = Kinei koepei | - (kneecaps).
-Krag = Kiraagh | - (power).
-Klere = Kiraarie | - (clothes).
-Kry = Kirai | - (get).
-Kruip = Kiraip | - (crawl).
-Kwaad = Kiuaat | - (angry).
-Klippe = Klipai | - (stones).
-Kom = Koem | - (come).
-Koop = Koep | - (buy).
-Geregshof = Koer | - (court).
-Kwaad = Koeyaat | - (angry).
-Kom = Kom | - (come).
-Een wat krag uitoefen = Kraaghir | - (empowered).
-Kry = Krai | - (get).
-Kry = Krei | - (get).
-Knobbel-lepra = Laas roes | - (leprosy).
-Laaste = Laaste | - (last).
-Laaste = Laastei | - (last).
-Lig = Lagh | - (light).
-Lyf = Laif | - (body).
-Kan = Lan | - (can).
-Lange = Langei | - (long).
-Lange = Lankei | - (long).
-Dat = Lat | - (that/let).
-Ligte = Legh tei | - (light).
-Lief = Lief | - (love).
-Lieg = Liegh | - (lie).
-Verbind = Lieng | - (connect).
-Leer = Lier | - (learn).
-Lewend = Liewandagh | - (living).
-Lewend = Liewandegh | - (living).
-Lewende = Liewandehid | - (living).
-Lewend = Liewendagh | - (living).
-Lewende = Liewendaghghir | - (living).
-Lewende = Liewendaghir | - (living).
-Lewend = Liewindagh | - (living).
-Liggaam = Lighaam | - (body).
-Liggame = Lighaamas | - (bodies).
-Lekkerheid = Likarghait | - (sweetness).
-Leerlooier = Loei jar | - (tanner).
-Loop = Loep | - (walk).
-Maak = Maak | - (make).
-Maak = Maaka | - (make).
-Maaksels = Maaka loens | - (creations).
-Maak = Maakein | - (make).
-Maker = Maakir | - (maker).
-Maaksels = Maak loenas | - (creations).
-Maaksels = Maak loens | - (creations).
-Maaksels = Maalkoens | - (creations).
-Man = Maan | - (man).
-Maar = Maar | - (but).
-My = Mai | - (my).
-My = Main | - (my).
-Mening = Mainang | - (meaning).
-Meissies = Maisis | - (girls).
-Mekaar = Makandir | - (each other).
-Makeer = Makieraan | - (lack).
-Man = Man | - (man).
-Wese = Manierei | - (being).
-Manier = Manier | - (manner).
-Gesteldheid = Maniertei | - (condition/characteristics).
-My = Mei | - (my).
-Meer = Meidir | - (more).
-Melk = Melka | - (milk).
-Met = Met | - (with).
-Meer = Miedir | - (more).
-Mening = Mienang | - (meaning).
-Mening = Mienank | - (meaning).
-Mening = Mienanka | - (meaning).
-Moontlik = Moeghlik | - (possible).
-Mens = Miens | - (human).
-Mense = Miensei | - (people).
-Meer = Mier | - (more).
-Minderheid = Mindirangghait | - (deficiency).
-Minderheid = Minirghait | - (deficiency).
-Vergissing = Mistaik | - (mistake).
-Minderheid = Mistirang ghait | - (deficiency).
-Met = Mit | - (with).
-Moeders = Moedirs | - (mothers).
-Moenie = Moenie | - (do not).
-Maar = Moer | - (but).
-Moet = Moet | - (must).
-Moedswilligheid = Moets walieghait | - (intentionality).
-Na = Na | - (after).
-Na = Naa | - (after).
-Naby = Nabie | - (near).
-Na = Nar | - (after).
-Siende = Nasier | - (seeing).
-Net = Nat | - (just).
-Netso = Natsoes | - (just so).
-Nou = Nau | - (now).
-Nog = Naugh | - (still).
-Net = Net | - (just).
-Netso = Netsoes | - (just so).
-Nie = Nie | - (not).
-Negen = Niegei | - (nine).
-Negen = Niegie | - (nine).
-Net = Nit | - (just/not).
-Nooit = Noe'iet | - (never).
-Nooit = Noeuait | - (never).
-O = Oe | - (oh).
-Beveel = Oedir | - (order).
-Of = Oef | - (or).
-Oë = Oegei | - (eyes).
-Oogappel = Oeghapal | - (pupil).
-Oogknip = Oegh kinip | - (blink).
-Ook = Oek | - (also).
-Ookso = Oeksoe | - (also so).
-Om = Oem | - (to).
-Omtrent = Oemtirant | - (about).
-Ongehoorsaam = Oem ghahoersaam | - (disobedient).
-Ongehoorsaam = Oenghawoersaam | - (disobedient).
-Ongehoorsame = Oenghawoersaamei | - (disobedient).
-Onmoontlik = Oen moeghiliek | - (impossible).
-Ons = Oens | - (us).
-Ons = Oensai | - (us).
-Ons = Oensain | - (us).
-Ons = Oensei | - (us).
-Op = Oep | - (on/open/over).
-Openbaar = Oepan baar | - (public).
-Openbaringe = Oepen baarins | - (revelations).
-Oopgemaak = Oepghamaak | - (opened).
-Opreg = Oep reg | - (sincere).
-Oor = Oer | - (over).
-Oorgat = Oerghat | - (ear hole).
-Oorpasseer = Oer pasier | - (pass over).
-Opsigter = Oersindir | - (overseer).
-Op = Oewap | - (on).
-Ontrou = Om fir tirau wantait | - (infidelity).
-Opkom = Op kom | - (arise).
-Plek = Palaka | - (place).
-Plek = Palik | - (place).
-Plek = Palika | - (place).
-Pense = Pansie | - (stomachs).
-Praat = Paraat | - (talk).
-Spreek = Paraak | - (speak).
-Gepraat = Paraatei | - (speech).
-Pad = Parat | - (path).
-Pad = Part | - (path).
-Passeer = Pasier | - (pass).
-Passeerders = Pasierirs | - (passersby).
-Vas = Payaasa | - (fast).
-Pen = Pen | - (pen).
-Praat = Piraat | - (talk).
-Sprekende = Paraatir | - (speaker).
-Spreek = Piraatir | - (speaker).
-Ryk = Raika | - (rich).
-Rond = Rayant | - (round).
-Reg = Regh | - (right).
-Rede = Riedei | - (reason).
-Renperd = Risie pert | - (racehorse).
-Rooi = Roei | - (red).
-Sal = Sabal | - (shall).
-Selfde = Saimei | - (same).
-Selfde = Saimstie | - (same).
-Selfde = Saimstei | - (same).
-Sy = Sain | - (his/her).
-Sal = Sal | - (shall).
-Slaan neer = Salaanier | - (strike down).
-Slaap = Salaap | - (sleep).
-Self = Salaf | - (self).
-Self = Salf | - (self).
-Self = Salwei | - (self).
-Self = Salwie | - (self).
-Staan = Sataan | - (stand).
-Staan = Sataat | - (stand).
-Sterke = Satirkai | - (strong).
-Swakheid = Sayaagheit | - (weakness).
-Swarte = Sayaatie | - (black).
-Swakheid = Sayaka ghait | - (weakness).
-Sê = Seigh | - (say).
-Sy = Sein | - (his).
-Skaal = Sekaal | - (scale).
-Voorspoedig = Sepoedagh | - (prosperous).
-Staan = Setaan | - (stand).
-Staanplek = Setaan pilak | - (standing place).
-Onwetendheid = Setaum ghait | - (ignorance).
-Onwetend = Setoem | - (ignorant).
-Sê = Siegh | - (say).
-Seën = Sieghan | - (blessing).
-Seën = Sieghin | - (blessing).
-Siekte = Siektei | - (illness).
-Siekte = Siektie | - (illness).
-Sien = Sien | - (see/son).
-Siende = Sienir | - (seeing).
-Ses = Sies | - (six).
-Set = Siet | - (set).
-Sewe = Siewei | - (seven).
-Skaduwee = Sikaadawei | - (shadow).
-Skrywers = Sikir(a)iwis | - (writers).
-Skoon = Sikoen | - (clean).
-Slaap = Silaap | - (sleep).
-Slawe = Silaawei | - (slaves).
-Wysheid = Silim ghait | - (wisdom).
-Siende = Sinier | - (seeing).
-Sonde = Sindie | - (sin).
-Sestig = Sistagh | - (sixty).
-Staan = Sitaan | - (stand).
-In stand hou = Sitaan baar maak | - (maintain).
-Staande = Sitaanirs | - (standing).
-Staan = Sitaat | - (stand).
-Straf = Sitaraaf | - (punish).
-Onwetend = Sitaum | - (ignorant).
-Onwetendheid = Sitaum ghait | - (ignorance).
-Straf = Siteraafi | - (punishment).
-Straf = Sitiraaf | - (punish).
-Onwetendheid = Sitoem ghait | - (ignorance).
-Swaar = Siyaar | - (heavy).
-Swaarheid = Siyaarghait | - (heaviness).
-Swak = Siyak | - (weak).
-Sweet = Siyiet | - (sweat).
-So = Soe | - (so).
-Son = Soen | - (sun).
-Sonde = Soendei | - (sin).
-Sonder = Soendir | - (without).
-Sonder = Soenir | - (without).
-Soorte = Soertai | - (kinds).
-Soorte = Soertei | - (kinds).
-Soos = Soes | - (like).
-Soeter = Soetir | - (sweeter).
-Teengestelde = Streide | - (opposite).
-Te = Ta- | - (to).
-Te = Tai | - (to).
-Tyd = Tait | - (time).
-Trompet = Tarampitir | - (trumpet).
-Reis = Tariefil | - (travel).
-Terug = Tarigh | - (back).
-Tong = Taung | - (tongue).
-Twyfel = Taweifal | - (doubt).
-Twee = Tawie | - (two).
-Tweede = Tawiedei | - (second).
-Twyfel = Tawiefal | - (doubt).
-Te = Te | - (to).
-Te = Tei | - (to).
-Twee = Tewie | - (two).
-Te = Ti- | - (to).
-Teel = Tiel | - (breed).
-Tien = Tien | - (ten).
-Tevrede = Tifiriede | - (satisfied).
-Tevrede = Tifiriedie | - (satisfied).
-Terug = Tiragh | - (back).
-Trompet = Tirampatir | - (trumpet).
-Trou = Tirau | - (marry).
-Reis = Tiriefil | - (travel).
-Tussen = Tisein | - (between).
-Twee = Tiwai | - (two).
-Twee = Tiwei | - (two).
-Twee = Tiwie | - (two).
-Tweede = Tiwiede | - (second).
-Te = To | - (to).
-Toe = Toe | - (then).
-Tot = Toet | - (until).
-Twintig = Twantagh | - (twenty).
-Twee = Twei | - (two).
-Twintig = Twenetagh | - (twenty).
-Twintig = Twentagh | - (twenty).
-Wakker = Yakir | - (awake).
-Hoorder = Yoerar | - (hearer).
-Waar = Waar | - (true).
-Waarheid = Waarait | - (truth).
-Waarlik = Waarlak | - (truly).
-Wegbly = Waghbilaif | - (stay away).
-Wyd = Wait | - (wide).
-Wetende = Waitar | - (knowing).
-Een wat wil = Walir | - (willer).
-Wanneer = Wanier | - (when).
-Wanneer = Wanir | - (when).
-Warmte = Warim tei | - (warmth).
-Vat = Wat | - (take).
-Wegbly = Weghbilaif | - (stay away).
-Weg = Weigh | - (away).
-Wegsteek = Weigh stiek | - (hide).
-Wind = Went | - (wind).
-Wat = Wet | - (what).
-Wie = Wie | - (who).
-Weer = Wier | - (again).
-Werke = Wiereksloen | - (works).
-Werke = Wieriksaloen | - (works).
-Werke = Wieriksloen | - (works).
-Wees = Wies | - (be).
-Weet = Wiet | - (know).
-Weter = Wietir | - (knower/whiter).
-Wilde = Wildei | - (wild).
-Wil hê = Wilhei | - (want).
-Wanneer = Winier | - (when).
-Werke = Wiraksloen | - (works).
-Woning = Woenang | - (dwelling).
-Hoor = Woer | - (hear).
-Horende = Woerar | - (hearing).
-Word = Woerat | - (become).
-Hoorder = Woerir | - (hearer).
-Sal = Woert | - (shall).
-Adaab = Adaab | - (manners/politeness).
-Guroof = Garafs | - (arabic letters).
-Huruf = Guroof | - (arabic letters).
-Ibaadah = Ibaadat | - (acts of worship).
-Kassam = Kassam | - (to utter an oath).
-Quboor = Koebis | - (Muslim graveyard).
-KrieSalaam = KrieSalaam | - (give my Salaams at home).
-Manie = Manie | - (bath).
-Mite = Mite | - (body of a deceased person).
-Ou man jongetjie = Ou man jongetjie | - (young male acting older).
-Pankie = Pankie | - (malay man).
-So-wer = So-wer | - (pre-dawn meal).
-Sumbaign = Sumbaign | - (to make prayer).
-Sumbain = Sumbain | - (to make prayer).
-Talaaq = Talaaq | - (divorce).
-Talqeen = Talqeen | - (to guide dying person).
-Wagdu = Wagdu | - (a specific time for a prayer).
-Gesitnaai = Gesitnaai | - (sewing).
-Nematjies = Nematjies | - (just now).
-Tjap = Tjap | - (stamp).
-Tjommel = Tjommel | - (chatter).
-Tamaai = Tamaai | - (huge).
-Kabaai = Kabaai | - (garment).
-Krabbetjie = Krabbetjie | - (earring).
-### 3. Neologisms and Composites Missed
-The new text provides additional examples of unique bilingual composites created by the Cape Muslim community:
-*   **graana-salaah:** prayer for the eclipse (a Sanskrit-Arabic combination).
-*   **kierie-slaam:** best greetings (a Sunda-Arabic combination).
-*   **asal-niesaab:** original taxable property (an Arabic combination observing Afrikaans syntax).
-*   **waajieb-niesaab:** necessary tax (an Arabic combination observing Afrikaans syntax).
+### Part 2: Malayo-Polynesian and Arabic Borrowings Missed
 
-### 4. Additional Syntactical / Linguistic Rules Missed
-*   **Intensity of Integration via Morphemes:** The text explicitly notes a rule that the strength of bridging an Arabic loan word into Cape Muslim Afrikaans is determined by its grammatical usage. It is the affixing of Afrikaans grammatical morphemes (like adding *-s* for plurals, *ge-* for past tense, or *-heid/-skap* for abstract nouns) that serves as the primary indicator of how intensely a foreign word has been integrated into the dialect. 
-*   **Expanded Composite Syntax Rule:** The rule stating that composites switch from the Arabic/Malayu Noun-Adjective order to the Afrikaans Adjective-Noun order is expanded. If following Arabic syntax, "original taxable property" would be *niesaab-asal* and "necessary tax" would be *niesaab-waajieb*. Instead, because they strictly follow the Afrikaans syntactical arrangement, they become **asal-niesaab** and **waajieb-niesaab**.
-To be absolutely exhaustive and ensure that **nothing is missed**, there were still two categories from the sources that were not fully detailed in the previous lists: 
+**Alternative Equivalents (Functional Dualism)**
+These words co-exist alongside other equivalents, chosen based on the speaker's nuance:
+*   **ai-ya:** to spell (from Malayu).
+*   **daliel:** Quranic substantiation (from Arabic).
+*   **fajr:** morning prayer (Arabic equivalent rarely used compared to *soeboeg*).
+*   **ghoesl:** bath (Arabic equivalent co-existing with the Malayu *mannie*).
+*   **mahr:** dowry (Arabic equivalent rarely used compared to *maskawie*).
+*   **masjied / masiet:** mosque (from Arabic).
+*   **niesaab:** taxable property (from Arabic).
+*   **soum:** to fast (Arabic equivalent rarely used compared to *poewasa*).
+*   **woedoe:** spiritual ablution (Arabic equivalent co-existing with *abdast*).
 
-**1. Additional Single Words and Source-Language Roots (Davids)**
-*   **bapang:** The Malayu origin word for *pang* (man/uncle).
-*   **beretjies:** Part of an idiom (*kepies is beretjies*) meaning small differences.
-*   **gemixte:** Mixed; used to illustrate how an English word's pronunciation is adapted to sound distinctly non-English in Cape Muslim Afrikaans.
-*   **muntjie:** The Javanese origin word for *motjie* (woman/wife).
-*   **ouai:** You; a word found in an 1874 love letter.
-*   **trunka:** The Buganese and Sunda root word for *tronk* (prison).
+**Source-Language Roots & Specific Origins:**
+*   **bapang:** The Malayu origin word for *pang* (uncle).
+*   **beretjies:** Part of an idiom meaning small differences.
+*   **gemixte:** Mixed; adapted to sound non-English.
+*   **muntjie:** The Javanese origin word for *motjie* (wife).
+*   **ouai:** You (found in an 1874 love letter).
+*   **trunka:** The Buganese/Sunda root word for *tronk* (prison).
 
+---
 
-**Malayo-Polynesian Inherited Words (Malayu, Sunda, Sanskrit):**
-*   **abdas:** spiritual ablution.
-*   **bang:** giving the call for prayer.
-*   **batcha / ge-batcha:** to read.
-*   **boeta / boetas / boetatjies:** brother(s) (derived from Malayu).
-*   **Boeka:** breaking the fast.
-*   **gamaningal:** to have died / passed away.
-*   **gelamba:** to become engaged.
-*   **kaffang:** linen shroud for the dead.
-*   **labarang:** Eid festivals.
-*   **pwasa:** the fast.
-*   **soeboeg:** morning prayer.
-*   **toeka-manie:** the person who washes the dead (composite using Malayu *mannie* - to bath).
+### Part 3: Creolized Dutch/Afrikaans Vocabulary Missed
 
-**Arabic Loanwords & Religious Terminology:**
-*   **ajjal:** appointed time of death.
-*   **Algamdu Lillah:** praise be to Allah.
-*   **arawaag:** souls/spirits (plural of *ruh*).
-*   **Ashrakal:** standing praise during the *moulit*.
-*   **Ayda (Iddah):** waiting period for widows/divorcees.
-*   **bilal:** the caller to prayer.
-*   **fietna:** discord / mischief.
-*   **gaajat:** specific gathering or need.
-*   **gaatam:** completion of the Quran reading.
-*   **ghoesl / ge-ghoesl:** ritual bath.
-*   **gidayat:** divine guidance.
-*   **gielaaf:** disagreement.
-*   **jamaa / jamaah:** congregation.
-*   **janaza:** funeral.
-*   **joos (juz):** a 30th part of the Quran.
-*   **koebus:** grave/graveyard.
-*   **Layla Tul Qadr:** the Night of Power (in Ramadan).
-*   **masiet:** mosque.
-*   **moulit:** celebration of the Prophet's birth.
-*   **Qiblah:** the direction of prayer.
-*   **salaah:** prayer.
-*   **souwe / gesouwe:** to fast.
-*   **sujood:** prostration.
-*   **Surah (Yaseen, Tabarah, Mulk):** Chapters of the Quran.
-*   **trawie (tarawih):** evening prayers during Ramadan.
-*   **waktoe:** time / prayer time.
+These are 19th-century Cape Dutch words and unique pronunciations that lingered in Cape Muslim Afrikaans but were excluded from Standard Afrikaans:
+*   **danebol:** pinecone.
+*   **gesitnaai:** sewing / to sew.
+*   **ghaleikenis / ghalaikienies:** equal.
+*   **ghawietenskap:** knowledge.
+*   **ghiebot:** commandment.
+*   **groeroot:** big.
+*   **koewaat:** evil.
+*   **miekeer:** to lack / be short of.
+*   **moddras:** mud.
+*   **nematjies:** just now / shortly.
+*   **seeghint:** blessing.
+*   **tiedaagh:** today.
+*   **wai:** we (from Dutch *wij*).
 
-**Distinctive Creolized Words / Names / Titles:**
+---
+
+### Part 4: Neologisms, Composites & Distinctive Names Missed
+
 *   **amie:** uncle.
-*   **gaafies:** good/pleasant (derived from Afrikaans *gaaf*).
+*   **asal-niesaab:** original taxable property.
+*   **gaafies:** good/pleasant (from Afrikaans *gaaf*).
 *   **galatie:** older sister.
+*   **graana-salaah:** prayer for the eclipse.
 *   **Hiemie:** Name.
-*   **laagoe:** melodious reciters.
-*   **slamse:** Muslim (from the creolization of *Maleier* and *Islam*).
+*   **kierie-slaam:** best greetings.
+*   **slamse:** Muslim (blend of *Maleier* and *Islam*).
+*   **waajieb-niesaab:** necessary tax.
 *   **Yusie:** Name.
 
 ---
 
-### Part 2: Every Single Rule Extracted
-The paragraph is a perfect specimen of Cape Muslim Afrikaans. Here is every linguistic rule it employs, as validated by the sources:
+### Part 5: The Extended Cultural & Idiomatic Glossary Missed
+*(This represents the entirety of the community expressions and specific vocabulary from the newly added sources)*
 
-**1. The Base Syntactical Rule (SOV framework)**
-The language follows the Indo-Germanic Dutch/Afrikaans Subject-Object-Verb (SOV) word order, which acts as the common denominator facilitating the blending of Dutch with the Malayo-Polynesian languages.
-*   *Rule in action:* "ek sal nie kan gaan nie" or "ons het hom toe uit-gelê".
+*   **Aadaab / Adab:** manners, respect, politeness, and the proper way of doing something.
+*   **Afdal:** best, preferable, better.
+*   **Ajaaips / Ajipes:** misfortune or weird.
+*   **Ajoemat:** talisman/amulet.
+*   **Akeltjies:** additional turns and twists added while pitching when singing or reciting.
+*   **Alaamat:** a sign or token.
+*   **Alaikom Salaam:** answer to greeting.
+*   **Alif duwa dettis an...:** a rhyme used at madrassa to learn the Arabic alphabet.
+*   **Amatie:** paternal aunt.
+*   **Amie:** paternal uncle.
+*   **Aragam:** the deceased.
+*   **Ariyas:** hair.
+*   **Asgharies:** Saudi policemen.
+*   **Auwal-Owwal:** from among the first.
+*   **Ay-yah:** learning or struggling to read Arabic text.
+*   **Banaa Water:** water where Quranic verses were recited over.
+*   **Bapa:** father or grand-father.
+*   **Bedieners:** waiters at a wedding reception.
+*   **Behangsels:** curtaining and bedding in a wedding couple’s bedroom.
+*   **Bekend maak:** to invite to one’s own wedding.
+*   **Bieja / Aboeja / Abee / Agoejah:** Father.
+*   **Bruidskamer:** bridal chamber.
+*   **Das:** lecture.
+*   **Doekmaal:** baby name giving.
+*   **Doenya trouble/trobble:** very big trouble.
+*   **Falaka:** a special method of getting a hiding by a galiefa for a major transgression.
+*   **Gaaba gaaba:** message or news (opening line to announce a death).
+*   **Gajjah (Hajjah):** a female person who performed the hadj.
+*   **Ge-aate:** manners.
+*   **Geniepstag:** bitchy, malicious, spiteful.
+*   **Goefs (Khuffs):** leather socks.
+*   **Groet:** to greet family and friends before going on Gadj or Umrah.
+*   **Groos:** proud.
+*   **Gujjaaj:** plural of Hadjie.
+*   **Gwaan:** go on.
+*   **Gwarra:** tease.
+*   **Hoe Faa:** how are you.
+*   **I'm Out:** to have monthly periods.
+*   **Jalantoe se tyd:** very old.
+*   **Kanala jobbies:** to render a service without charging or expecting to get paid.
+*   **Kapas:** huge cotton wool swabs for ghusl of the deceased.
+*   **Kapetel / Kapêtel:** to convey a long message or a formality.
+*   **Kaatel:** bier/coffin to carry the deceased.
+*   **Kiefait klops:** Burial society.
+*   **Kiefait kos:** Carrot and Pea Stew.
+*   **Kierie slam (KrieSalaam):** give my Salaams at home.
+*   **Koebis:** Muslim graveyard.
+*   **Koples:** madrasa lessons about general Islamic knowledge.
+*   **Labarang Gadjie:** the Eid of sacrifice.
+*   **Labarang Ramadaan:** Eid celebrating the end of Ramadaan.
+*   **Lappies Kasarm:** something not well put together.
+*   **Maaroe:** the person in a relationship with your ex-partner.
+*   **Madasters:** a type of slipper with a tassel.
+*   **Magal Bak:** a person who eats in private during the fast.
+*   **Malboet:** the person who went street to street to announce a death.
+*   **Même:** a young female who acts older than she is.
+*   **Metejale / Matajale:** different ingredients added to foods.
+*   **Modeering:** a very elaborately beaded and decorated Islamic garb.
+*   **Motjie Imaam:** The wife of the imam.
+*   **Motjie kok:** The lady who makes food for functions.
+*   **Myang:** incense.
+*   **Oenang:** invite.
+*   **Ollie kalollie:** deodorant / eau de cologne.
+*   **Oppie berg:** a person who has fasted the first 15 days without skipping one day.
+*   **Owala / Owela:** Ouch (to express pain).
+*   **Pang ghoeru:** to frequent a mosque.
+*   **Pwasa waterag:** doing something which might lead to breaking your fast.
+*   **Safet:** towel.
+*   **Safs:** rows in a mosque.
+*   **Sewe Aande, Veertag Dae, Honderd Dae, Jaar Getal:** group supplications commemorating intervals after death.
+*   **Slaawat:** money given to someone.
+*   **Slamblier:** to declare an animal halaal (also used sarcastically for an untrustworthy person).
+*   **Soembain tapyt:** prayer mat.
+*   **Soewallai Kassam (kassam):** to utter an oath.
+*   **Swart Maate:** eye pencil.
+*   **Tana Baru:** new land (Muslim cemetery in Cape Town).
+*   **Tawetjie:** nice outfit.
+*   **Teelaton / Tietlaton:** turlington (Dutch medicine).
+*   **Tie / Tietie:** Oldest Sister.
+*   **Tjiewas:** something bad happens to you.
+*   **Twang Koeber:** the person who digs the hole at the graveyard.
+*   **Uit Mantra:** to exorcise.
+*   **Umr:** life.
+*   **Werk / werk maak:** short for 'werksloon' (a thikr or arwaag).
+*   **Zina with the eyes:** unlawful intercourse visually.
 
-**2. The Malayo-Polynesian Lexical Inheritance Rule**
-Cape Muslim Afrikaans supplements the limitations of its 19th-century Cape Dutch core vocabulary by bringing in inherited words directly from the ancestral slave languages (Sanskrit, Sunda, Malayu).
-*   *Rule in action:* Instead of the Afrikaans words for "fasting", "morning", or "reading", the text uses *pwasa*, *soeboeg*, and *batcha*.
+---
 
-**3. The Arabic Lexical Borrowing Rule**
-Arabic words, primarily related to religion, are borrowed extensively. However, they are not translated into Afrikaans; instead, the original Arabic keywords are preserved as fundamental concepts.
-*   *Rule in action:* Words like *salaah* (prayer), *masiet* (mosque), *koebus* (grave), and *Qiblah* (direction of prayer) are used instead of Dutch equivalents.
-
-**4. The Morphological Integration Rule (Verbs)**
-The intensity of integrating a foreign loanword into Cape Muslim Afrikaans is determined by affixing Afrikaans grammatical morphemes to it. A primary rule is creating past-tense verbs by adding the Afrikaans prefix **ge-** to Malayo-Polynesian or Arabic root verbs.
-*   *Rule in action:* 
-    *   **ge-souwe** = *ge-* + Arabic *soum* (to fast).
-    *   **ge-lamba** = *ge-* + Malayu *lambar* (to become engaged).
-    *   **ge-ghoesl** = *ge-* + Arabic *ghoesl* (ritual bath).
-    *   **ge-batcha** = *ge-* + Malayu *batja* (to read).
-
-**5. The Morphological Integration Rule (Nouns & Plurals)**
-Foreign nouns are fully integrated into Afrikaans by affixing the Afrikaans plural suffix **-s** or the diminutive suffix **-tjie**.
-*   *Rule in action:* *boeta* becomes the plural **boetas**, and the diminutive plural **boetatjies**. *joos* (juz) acts as an Afrikaans plural noun in "twee joos". 
-
-**6. The Rule of Composite Neology (Syntactical Reversal)**
-When combining words from different languages to create composites, the language switches the traditional Malayo-Polynesian/Arabic syntactical order (Noun-Adjective) to conform entirely to the Afrikaans syntactical arrangement (Adjective-Noun).
-*   *Rule in action:* **slamse skool** (Muslim school) and **moulit jamaa** (moulit congregation).
-
-**7. Phonetic Creolization (Orthoepic Rules)**
-The language preserves older, 19th-century Cape Dutch pronunciations (or creolized phonetic spellings) that never became part of Standard Afrikaans.
-*   *Rule in action:* The text uses **twalf** instead of the Standard Afrikaans *twaalf*. 
-
-**8. The Functional Dualism Rule**
-In Cape Muslim Afrikaans, certain Malayo-Polynesian and Arabic words meaning the exact same thing co-exist and are used interchangeably depending on the speaker's nuance.
-*   *Rule in action:* The text uses the Malayu-derived **abdas** for ablution, but then uses the Arabic-derived **ghoesl** for the full ritual bath, showing the dual religious vocabulary working side-by-side.
-**Linguistic and Etymological Knowledge Extracted:**
-
-The provided text is a prime example of **Cape Muslim Afrikaans**, a language variety that utilizes an Afrikaans/Dutch core vocabulary and syntax while incorporating a distinct lexical inventory of Malayo-Polynesian and Arabic loanwords. 
-
-**1. Vocabulary and Origins:**
-The text contains numerous specific words that trace their roots to the ancestral slave languages (Malayu, Sunda, Sanskrit) and the religious language (Arabic) of the Cape Muslims. 
-*   **pwasa (poewasa):** Derived from Sanskrit/Malayu, meaning "to fast" or "the fast".
-*   **gamaningal:** Derived from the Malayu *manieng-al* or *meninggal*, meaning "to have died" or "passed away".
-*   **soeboeg:** The Malayu word preferred for the morning prayer.
-*   **waktoe:** Derived from the Arabic *wakt*, meaning "time" or "time of prayer".
-*   **bang:** Inherited from Malayu, meaning "giving the call for prayer".
-*   **abdas (abdast):** Borrowed from Persian to Malayu, meaning "spiritual ablution".
-*   **salaah:** The Arabic loanword for "prayer".
-*   **Boeka:** A Sunda word meaning "breaking the fast".
-*   **labarang:** A Sunda word used as the general name for the major Eid religious festivals.
-*   **masiet (masjied):** The Arabic word for "mosque".
-*   **manie (mannie):** Inherited from Malayu, meaning "to bath". In your text, it is used in the composite *toeka-manie* (the person who washes the dead).
-*   **kaffang (kafang):** A Malayu word meaning "linen used as a shroud for the dead".
-*   **batcha (batja):** A Malayu word meaning "to read".
-*   **koebus (koeber/qubur):** Derived from Arabic, meaning "graves" or "burial ground".
-*   **Qiblah (qiblatu):** Derived from Arabic, indicating the direction of prayer.
-*   **slamse:** Derived from "Slamaier," which is a unique Cape Muslim kontaminasie (blend) of the words *Islam* and *Maleier* (Malay) used to refer to a Muslim.
-
-**2. Morphological and Syntactical Rules Demonstrated:**
-The text perfectly illustrates the core linguistic rule where the intensity of integration of a loanword into Cape Muslim Afrikaans is indicated by affixing Afrikaans grammatical morphemes to foreign words. Specifically, the text applies the Afrikaans past-tense prefix **ge-** to several Malayo-Polynesian and Arabic verbs:
-*   **gesouwe:** The Arabic root word *soum* (to fast) + the Afrikaans *ge-* prefix.
-*   **gelamba:** The Malayu verb *lambar* (to become engaged to be married) + the Afrikaans *ge-* prefix.
-*   **ge-ghoesl:** The Arabic root word *ghoesl* (bath) + the Afrikaans *ge-* prefix.
-*   **ge-batcha:** The Malayu verb *batja* (to read) + the Afrikaans *ge-* prefix.
-
+### Part 6: Core Dutch/Afrikaans Lexicon Identified in the Texts
+To guarantee *every single word* evaluated in the source has been accounted for, the following are the exact base-language standard words identified within the linguistic sample text: 
+aan, aand, as, betaal, behoort, bietjie, bly, by, daar, daai, dae, darem, die, dis, dit, dogter, draai, eindelik, ek, elkeen, en, gaan, gegaan, genooi, gesê, gesit, gou-gou, het, hom, honderd, hy, in, inlig, is, jare, jy, kan, katel, klaar, klein, kom, kry, manne, man, maar, meer, mens, met, moet, mos, na, Nadat, neem, net, nie, Nee, nog, nogal, nou, of, oggend, om, onder, one (ons), onthou, oor, oorkant, op, paar, persoonlik, raak, regte, saam, sal, se, skat, skool, so, sodat, sommer, sy, te, tevore, toe, twalf (twaalf), twee, tyd, uit, uit-gelê, van, vir, voor, vroeg, waar, was, wat, weet, werk, wie, wil.
