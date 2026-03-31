@@ -10,57 +10,46 @@ st.title("🕌 1860s Cape Arabic-Afrikaans Scribe")
 # --- 2. KEY POOL ---
 API_POOL = st.secrets.get("keys", [])
 
-def get_hard_dictionary():
-    """Reads rules.txt and creates a Python dictionary for forced swapping."""
-    rules_dict = {}
+def scribe_translator(user_input):
+    # Load Vocabulary Laws from rules.txt
+    archive_rules = "No additional vocabulary rules."
     if os.path.exists("rules.txt"):
         with open("rules.txt", "r", encoding="utf-8") as f:
-            for line in f:
-                if "=" in line:
-                    # Splits 'Knowledge = Ilm' into key and value
-                    parts = line.split("=")
-                    english_word = parts[0].strip().lower()
-                    cape_word = parts[1].strip()
-                    rules_dict[english_word] = cape_word
-    return rules_dict
+            archive_rules = f.read()
 
-def apply_hard_rules(text, rules_dict):
-    """Physically replaces words from rules.txt before the AI sees them."""
-    # We sort by length (longest first) so 'Knowledge' is replaced before 'Know'
-    for word in sorted(rules_dict.keys(), key=len, reverse=True):
-        pattern = re.compile(re.escape(word), re.IGNORECASE)
-        text = pattern.sub(rules_dict[word], text)
-    return text
-
-def scribe_translator(user_input):
-    # STEP 1: Forced Dictionary Swap (Python Power)
-    dictionary = get_hard_dictionary()
-    forced_text = apply_hard_rules(user_input, dictionary)
-
-    # STEP 2: The AI Brain (Phonetic Framing for words NOT in dictionary)
+    # THE BRAIN: System Instructions (Deterministic Mode)
+    # This forces the AI to follow the mapping for EVERY word
     system_instruction = f"""
     ROLE: 19th-century Cape Muslim Scribe.
-    TASK: The input text already has ARCHIVE words replaced. 
-    Your ONLY job is to transcribe the REMAINING modern words into 1860s phonetics and Arabic Script.
+    TASK: Transcribe the INPUT into 1860s Cape Afrikaans and Arabic Script.
     
-    ### MANDATORY ALPHABET LAWS:
+    ### MANDATORY VOCABULARY (PRIORITY #1):
+    {archive_rules}
+    
+    ### MANDATORY ALPHABET LAWS (PRIORITY #2):
     - Consonants: b=ب, p=پ, t=ت, s=ث/س/ص, dj=ج, tj=چ, h=ح/ه, ch/g=خ, d=د/ض, z=ذ/ز/ظ, r=ر, sj=ش, t=ط, g=غ, ng=ڠ, f=ف, w=ڤ/و, q=ق, k=ك, s/c=س, gh=گ, l=ل, m=م, n=ن, j=ي.
-    - Vowels: a=ـَ, aa=ـَا, aai=ـَاي, ai=ـَي, ei/y=ـَِي, u/û=ـَِو, e=ـَِ, ê=ـَِـٰ, o=ـَُ, ie=ـِي, i=ـِ, î=ـِي, eeu/eu/uu=ـَِوي, ee=ـِي, oe=ـُ, ô=ـُو, oo=ـَُو, oei/ooi=ـُوي, ui=ـَُوي, e/è=ـَِي
+    - Vowels & Diphthongs:
+    a=ـَ | aa=ـَا | aai=ـَاي | ai=ـَي | ei/y=ـَِي | u/û=ـَِو | e(schwa)=ـَِ | ê=ـَِـٰ | o=ـَُ | ie=ـِي | i=ـِ | î=ـِي | eeu/eu/uu=ـَِوي | ee=ـِي | oe=ـُ | ô=ـُو | oo=ـَُو | oei/ooi=ـُوي | ui=ـَُوي | e/è=ـَِي
 
-    STRICT: Output ONLY the two numbered lines. No conversation.
+    EXECUTION PROTOCOL:
+    1. Look at each word in the INPUT.
+    2. If the word is in MANDATORY VOCABULARY, use the archive version.
+    3. If the word is NOT in VOCABULARY, use the ALPHABET LAWS to frame the word phonetically.
+    4. STRICTION: Output ONLY the two lines. No conversation.
     """
 
     for key in API_POOL:
         try:
             genai.configure(api_key=key.strip())
+            # We use 'system_instruction' to lock the AI's behavior
             model = genai.GenerativeModel(
                 model_name='gemini-2.5-flash-lite',
                 system_instruction=system_instruction
             )
             
-            # Temp 0 ensures the AI follows the alphabet laws for non-dictionary words
+            # Temperature 0 = NO FOOLISHNESS. 100% Logic.
             response = model.generate_content(
-                f"TRANSCRIBE THIS: {forced_text}",
+                f"INPUT: {user_input}",
                 generation_config={"temperature": 0}
             )
             return response.text.strip()
