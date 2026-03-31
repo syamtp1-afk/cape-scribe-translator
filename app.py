@@ -10,33 +10,38 @@ st.title("🕌 1860s Cape Arabic-Afrikaans Scribe")
 # --- 2. KEY POOL ---
 API_POOL = st.secrets.get("keys", [])
 def scribe_translator(user_input):
-    # 1. Load your rules from rules.txt into a 'Hard Swap' dictionary
+    # 1. LOAD THE MASTER DICTIONARY FROM RULES.TXT
     rules_dict = {}
     if os.path.exists("rules.txt"):
         with open("rules.txt", "r", encoding="utf-8") as f:
             for line in f:
                 if "=" in line:
+                    # Extracts 'ModernWord' and '1860sWord'
                     parts = line.split("=")
-                    # Standardizing to lowercase for matching
-                    modern = parts[0].strip().lower() 
-                    # Extracting the 1860s word before any notes in brackets
-                    archive = parts[1].split("(")[0].strip() 
+                    modern = parts[0].strip().lower()
+                    # Extracts the archive word before the (Meaning)
+                    archive = parts[1].split("(")[0].strip()
                     rules_dict[modern] = archive
 
-    # 2. THE FORCE: Python replaces words before the AI even sees them
-    # This prevents the AI from guessing "Read = رید"
+    # 2. THE HARD-SWAP: Python replaces words BEFORE the AI sees them
+    # This stops the AI from using Modern Arabic like 'Latif'
     processed_text = user_input.lower()
     for word in sorted(rules_dict.keys(), key=len, reverse=True):
+        # We use word boundaries \b to ensure we only replace whole words
         pattern = re.compile(rf'\b{re.escape(word)}\b', re.IGNORECASE)
         processed_text = pattern.sub(rules_dict[word], processed_text)
 
-    # 3. THE AI BRAIN: Only used for Arabic Script and remaining phonetics
+    # 3. THE SCRIPTS LAWS: Forcing the Phonetic Frame
     system_instruction = """
-    ROLE: 1860s Cape Muslim Scribe.
-    TASK: Transcribe the input into Arabic Script using these EXACT LAWS:
-    - b=ب, p=پ, t=ت, s=ث, dj=ج, tj=چ, h=ح, ch=خ, d=د, r=ر, k=ك, l=ل, m=م, n=ن, w=و, j=ي.
-    - Vowels: a=ـَ, aa=ـَا, i/ie=ـِي, o/oo=ـُ, u=ـُ.
-    STRICT: Use the Arabic mapping for the words provided. Output ONLY two lines.
+    ROLE: 18th-century Cape Muslim Scribe.
+    TASK: Transcribe the INPUT into Arabic Script using these EXACT LAWS:
+    - Consonants: b=ب, p=پ, t=ت, s=ث, dj=ج, tj=چ, h=ح, ch=خ, d=د, r=ر, k=ك, l=ل, m=م, n=ن, w=و, j=ي.
+    - Vowels: a=ـَ, aa=ـَا, i/ie=ـِي, o/oo=ـُ, u=ـُ, e/è=ـَِي.
+    
+    STRICT COMMAND: 
+    1. NEVER use Modern Standard Arabic words.
+    2. ONLY use the sounds provided in the input text.
+    3. Output ONLY two lines: 1. Latin 1860s 2. Arabic Script.
     """
 
     for key in API_POOL:
@@ -46,15 +51,15 @@ def scribe_translator(user_input):
                 model_name='gemini-2.5-flash-lite',
                 system_instruction=system_instruction
             )
-            # Temperature 0 is mandatory for 100% accuracy
+            # Temperature 0 is mandatory to stop the AI from 'guessing'
             response = model.generate_content(
-                f"TEXT: {processed_text}",
+                f"TRANSCRIBE SOUNDS ONLY: {processed_text}",
                 generation_config={"temperature": 0}
             )
             return response.text.strip()
-        except:
+        except Exception:
             continue
-    return "❌ System Busy. Try again."
+    return "❌ Connection error or keys exhausted."
 
 # --- 3. UI LOGIC ---
 user_input = st.text_area("Input:", height=100)
