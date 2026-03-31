@@ -9,8 +9,6 @@ st.title("🕌 1860s Cape Arabic-Afrikaans Scribe")
 
 # --- 2. KEY POOL ---
 API_POOL = st.secrets.get("keys", [])
-import re
-
 def scribe_translator(user_input):
     # 1. Load your rules from rules.txt into a 'Hard Swap' dictionary
     rules_dict = {}
