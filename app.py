@@ -27,10 +27,19 @@ def scribe_translator(user_input):
     ### ALPHABET LAWS:
     - Consonants: b=ب, p=پ, t=ت, s=ث/س/ص, dj=ج, tj=چ, h=ح/ه, ch/g=خ, d=د/ض, z=ذ/ز/ظ, r=ر, sj=ش, t=ط, g=غ, ng=ڠ, f=ف, w=ڤ/و, q=ق, k=ك, s/c=س, gh=گ, l=ل, m=م, n=ن, j=ي.
     - Vowels: a=ـَ, aa=ـَا, aai=ـَاي, ai=ـَي, ei/y=ـَِي, u/û=ـَِو, e=ـَِ, ê=ـَِـٰ, o=ـَُ, ie=ـِي, i=ـِ, î=ـِي, eeu/eu/uu=ـَِوي, ee=ـِي, oe=ـُ, ô=ـُو, oo=ـَُو, oei/ooi=ـُوي, ui=ـَُوي, e/è=ـَِي
+### EXECUTION RULES:
 
-    STRICT: Output ONLY two lines. No extra text.
+    1. If a word is in the VOCABULARY list, use that word EXACTLY.
+
+    2. Apply the ALPHABET LAWS to all other words.
+
+    3. Output ONLY two lines:
+
+       1. Latin 1860s transcription: [Result]
+
+       2. Arabic script version: [Result]
+
     """
-
     for key in API_POOL:
         try:
             genai.configure(api_key=key.strip())
