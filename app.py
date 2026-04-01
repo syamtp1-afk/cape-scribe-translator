@@ -24,7 +24,7 @@ def scribe_translator(text_input):
         pattern = re.compile(rf'\b{re.escape(word)}\b', re.IGNORECASE)
         processed_text = pattern.sub(rules_dict[word], processed_text)
 
-    # C. THE SYSTEM INSTRUCTION
+    # C. THE SYSTEM INSTRUCTION (Updated for 2026 Models)
     system_instruction = f"""
     ROLE: 19th-century Cape Muslim Scribe.
     TASK: Translate to 1860s Cape Afrikaans + Arabic Script.
@@ -34,7 +34,7 @@ def scribe_translator(text_input):
     - Vowels: a=ـَ | aa=ـَا | aai=ـَاي | ai=ـَي | ei/y=ـَِي | u/û=ـَِو | e=ـَِ | ie=ـِي | o=ـَُ | oe=ـُ | ô=ـُو | oo=ـَُو | ui=ـَُوي
     
     STRICT: No greetings. Output ONLY the numbered list.
-    DICTIONARY RULES: {list(rules_dict.items())}
+    RULES: {list(rules_dict.items())}
 
     OUTPUT FORMAT:
     1. Latin 1860s transcription: [Result]
@@ -42,41 +42,38 @@ def scribe_translator(text_input):
     """
 
     # D. MULTI-KEY FAILOVER
-    try:
-        api_pool = st.secrets["keys"]
-    except:
-        return "❌ SETUP ERROR: API Keys missing in Secrets."
+    if "keys" not in st.secrets:
+        return "❌ SETUP ERROR: 'keys' list missing in Streamlit Secrets."
 
-# Change the model initialization in Section 2-D:
-for i, key in enumerate(api_pool):
-    try:
-        genai.configure(api_key=key.strip())
-        
-        # USE THE 2026 HIGH-VOLUME MODEL
-        model = genai.GenerativeModel(
-            model_name='gemini-3.1-flash-lite-preview', 
-            system_instruction=system_instruction
-        )
-        
-        # 'thinking_budget' can be set to 0 for instant translation accuracy
-        response = model.generate_content(
-            f"INPUT: {processed_text}", 
-            generation_config={
-                "temperature": 0.1,
-                "top_p": 0.95
-            }
-        )
-        return response.text.strip()
+    api_pool = st.secrets["keys"]
+
+    for i, key in enumerate(api_pool):
+        try:
+            genai.configure(api_key=key.strip())
+            
+            # MODEL FIX: Using the 2026 High-Volume Flash Model
+            model = genai.GenerativeModel(
+                model_name='gemini-3.1-flash-lite-preview',
+                system_instruction=system_instruction
+            )
+            
+            response = model.generate_content(
+                f"INPUT: {processed_text}", 
+                generation_config={"temperature": 0.1}
+            )
+            return response.text.strip()
             
         except Exception as e:
-            error_msg = str(e)
-            if "429" in error_msg: # Rate Limit
+            err = str(e)
+            # If rate limited, try next key
+            if "429" in err or "quota" in err.lower():
                 if i < len(api_pool) - 1:
-                    time.sleep(1) # Small pause before trying next key
+                    time.sleep(1)
                     continue
                 else:
-                    return "❌ ALL KEYS EXHAUSTED: Please wait 60 seconds."
-            return f"❌ System Error: {error_msg}"
+                    return "❌ ALL KEYS EXHAUSTED. Please add more keys to secrets."
+            # If model error, return direct message
+            return f"❌ System Error: {err}"
 
     return "❌ All API paths failed."
 
@@ -90,3 +87,6 @@ if st.button("EXECUTE"):
             st.info(result)
     else:
         st.warning("Please enter text first.")
+
+st.divider()
+st.caption("Universal Scribe Engine v14.0 | Gemini 3.1 Architecture")
