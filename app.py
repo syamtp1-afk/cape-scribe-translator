@@ -16,32 +16,37 @@ def scribe_translator(text_input):
             for line in f:
                 if "=" in line:
                     parts = line.split("=")
+                    # Key = English, Value = 1860s Latin
                     rules_dict[parts[0].strip().lower()] = parts[1].split("(")[0].strip()
 
-    # B. HARD-SWAP (Python Pre-Processor)
-    processed_text = text_input.lower()
-    for word in sorted(rules_dict.keys(), key=len, reverse=True):
-        pattern = re.compile(rf'\b{re.escape(word)}\b', re.IGNORECASE)
-        processed_text = pattern.sub(rules_dict[word], processed_text)
+    # B. DETERMINISTIC LATIN TRANSLATION (100% Rule Adherence)
+    # We do this in Python, NOT AI, to ensure 0% drift.
+    words = text_input.lower().split()
+    latin_results = []
+    for word in words:
+        # Clean punctuation for lookup
+        clean_word = re.sub(r'[^\w\s]', '', word)
+        # Use rule if exists, otherwise keep original (or mark as unknown)
+        latin_results.append(rules_dict.get(clean_word, word))
+    
+    final_latin = " ".join(latin_results)
 
-    # C. THE SYSTEM INSTRUCTION (Updated for 2026 Models)
+    # C. THE SYSTEM INSTRUCTION (The "Zero-Drift" Script Guard)
     system_instruction = f"""
     ROLE: 19th-century Cape Muslim Scribe.
-    TASK: Translate to 1860s Cape Afrikaans + Arabic Script.
-
-    ### MANDATORY ALPHABET MAPPING:
-    - Consonants: b=ب, p=پ, t=ت, s=ث/س/ص, dj=ج, tj=چ, h=ح/ه, ch/g=خ, d=د/ض, z=ذ/ز/ظ, r=ر, sj=ش, t=ط, g(soft)=غ, ng=ڠ, f=ف, w=ڤ/و, q/k=ق/ك, gh=گ, l=ل, m=م, n=ن, j=ي.
-    - Vowels: a=ـَ | aa=ـَا | aai=ـَاي | ai=ـَي | ei/y=ـَِي | u/û=ـَِو | e=ـَِ | ie=ـِي | o=ـَُ | oe=ـُ | ô=ـُو | oo=ـَُو | ui=ـَُوي
+    TASK: Convert the provided 1860s Latin Afrikaans into EXACT Arabic Script.
     
-    STRICT: No greetings. Output ONLY the numbered list.
-    RULES: {list(rules_dict.items())}
+    STRICT ALPHABET:
+    - b=ب, p=پ, t=ت, s=س, dj=ج, tj=چ, h=ه, ch=خ, d=د, r=ر, sj=ش, f=ف, w=و, k=ك, g=گ, l=ل, m=م, n=ن, j=ي, ng=ڠ.
+    - Vowels: a=ـَ, aa=ـَا, i/ie=ـِي, o/oo=ـُ, oe=ـُو, e(schwa)=ـِ.
 
-    OUTPUT FORMAT:
-    1. Latin 1860s transcription: [Result]
-    2. Arabic script version: [Result]
+    RULE: 
+    1. Do NOT translate. Do NOT add words. Do NOT change the Latin provided.
+    2. Transliterate the INPUT string letter-for-letter based on the mapping.
+    3. Output ONLY the Arabic Script. No preamble.
     """
 
-    # D. MULTI-KEY FAILOVER
+    # D. MULTI-KEY FAILOVER (Unlimited Logic)
     if "keys" not in st.secrets:
         return "❌ SETUP ERROR: 'keys' list missing in Streamlit Secrets."
 
@@ -50,43 +55,35 @@ def scribe_translator(text_input):
     for i, key in enumerate(api_pool):
         try:
             genai.configure(api_key=key.strip())
-            
-            # MODEL FIX: Using the 2026 High-Volume Flash Model
+            # Using Gemini 3.1 Flash for high RPM/Unlimited feel
             model = genai.GenerativeModel(
                 model_name='gemini-3.1-flash-lite-preview',
                 system_instruction=system_instruction
             )
             
+            # We pass the ALREADY TRANSLATED Latin to the AI for script conversion only
             response = model.generate_content(
-                f"INPUT: {processed_text}", 
-                generation_config={"temperature": 0.1}
+                f"CONVERT TO ARABIC SCRIPT: {final_latin}", 
+                generation_config={"temperature": 0.0} # 0.0 for absolute determinism
             )
-            return response.text.strip()
+            
+            arabic_script = response.text.strip()
+            
+            return f"**1. Latin 1860s transcription:** {final_latin}\n\n**2. Arabic script version:** {arabic_script}"
             
         except Exception as e:
-            err = str(e)
-            # If rate limited, try next key
-            if "429" in err or "quota" in err.lower():
+            if "429" in str(e) or "quota" in str(e).lower():
                 if i < len(api_pool) - 1:
-                    time.sleep(1)
-                    continue
-                else:
-                    return "❌ ALL KEYS EXHAUSTED. Please add more keys to secrets."
-            # If model error, return direct message
-            return f"❌ System Error: {err}"
+                    continue # Try next key
+            return f"❌ System Error: {str(e)}"
 
     return "❌ All API paths failed."
 
 # --- 3. UI EXECUTION ---
-user_input = st.text_area("Enter sentence:", placeholder="e.g. hoe gaat dit", height=100)
+user_input = st.text_area("Enter sentence:", placeholder="e.g. you are soo cute", height=100)
 
 if st.button("EXECUTE"):
     if user_input:
         with st.spinner("📜 Consulting Archive Laws..."):
             result = scribe_translator(user_input)
             st.info(result)
-    else:
-        st.warning("Please enter text first.")
-
-st.divider()
-st.caption("Universal Scribe Engine v14.0 | Gemini 3.1 Architecture")
