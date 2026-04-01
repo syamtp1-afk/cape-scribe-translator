@@ -89,6 +89,3 @@ if st.button("EXECUTE"):
 
 st.divider()
 st.caption("Universal Scribe Engine v5.5 | Fix: 429 Retry & Key Diagnostics")
-
-st.divider()
-st.caption("Universal Scribe Engine v5.0 | Hard-Swap Logic | 100% adherence to rules.txt")
