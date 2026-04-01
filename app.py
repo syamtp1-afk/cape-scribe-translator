@@ -1,49 +1,42 @@
-import streamlit as st
-import google.generativeai as genai
-import re
-import os
-
-# --- 1. UI SETUP ---
-st.set_page_config(page_title="1860s Master Scribe", page_icon="🕌")
-st.title("🕌 1860s Cape Arabic-Afrikaans Scribe")
-
 def scribe_translator(text_input):
     # A. LOAD THE LAW (rules.txt)
+    # We keep this to ensure "Hard Swaps" for words you definitely want to control.
     rules_dict = {}
     if os.path.exists("rules.txt"):
         with open("rules.txt", "r", encoding="utf-8") as f:
             for line in f:
                 if "=" in line:
                     parts = line.split("=")
-                    # Key: English | Value: 1860s Latin Afrikaans
                     rules_dict[parts[0].strip().lower()] = parts[1].split("(")[0].strip()
 
-    # B. PASS 1: THE HARD SWAP (Python-Driven Accuracy)
-    # We sort by length (longest first) to catch "how are you" before "how"
+    # B. PASS 1: THE HARD SWAP (Python-Driven)
     processed_text = text_input.lower()
     sorted_keys = sorted(rules_dict.keys(), key=len, reverse=True)
     
     for key in sorted_keys:
-        # Matches whole words only to prevent accidental swaps inside words
         pattern = re.compile(rf'\b{re.escape(key)}\b', re.IGNORECASE)
         processed_text = pattern.sub(rules_dict[key], processed_text)
 
-    # C. THE SCRIPT MANDATE (Zero Creativity / Temperature 0.0)
+    # C. THE MULTI-STEP INSTRUCTION
+    # This tells the AI to translate anything that is still English into 1860s Afrikaans first.
     system_instruction = """
-    ROLE: 19th-century Cape Muslim Scribe.
-    TASK: Convert the input Latin text into 1860s Arabic Script.
+    ROLE: 19th-century Cape Muslim Scribe & Translator.
     
+    TASK: 
+    1. Look at the input. If any words are still in English, translate them into 1860s phonetic Cape Afrikaans (e.g., "you are" becomes "djie is", "cute" becomes "fyntjies" or "mooi").
+    2. Once you have the 1860s Latin Afrikaans version, convert it into 1860s Arabic Script.
+
     STRICT ALPHABET MAPPING:
     - b=ب, p=پ, t=ت, s=س, dj=ج, tj=چ, h=ه, ch=خ, d=د, r=ر, sj=ش, f=ف, w=و, k=ك, g=گ, l=ل, m=م, n=ن, j=ي, ng=ڠ.
     - Vowels: a=ـَ, aa=ـَا, i/ie=ـِي, o/oo=ـُ, oe=ـُو, e(schwa)=ـِ.
 
-    MANDATORY RULES:
-    1. DO NOT TRANSLATE. The input is already in the target 1860s language.
-    2. Convert the letters of the input to the Arabic script EXACTLY.
-    3. NO ENGLISH. If the input is 'hoe faa nog', the output must be 'هُو فَا نُوغ'.
+    OUTPUT FORMAT:
+    You must return TWO lines:
+    Line 1: The Latin 1860s Afrikaans version.
+    Line 2: The Arabic Script version.
     """
 
-    # D. PASS 2: AI SCRIPT CONVERSION (Unlimited/Multi-Key)
+    # D. PASS 2: AI EXECUTION
     if "keys" not in st.secrets:
         return "❌ SETUP ERROR: Add 'keys' list to Streamlit Secrets."
 
@@ -52,35 +45,31 @@ def scribe_translator(text_input):
     for i, key in enumerate(api_pool):
         try:
             genai.configure(api_key=key.strip())
-            
-            # Using Gemini 3.1 Flash-Lite (2026 Production Model)
             model = genai.GenerativeModel(
-                model_name='gemini-3.1-flash-lite-preview',
+                model_name='gemini-1.5-flash', 
                 system_instruction=system_instruction
             )
             
-            # Temperature 0.0 = 100% Deterministic (No guessing)
+            # We ask the AI to be the final authority on the translation logic
             response = model.generate_content(
-                f"CONVERT TO ARABIC SCRIPT: {processed_text}", 
-                generation_config={"temperature": 0.0}
+                f"Translate and convert: {processed_text}", 
+                generation_config={"temperature": 0.1} # Slight temperature allows for better "guessing"
             )
             
-            arabic_script = response.text.strip()
-            return f"**1. Latin 1860s transcription:** {processed_text}\n\n**2. Arabic script version:** {arabic_script}"
+            output = response.text.strip().split('\n')
+            
+            # Cleaning up empty lines if any
+            output = [line for line in output if line.strip()]
+            
+            latin_ver = output[0].replace("Line 1:", "").strip()
+            arabic_ver = output[1].replace("Line 2:", "").strip()
+
+            return f"**1. Latin 1860s transcription:** {latin_ver}\n\n**2. Arabic script version:** {arabic_ver}"
             
         except Exception as e:
             if "429" in str(e) or "quota" in str(e).lower():
                 if i < len(api_pool) - 1:
-                    continue # Try next key
+                    continue 
             return f"❌ System Error: {str(e)}"
 
     return "❌ All API paths failed."
-
-# --- 3. UI EXECUTION ---
-user_input = st.text_area("Enter sentence:", placeholder="e.g. how are you", height=100)
-
-if st.button("EXECUTE"):
-    if user_input:
-        with st.spinner("📜 Consulting Archive Laws..."):
-            result = scribe_translator(user_input)
-            st.info(result)
