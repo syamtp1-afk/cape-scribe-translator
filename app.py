@@ -16,64 +16,71 @@ def scribe_translator(text_input):
             for line in f:
                 if "=" in line:
                     parts = line.split("=")
-                    # Key: Modern English/Afrikaans | Value: 1860s Cape Afrikaans
                     rules_dict[parts[0].strip().lower()] = parts[1].split("(")[0].strip()
 
-    # B. THE HARD TRANSLATION (Python Level)
+    # B. HARD-SWAP (Check Dictionary First)
     processed_text = text_input.lower()
-    found_match = False
+    dictionary_matches = []
     
-    # Sort keys to match phrases before single words
+    # Identify words already translated by rules.txt to tell the AI "Don't touch these"
     for word in sorted(rules_dict.keys(), key=len, reverse=True):
         if word in processed_text:
             pattern = re.compile(rf'\b{re.escape(word)}\b', re.IGNORECASE)
             processed_text = pattern.sub(rules_dict[word], processed_text)
-            found_match = True
+            dictionary_matches.append(rules_dict[word])
 
-    # C. FAILSAFE: If word is not in rules.txt, don't let AI guess the dialect
-    if not found_match:
-        return "⚠️ WORD NOT IN ARCHIVE: Please add this word/phrase to rules.txt to ensure 100% accuracy."
-
-    # D. SCRIPT LOGIC (The Alphabet Map)
+    # C. THE SMART-GUESS SYSTEM INSTRUCTION
+    # We provide the AI with the dialect rules so its "guesses" are accurate.
     system_instruction = f"""
     ROLE: 19th-century Cape Muslim Scribe.
-    STRICT TASK: You are a script converter. Convert the provided 1860s Latin text into 1860s Arabic Script.
-    DO NOT translate. DO NOT change spellings. 
+    TASK: Translate input to 1860s Cape Afrikaans AND convert to Arabic Script.
     
-    ALPHABET:
-    b=ب, p=پ, t=ت, s=ث, dj=ج, tj=چ, h=ح, ch=خ, d=د, r=ر, sj=ش, f=ف, w=و, k=ك, g=گ, l=ل, m=م, n=ن, j=ي
+    ### THE LAW:
+    1. If a word is already in 1860s Latin (like {dictionary_matches}), DO NOT CHANGE IT.
+    2. If a word is in Modern English/Afrikaans, translate it to 1860s Cape Dialect.
+       - Example: 'thank you' -> 'danki'
+       - Example: 'what' -> 'wat'
+       - Example: 'read' -> 'rieti'
+    
+    ### ARABIC SCRIPT MAP:
+    Consonants: b=ب, p=پ, t=ت, s=ث, dj=ج, tj=چ, h=ح, ch=خ, d=د, r=ر, sj=ش, f=ف, w=و, k=ك, g=گ, l=ل, m=م, n=ن, j=ي
     Vowels: a=ـَ, aa=ـَا, ie=ـِي, oe=ـُ, oo=ـَُو, e=ـَِ, ee=ـِي
+
+    OUTPUT FORMAT:
+    Latin 1860s transcription: [Result]
+    Arabic script version: [Result]
     """
 
-    # E. API EXECUTION
+    # D. API EXECUTION
     try:
         api_keys = st.secrets["keys"]
-        # Use the latest 2026 model names
+        # Use Gemini 3 Flash for the best 2026 reasoning
         model_name = "gemini-3-flash-preview" 
         
-        genai.configure(api_key=api_keys[0].strip()) # Using first available key
+        genai.configure(api_key=api_keys[0].strip())
         model = genai.GenerativeModel(model_name, system_instruction=system_instruction)
         
-        response = model.generate_content(f"CONVERT TO ARABIC SCRIPT: {processed_text}", generation_config={"temperature": 0})
+        # We use a slightly higher temperature (0.2) to allow "guessing" only when dictionary fails
+        response = model.generate_content(
+            f"TRANSLATE AND CONVERT: {processed_text}", 
+            generation_config={"temperature": 0.2}
+        )
         
-        return f"**Latin 1860s transcription:** {processed_text}\n\n**Arabic script version:** {response.text.strip()}"
+        return response.text.strip()
     
     except Exception as e:
-        return f"❌ Connection Error: {str(e)}"
+        return f"❌ Error: {str(e)}"
 
 # --- 3. MAIN UI ---
-user_input = st.text_area("Enter sentence:", placeholder="e.g. how are you", height=100)
+user_input = st.text_area("Enter sentence:", placeholder="e.g. thank you", height=100)
 
 if st.button("EXECUTE"):
     if user_input:
-        with st.spinner("📜 Consulting Archive..."):
+        with st.spinner("📜 Consulting Archive & Scribe Wisdom..."):
             result = scribe_translator(user_input)
-            if "⚠️" in result:
-                st.warning(result)
-            else:
-                st.info(result)
+            st.info(result)
     else:
         st.warning("Please enter text.")
 
 st.divider()
-st.caption("Universal Scribe Engine v8.0 | Strict Dictionary Enforcement")
+st.caption("Universal Scribe Engine v9.0 | Hybrid Dictionary-AI Logic")
