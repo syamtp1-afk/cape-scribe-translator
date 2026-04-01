@@ -2,7 +2,6 @@ import streamlit as st
 import google.generativeai as genai
 import re
 import os
-import time
 import random
 
 # --- 1. UI SETUP ---
@@ -11,8 +10,9 @@ st.title("🕌 1860s Cape Arabic-Afrikaans Scribe")
 
 def scribe_translator(text_input):
     processed_text = text_input.lower()
-    rules_dict = {}
     
+    # [Rules logic remains the same]
+    rules_dict = {}
     if os.path.exists("rules.txt"):
         with open("rules.txt", "r", encoding="utf-8") as f:
             for line in f:
@@ -25,11 +25,9 @@ def scribe_translator(text_input):
         pattern = re.compile(rf'\b{re.escape(key)}\b', re.IGNORECASE)
         processed_text = pattern.sub(rules_dict[key], processed_text)
 
-    system_instruction = (
-        "ROLE: 19th-century Cape Muslim Scribe & Translator. "
-        "TASK: Translate English to 1860s Cape Afrikaans, then convert to Arabic Script. "
-        "OUTPUT: Two lines only. Line 1: Latin, Line 2: Arabic."
-    )
+    # 1. FORCE THE VERSION (Add this line before model initialization)
+    # This prevents the "v1beta" 404 error
+    os.environ["GOOGLE_API_USE_MTLS"] = "never" 
 
     if "keys" not in st.secrets:
         return "❌ SETUP ERROR: Add 'keys' list to Streamlit Secrets."
@@ -37,38 +35,45 @@ def scribe_translator(text_input):
     api_pool = list(st.secrets["keys"])
     random.shuffle(api_pool)
     
-    # Try the names WITHOUT 'models/' prefix - the SDK often adds it automatically
-    models_to_try = ['gemini-1.5-flash', 'gemini-1.5-flash-8b', 'gemini-1.5-pro']
+    # 2. USE FULL STRINGS WITH NO 'models/' PREFIX
+    # Sometimes the SDK is very sensitive to the leading slash
+    models_to_try = ['gemini-1.5-flash', 'gemini-1.5-pro']
 
     for key in api_pool:
-        # Step 1: Force standard configuration
-        genai.configure(api_key=key.strip())
-        
-        for model_name in models_to_try:
-            try:
-                # Step 2: Initialize model
-                model = genai.GenerativeModel(
-                    model_name=model_name, 
-                    system_instruction=system_instruction
-                )
-                
-                # Step 3: Simple call
-                response = model.generate_content(f"Translate: {processed_text}")
-                
-                if response.text:
-                    return response.text
+        try:
+            genai.configure(api_key=key.strip())
+            
+            for model_name in models_to_try:
+                try:
+                    # 3. INITIALIZE WITHOUT SYSTEM_INSTRUCTION FIRST
+                    # Older API versions crash when system_instruction is passed
+                    model = genai.GenerativeModel(model_name=model_name)
+                    
+                    prompt = f"""
+                    ROLE: 19th-century Cape Muslim Scribe.
+                    TASK: Translate to 1860s Cape Afrikaans + Arabic Script.
+                    INPUT: {processed_text}
+                    OUTPUT: Two lines (Latin then Arabic).
+                    """
+                    
+                    response = model.generate_content(prompt)
+                    
+                    if response.text:
+                        return response.text
 
-            except Exception as e:
-                # Log the error for visibility
-                st.warning(f"Skipping {model_name} on this key due to: {e}")
-                continue 
+                except Exception as inner_e:
+                    st.warning(f"Model {model_name} failed: {inner_e}")
+                    continue
+        except Exception as outer_e:
+            st.warning(f"Key failed: {outer_e}")
+            continue
 
-    return "❌ All keys/models failed. Please check if your API keys are active in Google AI Studio."
+    return "❌ All attempts failed. Check your Streamlit requirements.txt for 'google-generativeai'."
 
 # --- UI EXECUTION ---
 user_input = st.text_area("Enter sentence:", height=100)
 if st.button("EXECUTE"):
     if user_input:
-        with st.spinner("📜 Consultating Archives..."):
+        with st.spinner("📜 Consulting Archives..."):
             result = scribe_translator(user_input)
             st.info(result)
