@@ -2,11 +2,14 @@ import streamlit as st
 import google.generativeai as genai
 import re
 import os
+import time
+import random  # <--- This must be here!
 
-# --- 1. UI SETUP ---
+# --- 1. UI SETUP (Only call this ONCE) ---
 st.set_page_config(page_title="1860s Master Scribe", page_icon="🕌")
 st.title("🕌 1860s Cape Arabic-Afrikaans Scribe")
 
+# Now define your functions...
 def scribe_translator(text_input):
     # ... (Keep your Rules A logic as is) ...
 
