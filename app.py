@@ -1,109 +1,108 @@
-
-
-# --- 3. THE MASTER ENGINE (FORCED SHORT OUTPUT) ---
 import streamlit as st
 import google.generativeai as genai
+from google.generativeai.types import HarmCategory, HarmBlockThreshold
 import re
 import os
 
-# --- 1. UI SETUP (Keeps the site from being blank) ---
-st.set_page_config(page_title="Master Scribe", page_icon="🕌")
-st.title("🕌 1860s Arabic-Afrikaans Scribe")
-st.markdown("### Official Universal Translator")
+# --- 1. UI SETUP ---
+st.set_page_config(page_title="1860s Master Scribe", page_icon="🕌")
+st.title("🕌 1860s Cape Arabic-Afrikaans Scribe")
+st.markdown("### Official Universal Accurate Translator")
 
-# --- 2. GET KEYS SAFELY FROM SECRETS ---
+# --- 2. GET KEYS SAFELY ---
 try:
-    # This pulls your pool of keys from the Streamlit Secrets dashboard
-    # Expected format in Secrets: keys = ["AIza...", "AIza...", "AIza..."]
     API_POOL = st.secrets["keys"]
 except Exception:
-    st.error("⚠️ SETUP ERROR: API Keys not found. Please add them to the Streamlit Secrets dashboard.")
+    st.error("⚠️ SETUP ERROR: API Keys not found in Streamlit Secrets.")
     st.stop()
 
-# --- 3. LINGUISTIC PROCESSING ---
-def apply_linguistic_laws(text):
-    """Phonetic pre-processing for authentic 1860s Cape style."""
-    text = text.lower()
-    text = re.sub(r'ui', 'ei', text) 
-    text = re.sub(r'\bge', 'ga', text) 
-    text = re.sub(r'([aeiou])dd([aeiou])', r'\1rr\2', text) 
-    return text
-
-# --- 4. THE ULTIMATE TRANSLATOR ENGINE ---
-def scribe_translator(user_input):
-    processed_text = apply_linguistic_laws(user_input)
-    
-    # Load dictionary rules from rules.txt if it exists
-    archive_rules = "No additional dictionary rules."
+# --- 3. THE HARD-SWAP ENGINE (The "No-Drift" Fix) ---
+def get_hard_dictionary():
+    rules_dict = {}
     if os.path.exists("rules.txt"):
-        try:
-            with open("rules.txt", "r", encoding="utf-8") as f:
-                archive_rules = f.read()
-        except:
-            pass
+        with open("rules.txt", "r", encoding="utf-8") as f:
+            for line in f:
+                if "=" in line:
+                    parts = line.split("=")
+                    modern = parts[0].strip().lower()
+                    # Extracts archive word, removes anything in brackets (English meaning)
+                    archive = parts[1].split("(")[0].strip()
+                    rules_dict[modern] = archive
+    return rules_dict
 
-    # THE PROJECT ROTATION ENGINE: Multiplying your free quota
+def scribe_translator(user_input):
+    # STEP A: Physically swap words from rules.txt BEFORE the AI sees them
+    # This prevents errors like "how are you" -> "هَاو اَر يُو"
+    dictionary = get_hard_dictionary()
+    processed_text = user_input.lower()
+    for word in sorted(dictionary.keys(), key=len, reverse=True):
+        pattern = re.compile(rf'\b{re.escape(word)}\b', re.IGNORECASE)
+        processed_text = pattern.sub(dictionary[word], processed_text)
+
+    # STEP B: System Instructions (The "Phonetic Calculator" Mode)
+    system_instruction = """
+    ROLE: 19th-century Cape Muslim Scribe / Linguistic Researcher.
+    TASK: Transcribe the INPUT sounds into 1860s Arabic Script.
+    
+    CRITICAL: 
+    1. DO NOT translate meaning into Modern Arabic. 
+    2. Transcribe ONLY the sounds of the words provided.
+    3. Use: b=ب, p=پ, t=ت, s=ث, dj=ج, tj=چ, h=ح, ch=خ, d=د, r=ر, k=ك, l=ل, m=م, n=ن, w=و, j=ي.
+    4. Vowels: a=ـَ, aa=ـَا, i/ie=ـِي, o/oo=ـُ, u=ـُ, e/è=ـَِي.
+
+    OUTPUT FORMAT:
+    1. Latin 1860s transcription: [Result]
+    2. Arabic script version: [Result]
+    """
+
+    # STEP C: Key Rotation & Safety Handling
     for i, current_key in enumerate(API_POOL):
         try:
-            genai.configure(api_key=current_key)
+            genai.configure(api_key=current_key.strip())
             
-            # Using 'gemini-2.5-flash-lite' for the highest daily free limits
-            model = genai.GenerativeModel('gemini-2.5-flash-lite')
-            
-            # THE ULTIMATE PROMPT (Directing the AI's Brain)
-            prompt = f"""
-ROLE: 19th-century Cape Muslim Scribe.
-TASK: Translate to 1860s Cape Afrikaans + Arabic Script.
-
-### MANDATORY ALPHABET MAPPING:
-- Consonants: b=ب, p=پ, t=ت, s=ث/س/ص, dj=ج, tj=چ, h=ح/ه, ch/g=خ, d=د/ض, z=ذ/ز/ظ, r=ر, sj=ش, t=ط, g(soft)=غ, ng=ڠ, f=ف, w=ڤ/و, q=ق, k=ك, s/c=س, gh=گ, l=ل, m=م, n=ن, j=ي.
-- Vowels & Diphthongs:
-a=ـَ | aa=ـَا | aai=ـَاي | ai=ـَي | ei/y=ـَِي | u/û=ـَِو | e(schwa)=ـَِ | ê=ـَِـٰ | o=ـَُ | ie=ـِي | i=ـِ | î=ـِي(stroke) | eeu/eu/uu=ـَِوي | ee=ـِي | oe=ـُ | ô=ـُو | oo=ـَُو | oei/ooi=ـُوي | ui=ـَُوي | e/è=ـَِي
-
-STRICT: No greetings. No preamble. Output ONLY the numbered list.
-DICTIONARY RULES: {archive_rules}
-
-OUTPUT FORMAT:
-1. Latin 1860s transcription: [Result]
-2. Arabic script version: [Result]
-
-INPUT: {processed_text}
-"""
+            # BLOCK_NONE stops the 'Finish Reason 4' Copyright Error
+            model = genai.GenerativeModel(
+                model_name='gemini-2.5-flash-lite',
+                system_instruction=system_instruction,
+                safety_settings={
+                    HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
+                    HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
+                    HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE,
+                    HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
+                }
+            )
             
             response = model.generate_content(
-                prompt, 
-                generation_config={"temperature": 0} # Zero creativity = Maximum accuracy
+                f"TRANSCRIBE: {processed_text}",
+                generation_config={"temperature": 0} # Zero creativity = Pure Accuracy
             )
+
+            # Check if AI blocked it despite settings
+            if response.candidates[0].finish_reason == 4:
+                return "⚠️ Safety Block: Segment flagged. Try rephrasing."
+
             return response.text.strip()
 
         except Exception as e:
-            # Check if this project is empty (Quota Error)
             if "429" in str(e) or "quota" in str(e).lower():
-                if i < len(API_POOL) - 1:
-                    continue # Silently move to the next project key
-                else:
-                    return "❌ ALL PROJECT QUOTAS EXHAUSTED. Please wait for the daily reset or add more keys."
+                if i < len(API_POOL) - 1: continue
+                else: return "❌ ALL KEYS EXHAUSTED."
             return f"⚠️ System Error: {e}"
 
-    return "❌ All Project Quotas Exhausted for today."
+    return "❌ All Project Quotas Exhausted."
 
-# --- 5. MAIN APP LOGIC ---
-user_input = st.text_input("Enter sentence (English or Afrikaans):", placeholder="e.g. Give me knowledge")
+# --- 4. MAIN UI ---
+user_input = st.text_area("Enter sentence:", placeholder="e.g. read the quraan", height=100)
 
-if st.button("TRANSCRIBE"):
+if st.button("EXECUTE"):
     if user_input:
-        with st.spinner("Consulting Manuscripts..."):
+        with st.spinner("Applying Archive Laws..."):
             result = scribe_translator(user_input)
             st.info(result)
     else:
         st.warning("Please enter text first.")
 
 st.divider()
-st.caption("Powered by Key-Rotation Engine v3.0 | 1860s Archive Edition")
-# --- 3. UI LOGIC ---
-user_input = st.text_input("Enter sentence:")
-if st.button("TRANSCRIBE"):
-    if user_input:
-        with st.spinner("Applying Rules..."):
-            st.info(scribe_translator(user_input))
+st.caption("Universal Scribe Engine v4.0 | Hard-Swap Logic Enabled")
+
 
