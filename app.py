@@ -7,32 +7,8 @@ import os
 st.set_page_config(page_title="1860s Master Scribe", page_icon="🕌")
 st.title("🕌 1860s Cape Arabic-Afrikaans Scribe")
 
-import streamlit as st
-import google.generativeai as genai
-import re
-import os
-import time
-import random
-
-# --- 1. UI SETUP ---
-st.set_page_config(page_title="1860s Master Scribe", page_icon="🕌")
-st.title("🕌 1860s Cape Arabic-Afrikaans Scribe")
-
 def scribe_translator(text_input):
-    # A. LOAD THE LAW
-    rules_dict = {}
-    if os.path.exists("rules.txt"):
-        with open("rules.txt", "r", encoding="utf-8") as f:
-            for line in f:
-                if "=" in line:
-                    parts = line.split("=")
-                    rules_dict[parts[0].strip().lower()] = parts[1].split("(")[0].strip()
-
-    processed_text = text_input.lower()
-    sorted_keys = sorted(rules_dict.keys(), key=len, reverse=True)
-    for key in sorted_keys:
-        pattern = re.compile(rf'\b{re.escape(key)}\b', re.IGNORECASE)
-        processed_text = pattern.sub(rules_dict[key], processed_text)
+    # ... (Keep your Rules A logic as is) ...
 
     # B. SYSTEM INSTRUCTION
     system_instruction = """
@@ -46,18 +22,22 @@ def scribe_translator(text_input):
     if "keys" not in st.secrets:
         return "❌ SETUP ERROR: Add 'keys' list to Streamlit Secrets."
 
-    # C. API POOL MANAGEMENT
     api_pool = list(st.secrets["keys"])
-    random.shuffle(api_pool) # Spread the load across keys
+    random.shuffle(api_pool)
     
-    # Try multiple models in case one is throttled
-    models_to_try = ['gemini-1.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash-8b']
+    # CORRECTED MODEL NAMES WITH PREFIXES
+    models_to_try = [
+        'models/gemini-1.5-flash', 
+        'models/gemini-1.5-flash-8b',
+        'models/gemini-1.5-pro' 
+    ]
 
     for key in api_pool:
         genai.configure(api_key=key.strip())
         
         for model_name in models_to_try:
             try:
+                # The model initialization
                 model = genai.GenerativeModel(
                     model_name=model_name, 
                     system_instruction=system_instruction
@@ -68,21 +48,25 @@ def scribe_translator(text_input):
                     generation_config={"temperature": 0.2}
                 )
                 
-                lines = [l.strip() for l in response.text.strip().split('\n') if l.strip()]
-                if len(lines) >= 2:
-                    return f"**1. Latin 1860s transcription:** {lines[0]}\n\n**2. Arabic script version:** {lines[1]}"
-                return f"**Result:**\n{response.text}"
+                # Check if response has text (to avoid safety filter blocks)
+                if response.text:
+                    lines = [l.strip() for l in response.text.strip().split('\n') if l.strip()]
+                    if len(lines) >= 2:
+                        return f"**1. Latin 1860s transcription:** {lines[0]}\n\n**2. Arabic script version:** {lines[1]}"
+                    return f"**Result:**\n{response.text}"
 
             except Exception as e:
                 err_msg = str(e).lower()
-                if "429" in err_msg or "quota" in err_msg:
-                    time.sleep(1) # Wait a second before trying next model/key
+                # If the model itself isn't found, try the next model immediately
+                if "404" in err_msg or "not found" in err_msg:
                     continue 
+                # If rate limited, try next key
+                if "429" in err_msg or "quota" in err_msg:
+                    break 
                 else:
                     return f"❌ API Error: {str(e)}"
 
-    return "❌ ALL KEYS EXHAUSTED. Please wait 60 seconds and try again."
-
+    return "❌ ALL MODELS/KEYS EXHAUSTED. Please check your API Dashboard."
 # --- 3. UI EXECUTION ---
 try:
     user_input = st.text_area("Enter sentence:", height=100)
