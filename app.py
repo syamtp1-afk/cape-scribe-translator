@@ -47,21 +47,26 @@ def scribe_translator(text_input):
     except:
         return "❌ SETUP ERROR: API Keys missing in Secrets."
 
-    for i, key in enumerate(api_pool):
-        try:
-            genai.configure(api_key=key.strip())
-            
-            # FIXED MODEL NAME: gemini-1.5-flash-latest
-            model = genai.GenerativeModel(
-                model_name='gemini-1.5-flash-latest',
-                system_instruction=system_instruction
-            )
-            
-            response = model.generate_content(
-                f"INPUT: {processed_text}", 
-                generation_config={"temperature": 0.1, "top_p": 1}
-            )
-            return response.text.strip()
+# Change the model initialization in Section 2-D:
+for i, key in enumerate(api_pool):
+    try:
+        genai.configure(api_key=key.strip())
+        
+        # USE THE 2026 HIGH-VOLUME MODEL
+        model = genai.GenerativeModel(
+            model_name='gemini-3.1-flash-lite-preview', 
+            system_instruction=system_instruction
+        )
+        
+        # 'thinking_budget' can be set to 0 for instant translation accuracy
+        response = model.generate_content(
+            f"INPUT: {processed_text}", 
+            generation_config={
+                "temperature": 0.1,
+                "top_p": 0.95
+            }
+        )
+        return response.text.strip()
             
         except Exception as e:
             error_msg = str(e)
