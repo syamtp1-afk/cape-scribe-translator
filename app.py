@@ -1,6 +1,14 @@
+import streamlit as st
+import google.generativeai as genai
+import re
+import os
+
+# --- 1. UI SETUP ---
+st.set_page_config(page_title="1860s Master Scribe", page_icon="🕌")
+st.title("🕌 1860s Cape Arabic-Afrikaans Scribe")
+
 def scribe_translator(text_input):
     # A. LOAD THE LAW (rules.txt)
-    # We keep this to ensure "Hard Swaps" for words you definitely want to control.
     rules_dict = {}
     if os.path.exists("rules.txt"):
         with open("rules.txt", "r", encoding="utf-8") as f:
@@ -9,39 +17,35 @@ def scribe_translator(text_input):
                     parts = line.split("=")
                     rules_dict[parts[0].strip().lower()] = parts[1].split("(")[0].strip()
 
-    # B. PASS 1: THE HARD SWAP (Python-Driven)
+    # B. PASS 1: THE HARD SWAP
     processed_text = text_input.lower()
     sorted_keys = sorted(rules_dict.keys(), key=len, reverse=True)
-    
     for key in sorted_keys:
         pattern = re.compile(rf'\b{re.escape(key)}\b', re.IGNORECASE)
         processed_text = pattern.sub(rules_dict[key], processed_text)
 
-    # C. THE MULTI-STEP INSTRUCTION
-    # This tells the AI to translate anything that is still English into 1860s Afrikaans first.
+    # C. THE MULTI-STEP SYSTEM INSTRUCTION
     system_instruction = """
     ROLE: 19th-century Cape Muslim Scribe & Translator.
-    
     TASK: 
-    1. Look at the input. If any words are still in English, translate them into 1860s phonetic Cape Afrikaans (e.g., "you are" becomes "djie is", "cute" becomes "fyntjies" or "mooi").
-    2. Once you have the 1860s Latin Afrikaans version, convert it into 1860s Arabic Script.
-
-    STRICT ALPHABET MAPPING:
+    1. Translate English words to 1860s Cape Afrikaans (Latin script).
+    2. Convert that Afrikaans into 1860s Arabic Script using the mapping below.
+    
+    ALPHABET MAPPING:
     - b=ب, p=پ, t=ت, s=س, dj=ج, tj=چ, h=ه, ch=خ, d=د, r=ر, sj=ش, f=ف, w=و, k=ك, g=گ, l=ل, m=م, n=ن, j=ي, ng=ڠ.
     - Vowels: a=ـَ, aa=ـَا, i/ie=ـِي, o/oo=ـُ, oe=ـُو, e(schwa)=ـِ.
 
-    OUTPUT FORMAT:
-    You must return TWO lines:
-    Line 1: The Latin 1860s Afrikaans version.
-    Line 2: The Arabic Script version.
+    OUTPUT RULE:
+    Return EXACTLY two lines. 
+    Line 1: [Latin Version]
+    Line 2: [Arabic Script Version]
     """
 
-    # D. PASS 2: AI EXECUTION
+    # D. API EXECUTION
     if "keys" not in st.secrets:
         return "❌ SETUP ERROR: Add 'keys' list to Streamlit Secrets."
 
     api_pool = st.secrets["keys"]
-
     for i, key in enumerate(api_pool):
         try:
             genai.configure(api_key=key.strip())
@@ -50,26 +54,37 @@ def scribe_translator(text_input):
                 system_instruction=system_instruction
             )
             
-            # We ask the AI to be the final authority on the translation logic
             response = model.generate_content(
-                f"Translate and convert: {processed_text}", 
-                generation_config={"temperature": 0.1} # Slight temperature allows for better "guessing"
+                f"Input to process: {processed_text}", 
+                generation_config={"temperature": 0.2}
             )
             
-            output = response.text.strip().split('\n')
-            
-            # Cleaning up empty lines if any
-            output = [line for line in output if line.strip()]
-            
-            latin_ver = output[0].replace("Line 1:", "").strip()
-            arabic_ver = output[1].replace("Line 2:", "").strip()
-
-            return f"**1. Latin 1860s transcription:** {latin_ver}\n\n**2. Arabic script version:** {arabic_ver}"
-            
+            # Parsing the response safely
+            lines = [l.strip() for l in response.text.strip().split('\n') if l.strip()]
+            if len(lines) >= 2:
+                latin_out = lines[0].replace("Line 1:", "").strip()
+                arabic_out = lines[1].replace("Line 2:", "").strip()
+                return f"**1. Latin 1860s transcription:** {latin_out}\n\n**2. Arabic script version:** {arabic_out}"
+            else:
+                return f"**Raw Output:**\n{response.text}"
+                
         except Exception as e:
-            if "429" in str(e) or "quota" in str(e).lower():
-                if i < len(api_pool) - 1:
-                    continue 
+            if i < len(api_pool) - 1:
+                continue 
             return f"❌ System Error: {str(e)}"
-
     return "❌ All API paths failed."
+
+# --- 3. UI EXECUTION ---
+# Wrapping in a try block to prevent the "Blank Screen of Death"
+try:
+    user_input = st.text_area("Enter sentence:", placeholder="e.g. you are cute", height=100)
+
+    if st.button("EXECUTE"):
+        if user_input:
+            with st.spinner("📜 Consulting Archive Laws..."):
+                result = scribe_translator(user_input)
+                st.info(result)
+        else:
+            st.warning("Please enter text first.")
+except Exception as e:
+    st.error(f"Critical App Error: {e}")
