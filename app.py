@@ -30,67 +30,75 @@ def get_hard_dictionary():
                     rules_dict[modern] = archive
     return rules_dict
 
+import re
+
 def scribe_translator(user_input):
-    # STEP A: Physically swap words from rules.txt BEFORE the AI sees them
-    # This prevents errors like "how are you" -> "هَاو اَر يُو"
-    dictionary = get_hard_dictionary()
-    processed_text = user_input.lower()
-    for word in sorted(dictionary.keys(), key=len, reverse=True):
-        pattern = re.compile(rf'\b{re.escape(word)}\b', re.IGNORECASE)
-        processed_text = pattern.sub(dictionary[word], processed_text)
+    # 1. LOAD THE MASTER DICTIONARY
+    rules_dict = {}
+    if os.path.exists("rules.txt"):
+        with open("rules.txt", "r", encoding="utf-8") as f:
+            for line in f:
+                if "=" in line:
+                    parts = line.split("=")
+                    modern = parts[0].strip().lower()
+                    # Capture the 1860s word (ignore bracketed meanings)
+                    archive = parts[1].split("(")[0].strip()
+                    rules_dict[modern] = archive
 
-    # STEP B: System Instructions (The "Phonetic Calculator" Mode)
-    system_instruction = """
-    ROLE: 19th-century Cape Muslim Scribe / Linguistic Researcher.
-    TASK: Transcribe the INPUT sounds into 1860s Arabic Script.
+    # 2. THE UNIVERSAL FILTER (The "Rules-Only" Lock)
+    # We split the input into individual words
+    words = re.findall(rf'\b\w+\b', user_input.lower())
+    translated_words = []
     
-    CRITICAL: 
-    1. DO NOT translate meaning into Modern Arabic. 
-    2. Transcribe ONLY the sounds of the words provided.
-    3. Use: b=ب, p=پ, t=ت, s=ث, dj=ج, tj=چ, h=ح, ch=خ, d=د, r=ر, k=ك, l=ل, m=م, n=ن, w=و, j=ي.
-    4. Vowels: a=ـَ, aa=ـَا, i/ie=ـِي, o/oo=ـُ, u=ـُ, e/è=ـَِي.
+    for word in words:
+        if word in rules_dict:
+            # ONLY use the word if it exists in your rules.txt
+            translated_words.append(rules_dict[word])
+        else:
+            # If the word is MISSING from rules, we do NOT translate it
+            # This prevents the AI from guessing "how = هَاو"
+            translated_words.append(f"[{word}_NOT_IN_ARCHIVE]")
 
-    OUTPUT FORMAT:
-    1. Latin 1860s transcription: [Result]
-    2. Arabic script version: [Result]
+    # Reconstruct the sentence using ONLY approved archive words
+    final_latin = " ".join(translated_words)
+
+    # 3. THE ROBOTIC SCRIBE (Arabic Script Only)
+    system_instruction = """
+    ROLE: 1860s Phonetic Scribe.
+    TASK: Translate to 1860s Cape Afrikaans + Arabic Script.
+
+        
+
+         ### MANDATORY ALPHABET MAPPING:
+
+       - Consonants: b=ب, p=پ, t=ت, s=ث/س/ص, dj=ج, tj=چ, h=ح/ه, ch/g=خ, d=د/ض, z=ذ/ز/ظ, r=ر, sj=ش, t=ط, g(soft)=غ, ng=ڠ, f=ف, w=ڤ/و, q/k=ق/ك, gh=گ, l=ل, m=م, n=ن, j=ي.
+
+      - Vowels & Diphthongs:
+
+     a=ـَ | aa=ـَا | aai=ـَاي | ai=ـَي | ei/y=ـَِي | u/û=ـَِو | e(schwa)=ـَِ | ê=ـَِـٰ | o=ـَُ | ie=ـِي | i=ـِ | î=ـِي(stroke) | eeu/eu/uu=ـَِوي | ee=ـِي | oe=ـُ | ô=ـُو | oo=ـَُو | oei/ooi=ـُوي | ui=ـَُوي | e/è=ـَِي
+    STRICT: 
+    - Do NOT fix spelling. 
+    - Do NOT translate meaning. 
+    - Just map characters.
+    - If you see '[word_NOT_IN_ARCHIVE]', leave it as [???].
     """
 
-    # STEP C: Key Rotation & Safety Handling
-    for i, current_key in enumerate(API_POOL):
+    for key in API_POOL:
         try:
-            genai.configure(api_key=current_key.strip())
-            
-            # BLOCK_NONE stops the 'Finish Reason 4' Copyright Error
+            genai.configure(api_key=key.strip())
             model = genai.GenerativeModel(
                 model_name='gemini-2.5-flash-lite',
-                system_instruction=system_instruction,
-                safety_settings={
-                    HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
-                    HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
-                    HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE,
-                    HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
-                }
+                system_instruction=system_instruction
             )
-            
+            # Temperature 0 ensures the AI acts like a typewriter, not a brain.
             response = model.generate_content(
-                f"TRANSCRIBE: {processed_text}",
-                generation_config={"temperature": 0} # Zero creativity = Pure Accuracy
+                f"TEXT: {final_latin}",
+                generation_config={"temperature": 0}
             )
-
-            # Check if AI blocked it despite settings
-            if response.candidates[0].finish_reason == 4:
-                return "⚠️ Safety Block: Segment flagged. Try rephrasing."
-
             return response.text.strip()
-
-        except Exception as e:
-            if "429" in str(e) or "quota" in str(e).lower():
-                if i < len(API_POOL) - 1: continue
-                else: return "❌ ALL KEYS EXHAUSTED."
-            return f"⚠️ System Error: {e}"
-
-    return "❌ All Project Quotas Exhausted."
-
+        except:
+            continue
+    return "❌ Keys exhausted."
 # --- 4. MAIN UI ---
 user_input = st.text_area("Enter sentence:", placeholder="e.g. read the quraan", height=100)
 
