@@ -46,11 +46,19 @@ def scribe_translator(text_input):
         return "❌ SETUP ERROR: Add 'keys' list to Streamlit Secrets."
 
     api_pool = st.secrets["keys"]
+    
+    # FIX: Use the latest stable production model alias
+    # 'gemini-1.5-flash' is often deprecated in favor of 'gemini-2.0-flash' or 'gemini-pro'
+    # For 2026, we use the current production standard:
+    SELECTED_MODEL = 'gemini-2.0-flash' 
+
     for i, key in enumerate(api_pool):
         try:
             genai.configure(api_key=key.strip())
+            
+            # Initialize model with the new stable name
             model = genai.GenerativeModel(
-                model_name='gemini-1.5-flash', 
+                model_name=SELECTED_MODEL, 
                 system_instruction=system_instruction
             )
             
@@ -59,19 +67,27 @@ def scribe_translator(text_input):
                 generation_config={"temperature": 0.2}
             )
             
-            # Parsing the response safely
+            # Split and clean output
             lines = [l.strip() for l in response.text.strip().split('\n') if l.strip()]
+            
             if len(lines) >= 2:
-                latin_out = lines[0].replace("Line 1:", "").strip()
-                arabic_out = lines[1].replace("Line 2:", "").strip()
+                # Remove labels if the AI included them
+                latin_out = lines[0].replace("Line 1:", "").replace("[", "").replace("]", "").strip()
+                arabic_out = lines[1].replace("Line 2:", "").replace("[", "").replace("]", "").strip()
                 return f"**1. Latin 1860s transcription:** {latin_out}\n\n**2. Arabic script version:** {arabic_out}"
             else:
-                return f"**Raw Output:**\n{response.text}"
+                return f"**Result:**\n{response.text}"
                 
         except Exception as e:
+            # If the specific model is still 404, we try a fallback model
+            if "404" in str(e) and SELECTED_MODEL != 'gemini-pro':
+                SELECTED_MODEL = 'gemini-pro'
+                continue
+            
             if i < len(api_pool) - 1:
                 continue 
             return f"❌ System Error: {str(e)}"
+            
     return "❌ All API paths failed."
 
 # --- 3. UI EXECUTION ---
