@@ -3,17 +3,32 @@ import google.generativeai as genai
 import re
 import os
 import time
-import random  # <--- This must be here!
+import random
 
-# --- 1. UI SETUP (Only call this ONCE) ---
+# 1. UI SETUP (Must be first and only once)
 st.set_page_config(page_title="1860s Master Scribe", page_icon="🕌")
 st.title("🕌 1860s Cape Arabic-Afrikaans Scribe")
 
-# Now define your functions...
 def scribe_translator(text_input):
-    # ... (Keep your Rules A logic as is) ...
+    # Initialize the variable immediately to avoid "not defined" errors
+    processed_text = text_input.lower() 
+    
+    # A. LOAD THE RULES
+    rules_dict = {}
+    if os.path.exists("rules.txt"):
+        with open("rules.txt", "r", encoding="utf-8") as f:
+            for line in f:
+                if "=" in line:
+                    parts = line.split("=")
+                    rules_dict[parts[0].strip().lower()] = parts[1].split("(")[0].strip()
 
-    # B. SYSTEM INSTRUCTION
+    # B. APPLY RULES
+    sorted_keys = sorted(rules_dict.keys(), key=len, reverse=True)
+    for key in sorted_keys:
+        pattern = re.compile(rf'\b{re.escape(key)}\b', re.IGNORECASE)
+        processed_text = pattern.sub(rules_dict[key], processed_text)
+
+    # C. SYSTEM INSTRUCTION
     system_instruction = """
     ROLE: 19th-century Cape Muslim Scribe & Translator.
     TASK: Translate English to 1860s Cape Afrikaans, then convert to Arabic Script.
@@ -25,73 +40,36 @@ def scribe_translator(text_input):
     if "keys" not in st.secrets:
         return "❌ SETUP ERROR: Add 'keys' list to Streamlit Secrets."
 
+    # D. API EXECUTION
     api_pool = list(st.secrets["keys"])
     random.shuffle(api_pool)
     
-    # CORRECTED MODEL NAMES WITH PREFIXES
-    models_to_try = [
-        'models/gemini-1.5-flash', 
-        'models/gemini-1.5-flash-8b',
-        'models/gemini-1.5-pro' 
-    ]
+    # Using 'models/' prefix to fix your previous 404 error
+    models_to_try = ['models/gemini-1.5-flash', 'models/gemini-1.5-flash-8b']
 
     for key in api_pool:
         genai.configure(api_key=key.strip())
-        
         for model_name in models_to_try:
             try:
-                # The model initialization
                 model = genai.GenerativeModel(
                     model_name=model_name, 
                     system_instruction=system_instruction
                 )
                 
-                response = model.generate_content(
-                    f"Process: {processed_text}", 
-                    generation_config={"temperature": 0.2}
-                )
+                # 'processed_text' is definitely defined by now
+                response = model.generate_content(f"Process: {processed_text}")
                 
-                # Check if response has text (to avoid safety filter blocks)
                 if response.text:
-                    lines = [l.strip() for l in response.text.strip().split('\n') if l.strip()]
-                    if len(lines) >= 2:
-                        return f"**1. Latin 1860s transcription:** {lines[0]}\n\n**2. Arabic script version:** {lines[1]}"
-                    return f"**Result:**\n{response.text}"
-
+                    return response.text
             except Exception as e:
-                err_msg = str(e).lower()
-                # If the model itself isn't found, try the next model immediately
-                if "404" in err_msg or "not found" in err_msg:
-                    continue 
-                # If rate limited, try next key
-                if "429" in err_msg or "quota" in err_msg:
-                    break 
-                else:
-                    return f"❌ API Error: {str(e)}"
+                continue # Try next model/key
 
-    return "❌ ALL MODELS/KEYS EXHAUSTED. Please check your API Dashboard."
-# --- 3. UI EXECUTION ---
-try:
-    user_input = st.text_area("Enter sentence:", height=100)
-    if st.button("EXECUTE"):
-        if user_input:
-            with st.spinner("📜 Rotating API Keys & Consulting Archives..."):
-                result = scribe_translator(user_input)
-                st.info(result)
-except Exception as e:
-    st.error(f"Critical Error: {e}")
+    return "❌ All attempts failed. Check logs."
 
-# --- 3. UI EXECUTION ---
-# Wrapping in a try block to prevent the "Blank Screen of Death"
-try:
-    user_input = st.text_area("Enter sentence:", placeholder="e.g. you are cute", height=100)
-
-    if st.button("EXECUTE"):
-        if user_input:
-            with st.spinner("📜 Consulting Archive Laws..."):
-                result = scribe_translator(user_input)
-                st.info(result)
-        else:
-            st.warning("Please enter text first.")
-except Exception as e:
-    st.error(f"Critical App Error: {e}")
+# 3. UI EXECUTION
+user_input = st.text_area("Enter sentence:", height=100)
+if st.button("EXECUTE"):
+    if user_input:
+        with st.spinner("📜 Processing..."):
+            result = scribe_translator(user_input)
+            st.info(result)
