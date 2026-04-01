@@ -15,36 +15,36 @@ def scribe_translator(text_input):
             for line in f:
                 if "=" in line:
                     parts = line.split("=")
-                    # English Key = 1860s Latin Value
+                    # Key: English | Value: 1860s Latin Afrikaans
                     rules_dict[parts[0].strip().lower()] = parts[1].split("(")[0].strip()
 
-    # B. PASS 1: MANDATORY DICTIONARY SWAP (Python-Driven)
-    # We sort by length to catch phrases like "what you want" before "what"
+    # B. PASS 1: THE HARD SWAP (100% Dictionary Accuracy)
+    # Sorting by length ensures "how are you" is replaced before "how"
     processed_text = text_input.lower()
     sorted_keys = sorted(rules_dict.keys(), key=len, reverse=True)
     
     for key in sorted_keys:
-        # Matches whole words only to prevent accidental swaps inside words
+        # \b ensures we only replace whole words, not parts of words
         pattern = re.compile(rf'\b{re.escape(key)}\b', re.IGNORECASE)
         processed_text = pattern.sub(rules_dict[key], processed_text)
 
-    # C. THE SYSTEM INSTRUCTION (The Script Guard)
+    # C. THE SCRIPT MANDATE (Zero Creativity)
     system_instruction = """
     ROLE: 19th-century Cape Muslim Scribe.
-    TASK: Convert the provided 1860s Latin text into Arabic Script.
+    TASK: Convert the input Latin text into 1860s Arabic Script.
     
-    STRICT ALPHABET:
-    - Consonants: b=ب, p=پ, t=ت, s=س, dj=ج, tj=چ, h=ه, ch=خ, d=د, r=ر, sj=ش, f=ف, w=و, k=ك, g=گ, l=ل, m=م, n=ن, j=ي, ng=ڠ.
+    STRICT ALPHABET MAPPING:
+    - b=ب, p=پ, t=ت, s=س, dj=ج, tj=چ, h=ه, ch=خ, d=د, r=ر, sj=ش, f=ف, w=و, k=ك, g=گ, l=ل, m=م, n=ن, j=ي, ng=ڠ.
     - Vowels: a=ـَ, aa=ـَا, i/ie=ـِي, o/oo=ـُ, oe=ـُو, e(schwa)=ـِ.
 
-    STRICT MANDATE: 
-    1. The INPUT is already 1860s Latin Afrikaans. DO NOT TRANSLATE IT.
-    2. Convert the letters of the input to the Arabic script EXACTLY.
-    3. If the input is "wat djy wil", output "وَات جِي وِيل".
-    4. Output ONLY the Arabic script.
+    MANDATORY RULES:
+    1. DO NOT TRANSLATE. The input is already 1860s Cape Afrikaans.
+    2. Map the letters of the input to the Arabic script EXACTLY.
+    3. If the input is 'hoe faa nog', your output MUST look like 'هُو فَا نُوغ'.
+    4. NO PREAMBLE. NO ENGLISH. ONLY ARABIC SCRIPT.
     """
 
-    # D. PASS 2: AI SCRIPT CONVERSION (Multi-Key Failover)
+    # D. PASS 2: AI SCRIPT CONVERSION (Unlimited/Multi-Key)
     if "keys" not in st.secrets:
         return "❌ SETUP ERROR: Add 'keys' list to Streamlit Secrets."
 
@@ -54,15 +54,15 @@ def scribe_translator(text_input):
         try:
             genai.configure(api_key=key.strip())
             
-            # Using the 2026 Production Model
+            # Using Gemini 3.1 Flash-Lite-Preview (2026 Production Standard)
             model = genai.GenerativeModel(
                 model_name='gemini-3.1-flash-lite-preview',
                 system_instruction=system_instruction
             )
             
-            # Temperature 0.0 = Absolute Accuracy
+            # Temperature 0.0 is the "Accuracy Lock"
             response = model.generate_content(
-                f"CONVERT THIS 1860s LATIN TO ARABIC SCRIPT: {processed_text}", 
+                f"CONVERT TO ARABIC SCRIPT: {processed_text}", 
                 generation_config={"temperature": 0.0}
             )
             
@@ -72,16 +72,16 @@ def scribe_translator(text_input):
         except Exception as e:
             if "429" in str(e) or "quota" in str(e).lower():
                 if i < len(api_pool) - 1:
-                    continue 
+                    continue # Jump to next key instantly
             return f"❌ System Error: {str(e)}"
 
     return "❌ All API paths failed."
 
 # --- 3. UI EXECUTION ---
-user_input = st.text_area("Enter sentence:", placeholder="e.g. what you want", height=100)
+user_input = st.text_area("Enter sentence:", placeholder="e.g. how are you", height=100)
 
 if st.button("EXECUTE"):
     if user_input:
-        with st.spinner("📜 Consultando Archivo..."):
+        with st.spinner("📜 Consulting Archive Laws..."):
             result = scribe_translator(user_input)
             st.info(result)
