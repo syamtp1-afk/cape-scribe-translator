@@ -18,17 +18,17 @@ def scribe_translator(text_input):
                     # Key: English | Value: 1860s Latin Afrikaans
                     rules_dict[parts[0].strip().lower()] = parts[1].split("(")[0].strip()
 
-    # B. PASS 1: THE HARD SWAP (100% Dictionary Accuracy)
-    # Sorting by length ensures "how are you" is replaced before "how"
+    # B. PASS 1: THE HARD SWAP (Python-Driven Accuracy)
+    # We sort by length (longest first) to catch "how are you" before "how"
     processed_text = text_input.lower()
     sorted_keys = sorted(rules_dict.keys(), key=len, reverse=True)
     
     for key in sorted_keys:
-        # \b ensures we only replace whole words, not parts of words
+        # Matches whole words only to prevent accidental swaps inside words
         pattern = re.compile(rf'\b{re.escape(key)}\b', re.IGNORECASE)
         processed_text = pattern.sub(rules_dict[key], processed_text)
 
-    # C. THE SCRIPT MANDATE (Zero Creativity)
+    # C. THE SCRIPT MANDATE (Zero Creativity / Temperature 0.0)
     system_instruction = """
     ROLE: 19th-century Cape Muslim Scribe.
     TASK: Convert the input Latin text into 1860s Arabic Script.
@@ -38,10 +38,9 @@ def scribe_translator(text_input):
     - Vowels: a=ـَ, aa=ـَا, i/ie=ـِي, o/oo=ـُ, oe=ـُو, e(schwa)=ـِ.
 
     MANDATORY RULES:
-    1. DO NOT TRANSLATE. The input is already 1860s Cape Afrikaans.
-    2. Map the letters of the input to the Arabic script EXACTLY.
-    3. If the input is 'hoe faa nog', your output MUST look like 'هُو فَا نُوغ'.
-    4. NO PREAMBLE. NO ENGLISH. ONLY ARABIC SCRIPT.
+    1. DO NOT TRANSLATE. The input is already in the target 1860s language.
+    2. Convert the letters of the input to the Arabic script EXACTLY.
+    3. NO ENGLISH. If the input is 'hoe faa nog', the output must be 'هُو فَا نُوغ'.
     """
 
     # D. PASS 2: AI SCRIPT CONVERSION (Unlimited/Multi-Key)
@@ -54,13 +53,13 @@ def scribe_translator(text_input):
         try:
             genai.configure(api_key=key.strip())
             
-            # Using Gemini 3.1 Flash-Lite-Preview (2026 Production Standard)
+            # Using Gemini 3.1 Flash-Lite (2026 Production Model)
             model = genai.GenerativeModel(
                 model_name='gemini-3.1-flash-lite-preview',
                 system_instruction=system_instruction
             )
             
-            # Temperature 0.0 is the "Accuracy Lock"
+            # Temperature 0.0 = 100% Deterministic (No guessing)
             response = model.generate_content(
                 f"CONVERT TO ARABIC SCRIPT: {processed_text}", 
                 generation_config={"temperature": 0.0}
@@ -72,7 +71,7 @@ def scribe_translator(text_input):
         except Exception as e:
             if "429" in str(e) or "quota" in str(e).lower():
                 if i < len(api_pool) - 1:
-                    continue # Jump to next key instantly
+                    continue # Try next key
             return f"❌ System Error: {str(e)}"
 
     return "❌ All API paths failed."
