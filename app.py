@@ -1,84 +1,88 @@
 import streamlit as st
+import google.generativeai as genai
 import re
 import os
+import time
 
 # --- 1. UI SETUP ---
 st.set_page_config(page_title="1860s Master Scribe", page_icon="🕌")
 st.title("🕌 1860s Cape Arabic-Afrikaans Scribe")
-st.markdown("### Zero-Quota Engine | 100% Offline Accuracy")
 
-# --- 2. THE LOCAL PHONETIC ENGINE (The "No-AI" Fix) ---
-def local_arabic_converter(text):
-    """
-    Converts 1860s Latin to Arabic Script using your MANDATORY mapping.
-    This runs locally in Python. No API keys, no quota, no limits.
-    """
-    # Order matters: Longest phonetic strings must be replaced first (e.g., 'eeu' before 'ee')
-    mapping = {
-        # Diphthongs & Special Vowels
-        'eeu': 'ـَِوي', 'oei': 'ُوي', 'ooi': 'ُوي', 'aai': 'ـَاي', 
-        'eu': 'ـَِوي', 'uu': 'ـَِوي', 'ui': 'ـَُوي', 'ai': 'ـَي', 
-        'ei': 'ـَِي', 'aa': 'ـَا', 'ee': 'ـِي', 'ie': 'ـِي', 
-        'oe': 'ـُ', 'oo': 'ـَُو', 'ê': 'ـَِـٰ', 'ô': 'ـُو', 
-        'î': 'ـِي', 'è': 'ـَِي', 'y': 'ـَِي',
-        
-        # Consonants (Complex)
-        'dj': 'ج', 'tj': 'چ', 'sj': 'ش', 'ch': 'خ', 'gh': 'گ', 'ng': 'ڠ',
-        
-        # Consonants (Single)
-        'b': 'ب', 'p': 'پ', 't': 'ت', 's': 'ث', 'h': 'ح', 'g': 'خ', 
-        'd': 'د', 'z': 'ذ', 'r': 'ر', 'f': 'ف', 'w': 'و', 'q': 'ق', 
-        'k': 'ك', 'l': 'ل', 'm': 'م', 'n': 'ن', 'j': 'ي',
-        
-        # Simple Vowels
-        'a': 'ـَ', 'e': 'ـَِ', 'i': 'ـِ', 'o': 'ـَُ', 'u': 'ـَِو'
-    }
-    
-    result = text.lower()
-    for key, value in mapping.items():
-        # Use word boundaries or simple replace? 
-        # For script conversion, simple replace is more accurate for phonetics.
-        result = result.replace(key, value)
-    return result
-
+# --- 2. THE ENGINE ---
 def scribe_translator(text_input):
-    # A. LOAD THE ARCHIVE (rules.txt)
+    # A. LOAD THE LAW (rules.txt)
     rules_dict = {}
     if os.path.exists("rules.txt"):
         with open("rules.txt", "r", encoding="utf-8") as f:
             for line in f:
                 if "=" in line:
                     parts = line.split("=")
-                    # Modern = 1860s Latin
                     rules_dict[parts[0].strip().lower()] = parts[1].split("(")[0].strip()
 
-    # B. STEP 1: TRANSLATE (Modern -> 1860s Latin)
-    # Using the Hard-Swap Dictionary
-    latin_1860s = text_input.lower()
+    # B. HARD-SWAP (Python Pre-Processor)
+    # This ensures "how are you" becomes "Hoe faa nog" before the AI even sees it.
+    processed_text = text_input.lower()
     for word in sorted(rules_dict.keys(), key=len, reverse=True):
         pattern = re.compile(rf'\b{re.escape(word)}\b', re.IGNORECASE)
-        latin_1860s = pattern.sub(rules_dict[word], latin_1860s)
+        processed_text = pattern.sub(rules_dict[word], processed_text)
 
-    # C. STEP 2: CONVERT (1860s Latin -> Arabic Script)
-    # Using the Local Phonetic Engine
-    arabic_script = local_arabic_converter(latin_1860s)
+    # C. THE SYSTEM INSTRUCTION (Your Strict Prompt)
+    system_instruction = f"""
+    ROLE: 19th-century Cape Muslim Scribe.
+    TASK: Translate to 1860s Cape Afrikaans + Arabic Script.
 
-    # D. OUTPUT FORMAT (Exactly as requested)
-    return f"""
-1. Latin 1860s transcription: {latin_1860s}
-2. Arabic script version: {arabic_script}
-"""
+    ### MANDATORY ALPHABET MAPPING:
+    - Consonants: b=ب, p=پ, t=ت, s=ث/س/ص, dj=ج, tj=چ, h=ح/ه, ch/g=خ, d=د/ض, z=ذ/ز/ظ, r=ر, sj=ش, t=ط, g(soft)=غ, ng=ڠ, f=ف, w=ڤ/و, q/k=ق/ك, gh=گ, l=ل, m=م, n=ن, j=ي.
+    - Vowels & Diphthongs: a=ـَ | aa=ـَا | aai=ـَاي | ai=ـَي | ei/y=ـَِي | u/û=ـَِو | e(schwa)=ـَِ | ê=ـَِـٰ | o=ـَُ | ie=ـِي | i=ـِ | î=ـِي(stroke) | eeu/eu/uu=ـَِوي | ee=ـِي | oe=ـُ | ô=ـُو | oo=ـَُو | oei/ooi=ـُوي | ui=ـَُوي | e/è=ـَِي
+
+    STRICT: No greetings. No preamble. Output ONLY the numbered list.
+    RULES: {list(rules_dict.items())}
+
+    OUTPUT FORMAT:
+    1. Latin 1860s transcription: [Result]
+    2. Arabic script version: [Result]
+    """
+
+    # D. MULTI-KEY FAILOVER (Fixes "Quota Exhausted")
+    try:
+        api_pool = st.secrets["keys"]
+    except:
+        return "❌ SETUP ERROR: API Keys missing in Secrets."
+
+    for i, key in enumerate(api_pool):
+        try:
+            genai.configure(api_key=key.strip())
+            # gemini-1.5-flash has higher free-tier limits (15 RPM) than newer models
+            model = genai.GenerativeModel('gemini-1.5-flash', system_instruction=system_instruction)
+            
+            # Temperature 0.0 is the "Accuracy Lock"
+            response = model.generate_content(
+                f"INPUT: {processed_text}", 
+                generation_config={"temperature": 0}
+            )
+            return response.text.strip()
+            
+        except Exception as e:
+            if "429" in str(e):
+                # If Key 1 is exhausted, try Key 2...
+                if i < len(api_pool) - 1:
+                    continue
+                else:
+                    return "❌ CRITICAL: All API keys exhausted. Please add more keys to Secrets."
+            return f"❌ System Error: {str(e)}"
+
+    return "❌ All API paths failed."
 
 # --- 3. UI EXECUTION ---
 user_input = st.text_area("Enter sentence:", placeholder="e.g. how are you", height=100)
 
 if st.button("EXECUTE"):
     if user_input:
-        # No spinner needed - local execution is near-instant!
-        result = scribe_translator(user_input)
-        st.code(result.strip(), language=None)
+        with st.spinner("📜 Consulting Archive Laws..."):
+            result = scribe_translator(user_input)
+            st.info(result)
     else:
         st.warning("Please enter text first.")
 
 st.divider()
-st.caption("Universal Scribe Engine v14.0 | Zero Quota | 100% Local Logic")
+st.caption("Universal Scribe Engine v13.0 | Hard-Swap Logic | Multi-Key Failover")
