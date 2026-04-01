@@ -29,11 +29,8 @@ def get_hard_dictionary():
                     archive = parts[1].split("(")[0].strip()
                     rules_dict[modern] = archive
     return rules_dict
-
-import re
-
 def scribe_translator(user_input):
-    # 1. LOAD THE MASTER DICTIONARY
+    # 1. LOAD THE MASTER DICTIONARY (Law)
     rules_dict = {}
     if os.path.exists("rules.txt"):
         with open("rules.txt", "r", encoding="utf-8") as f:
@@ -41,30 +38,19 @@ def scribe_translator(user_input):
                 if "=" in line:
                     parts = line.split("=")
                     modern = parts[0].strip().lower()
-                    # Capture the 1860s word (ignore bracketed meanings)
-                    archive = parts[1].split("(")[0].strip()
+                    archive = parts[1].split("(")[0].strip() # Clean meanings
                     rules_dict[modern] = archive
 
-    # 2. THE UNIVERSAL FILTER (The "Rules-Only" Lock)
-    # We split the input into individual words
-    words = re.findall(rf'\b\w+\b', user_input.lower())
-    translated_words = []
-    
-    for word in words:
-        if word in rules_dict:
-            # ONLY use the word if it exists in your rules.txt
-            translated_words.append(rules_dict[word])
-        else:
-            # If the word is MISSING from rules, we do NOT translate it
-            # This prevents the AI from guessing "how = هَاو"
-            translated_words.append(f"[{word}_NOT_IN_ARCHIVE]")
+    # 2. THE HARD INTERCEPTOR (Python Power)
+    # This physically deletes 'how' and writes 'hoe' before the AI sees it
+    processed_text = user_input.lower()
+    for word in sorted(rules_dict.keys(), key=len, reverse=True):
+        pattern = re.compile(rf'\b{re.escape(word)}\b', re.IGNORECASE)
+        processed_text = pattern.sub(rules_dict[word], processed_text)
 
-    # Reconstruct the sentence using ONLY approved archive words
-    final_latin = " ".join(translated_words)
-
-    # 3. THE ROBOTIC SCRIBE (Arabic Script Only)
+    # 3. THE "SCRIBE-ONLY" SYSTEM INSTRUCTION
     system_instruction = """
-    ROLE: 1860s Phonetic Scribe.
+    ROLE: 19th-century Cape Muslim Scribe.
     TASK: Translate to 1860s Cape Afrikaans + Arabic Script.
 
         
@@ -76,25 +62,30 @@ def scribe_translator(user_input):
       - Vowels & Diphthongs:
 
      a=ـَ | aa=ـَا | aai=ـَاي | ai=ـَي | ei/y=ـَِي | u/û=ـَِو | e(schwa)=ـَِ | ê=ـَِـٰ | o=ـَُ | ie=ـِي | i=ـِ | î=ـِي(stroke) | eeu/eu/uu=ـَِوي | ee=ـِي | oe=ـُ | ô=ـُو | oo=ـَُو | oei/ooi=ـُوي | ui=ـَُوي | e/è=ـَِي
-    STRICT: 
-    - Do NOT fix spelling. 
-    - Do NOT translate meaning. 
-    - Just map characters.
-    - If you see '[word_NOT_IN_ARCHIVE]', leave it as [???].
-    """
+    COMMAND: Output ONLY 1. Latin 1860s 2. Arabic Script. NO MODERN ARABIC.
+    RULES: {archive_rules}
+
+        
+
+        OUTPUT FORMAT:
+
+        1. Latin 1860s transcription: [Result]
+
+        2. Arabic script version: [Result]
+
+        
+
+        INPUT: {processed_text}
+
+        """ 
+            
 
     for key in API_POOL:
         try:
             genai.configure(api_key=key.strip())
-            model = genai.GenerativeModel(
-                model_name='gemini-2.5-flash-lite',
-                system_instruction=system_instruction
-            )
-            # Temperature 0 ensures the AI acts like a typewriter, not a brain.
-            response = model.generate_content(
-                f"TEXT: {final_latin}",
-                generation_config={"temperature": 0}
-            )
+            model = genai.GenerativeModel('gemini-2.5-flash-lite', system_instruction=system_instruction)
+            # Temperature 0: The Absolute Accuracy Lock
+            response = model.generate_content(f"TEXT: {processed_text}", generation_config={"temperature": 0})
             return response.text.strip()
         except:
             continue
