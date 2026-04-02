@@ -3,69 +3,123 @@ import google.generativeai as genai
 import re
 import os
 import random
+import time
 
-# --- 1. THE PERMANENT RULE ENGINE (Local Backup) ---
-# This ensures 100% accuracy even if the AI brain is "tired"
-LEXICON = {
-    "onions": "eiwe", "fast": "poewasa", "morning prayer": "soeboeg", 
-    "mosque": "masiet", "read": "batcha", "thank you": "tramakasie",
-    "please": "kanalla", "died": "gamaningal", "bath": "mannie",
-    "after": "aghtir", "nobody": "ghaniemand", "on purpose": "aspris"
-}
+# --- UI SETUP ---
+st.set_page_config(page_title="1860s Cape Arabic-Afrikaans Scribe", page_icon="🕌")
+st.title("🕌 1860s Cape Arabic-Afrikaans Translator")
 
-def apply_scribe_laws(text):
+# --- LOAD RULES ---
+def load_rules():
+    rules_dict = {}
+    raw_text = ""
+
+    if os.path.exists("rules.txt"):
+        with open("rules.txt", "r", encoding="utf-8") as f:
+            raw_text = f.read()
+
+            matches = re.findall(r'^([\w\s]+)\s*=\s*([\w\s\-]+)', raw_text, re.MULTILINE)
+            for key, val in matches:
+                rules_dict[key.strip().lower()] = val.strip()
+
+    return rules_dict, raw_text
+
+
+# --- FALLBACK TRANSLATOR (NO AI) ---
+def fallback_translate(text, rules_dict):
     text = text.lower()
-    # 1. Phonological Rules [Source 5, 7]
-    text = text.replace("ui", "ei")      # Rule: ui > ei [cite: 5]
-    text = text.replace("ge-", "ga-")    # Rule: ge- > ga- [cite: 6]
-    text = re.sub(r'([dt])\1', 'rr', text) # Rule: dd/tt > rr (e.g. middag > marrag) [cite: 7]
-    
-    # 2. Lexical Replacement [Source 32, 33]
-    for eng, cape in LEXICON.items():
-        text = re.compile(rf'\b{re.escape(eng)}\b', re.IGNORECASE).sub(cape, text)
-    return text
 
-# --- 2. STREAMLIT UI ---
-st.set_page_config(page_title="1860s Cape Master Scribe", page_icon="🕌")
-st.title("🕌 100% Final Arabic-Afrikaans Translator")
+    for key in sorted(rules_dict.keys(), key=len, reverse=True):
+        text = re.sub(rf'\b{re.escape(key)}\b', rules_dict[key], text)
 
+    return f"""1. Latin 1860s transcription:
+{text}
+
+2. Arabic script version:
+[AI unavailable — add more API keys]
+"""
+
+
+# --- MAIN TRANSLATOR ---
 def scribe_translator(text_input):
-    processed = apply_scribe_laws(text_input)
+    rules_dict, archive_rules = load_rules()
 
-    # STEP C: THE SYSTEM INSTRUCTION [Source 15, 22, 29]
+    # --- STEP A: PREPROCESS ---
+    processed = text_input.lower()
+
+    processed = processed.replace("ui", "ei")
+    processed = processed.replace("ge-", "ga-")
+    processed = re.sub(r'([dt])\1', 'rr', processed)
+
+    for key in sorted(rules_dict.keys(), key=len, reverse=True):
+        processed = re.sub(rf'\b{re.escape(key)}\b', rules_dict[key], processed)
+
+    # --- STEP B: PROMPT ---
     system_instruction = f"""
-    ROLE: 19th-century Cape Muslim Scribe.
-    STRICT ORTHOGRAPHY (Arabic Script):
-    - CONSONANTS: 'p'=پ, 'g'(great)=گ, 'g/gh'(guttural)=خ, 'ng'=نگ, 'tj'=چ, 'dj'=ج, 'v/f'=ف. [cite: 22, 23, 24, 25, 26]
-    - VOWELS: Short 'a'=fatha, Long 'aa'=fatha+alif, 'ie'=kasra+ya, 'oe'=damma+waw. [cite: 15, 16, 17, 18]
-    - NO 'Z': Use 's' (س). [cite: 27]
-    - NO TASHID: Write letters twice (e.g. 'wanier'). [cite: 29]
-    - EMPHATIC 'S': Use 'sad' (ص) ONLY for 'netsoes' or 'soes'. [cite: 28]
-    
-    TASK: Scribe the processed text. If you reach an unknown word, use your brain to apply Cape Arabic-Afrikaans phonology.
-    """
+ROLE: 19th-century Cape Muslim Scribe.
 
-    # STEP D: UNLIMITED KEY ROTATION
+TASK: Convert into historic Cape Arabic-Afrikaans.
+
+STRICT RULES:
+- No English
+- No explanation
+- No greetings
+- Output ONLY 2 numbered lines
+
+STYLE:
+- 40–50% Arabic/Persian vocabulary
+- Cape Muslim oral rhythm
+- Manuscript tone
+
+RULE SOURCE:
+{archive_rules}
+
+FORMAT:
+1. Latin 1860s transcription: ...
+2. Arabic script version: ...
+
+INPUT:
+{processed}
+"""
+
+    # --- STEP C: API HANDLING ---
     if "keys" not in st.secrets:
-        return f"**LOCAL TRANSCRIPTION (AI Offline):**\n{processed}\n\n❌ ERROR: Add API keys to Secrets."
-    
+        return fallback_translate(processed, rules_dict)
+
     api_pool = list(st.secrets["keys"])
     random.shuffle(api_pool)
-    
+
     for key in api_pool:
         try:
             genai.configure(api_key=key.strip())
-            model = genai.GenerativeModel('gemini-1.5-flash', system_instruction=system_instruction)
-            response = model.generate_content(f"Scribe this exactly: {processed}")
-            return response.text
-        except Exception:
-            continue 
 
-    return f"**LOCAL TRANSCRIPTION (Limits Reached):**\n{processed}\n\n⚠️ Add more keys for Arabic Script."
+            model = genai.GenerativeModel(
+                model_name="gemini-1.5-flash",
+                system_instruction=system_instruction
+            )
 
-# --- 3. EXECUTION ---
-user_input = st.text_area("Enter sentence:", height=100)
-if st.button("EXECUTE FINAL SCRIBE"):
+            response = model.generate_content(processed)
+
+            if response and response.text:
+                return response.text
+
+        except Exception as e:
+            time.sleep(1)  # cooldown
+            continue
+
+    # --- FINAL FALLBACK ---
+    return fallback_translate(processed, rules_dict)
+
+
+# --- UI EXECUTION ---
+user_input = st.text_area(
+    "Enter sentence:",
+    placeholder="e.g. He is reading the prayer after the fast",
+    height=100
+)
+
+if st.button("EXECUTE SCRIBE"):
     if user_input:
         with st.spinner("📜 Applying Scribe Laws..."):
-            st.info(scribe_translator(user_input))
+            result = scribe_translator(user_input)
+            st.success(result)
