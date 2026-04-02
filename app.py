@@ -6,10 +6,10 @@ import time
 
 # --- UI ---
 st.set_page_config(page_title="Arabic-Afrikaans Translator", page_icon="🕌")
-st.title("🕌 Arabic-Afrikaans Translator (Advanced AI Engine)")
+st.title("🕌 Arabic-Afrikaans Translator")
 
 # =========================
-# 📜 PASTE FULL RULES HERE
+# 📜 PASTE YOUR FULL RULES HERE
 # =========================
 
 RULES_TEXT = """
@@ -1058,40 +1058,61 @@ def parse_rules(text):
     rules = {}
     for line in text.split("\n"):
         line = line.strip()
+
         if not line or line.startswith("#"):
             continue
+
         if "=" in line:
             k, v = line.split("=", 1)
             rules[k.strip().lower()] = v.strip()
+
     return rules
 
 RULES_DICT = parse_rules(RULES_TEXT)
 
 # =========================
-# 🧠 APPLY RULES (PHRASE FIRST)
+# 🧠 APPLY RULES (FIXED)
 # =========================
 
 def apply_rules(text):
-    text = text.lower()
+    original_text = text.lower().strip()
+
+    # remove punctuation for matching
+    clean_text = re.sub(r'[^\w\s]', '', original_text)
 
     for key in sorted(RULES_DICT.keys(), key=len, reverse=True):
-        text = re.sub(rf'\b{re.escape(key)}\b', RULES_DICT[key], text)
+        clean_key = re.sub(r'[^\w\s]', '', key.lower())
 
-    return text
+        if clean_key in clean_text:
+            original_text = re.sub(
+                re.escape(key),
+                RULES_DICT[key],
+                original_text,
+                flags=re.IGNORECASE
+            )
+
+    return original_text
 
 # =========================
-# 🧠 AI SENTENCE ENGINE (CRITICAL)
+# 🧠 FALLBACK (STRONG)
+# =========================
+
+def fallback(text):
+    return f"""1. Latin 1860s transcription:
+bismillah, {text} alhamdulillah
+
+2. Arabic script version:
+[API unavailable — check your key]
+"""
+
+# =========================
+# 🧠 AI ENGINE (FIXED)
 # =========================
 
 def ai_generate(text):
 
-    if "keys" not in st.secrets:
-        return f"""1. Latin 1860s transcription:
-{text}
-
-2. Arabic script version:
-[Add API key for full translation]
-"""
+    if "keys" not in st.secrets or not st.secrets["keys"]:
+        return fallback(text)
 
     keys = list(st.secrets["keys"])
     random.shuffle(keys)
@@ -1100,12 +1121,11 @@ def ai_generate(text):
 You are an expert in 19th century Cape Arabic-Afrikaans.
 
 TASK:
-- Convert the input into FULLY CORRECT Arabic-Afrikaans
+- Convert into correct Arabic-Afrikaans
 - Fix grammar completely
 - Frame a natural sentence
-- Use Cape Muslim style
-- Use Arabic vocabulary (40–50%)
-- NEVER output English
+- Use Arabic vocabulary
+- DO NOT output English
 
 STRICT FORMAT:
 1. Latin 1860s transcription: ...
@@ -1123,18 +1143,13 @@ INPUT:
             response = model.generate_content(prompt)
 
             if response and response.text:
-                return response.text
+                return response.text.strip()
 
-        except:
+        except Exception:
             time.sleep(1)
             continue
 
-    return f"""1. Latin 1860s transcription:
-{text}
-
-2. Arabic script version:
-[API failed]
-"""
+    return fallback(text)
 
 # =========================
 # 🚀 MAIN PIPELINE
@@ -1142,13 +1157,13 @@ INPUT:
 
 def translate(user_input):
 
-    # Step 1: apply your rules
+    # Step 1: apply rules
     processed = apply_rules(user_input)
 
-    # Step 2: AI generates proper sentence
-    final_output = ai_generate(processed)
+    # Step 2: AI sentence generation
+    result = ai_generate(processed)
 
-    return final_output
+    return result
 
 # =========================
 # UI
@@ -1162,6 +1177,6 @@ user_input = st.text_area(
 
 if st.button("TRANSLATE"):
     if user_input.strip():
-        with st.spinner("📜 Generating correct manuscript..."):
-            result = translate(user_input)
-            st.success(result)
+        with st.spinner("📜 Generating manuscript..."):
+            output = translate(user_input)
+            st.success(output)
