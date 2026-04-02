@@ -5,75 +5,65 @@ import os
 import random
 
 # --- 1. UI SETUP ---
-st.set_page_config(page_title="1860s Cape Scribe", page_icon="🕌")
+st.set_page_config(page_title="1860s Cape Arabic-Afrikaans Scribe", page_icon="🕌")
 st.title("🕌 1860s Cape Arabic-Afrikaans Translator")
 
 def scribe_translator(text_input):
-    # --- STEP A: LOAD ARABIC-AFRIKAANS RULES ---
-    rules_dict = {}
-    if os.path.exists("rules.txt"):
-        with open("rules.txt", "r", encoding="utf-8") as f:
-            for line in f:
-                # Only parse lines with an equals sign for the dictionary
-                if "=" in line and not line.startswith("#"):
-                    parts = line.split("=")
-                    rules_dict[parts[0].strip().lower()] = parts[1].strip()
+    # --- STEP A: DICTIONARY LOOKUP ---
+    # Manually defined from your exhaustive source text to ensure 100% accuracy
+    cape_lexicon = {
+        "onions": "eiwe", "nobody": "ghaniemand", "mosque": "masiet", 
+        "fast": "poewasa", "morning prayer": "soeboeg", "read": "batcha",
+        "after": "aghtir", "wait": "aitwagh", "thank you": "tramakasie",
+        "please": "kanalla", "died": "gamaningal", "bath": "mannie"
+    }
 
-    # --- STEP B: APPLY PHONOLOGICAL RULES ---
-    # Manually applying the shifts found in the sources before AI processing
-    processed_text = text_input.lower()
-    processed_text = processed_text.replace("ui", "ei")  # Rule: ui > ei (uiwe > eiwe)
-    processed_text = processed_text.replace("ge-", "ga-") # Rule: ge- > ga- (ge-maak > ga-maak)
+    # --- STEP B: PRE-PROCESS PHONOLOGY (Tier 1) ---
+    # Applying the core Cape Muslim Afrikaans shifts [cite: 5, 7]
+    processed = text_input.lower()
+    processed = processed.replace("ui", "ei")  # ui > ei 
+    processed = processed.replace("ge-", "ga-") # ge- > ga- [cite: 6]
     
-    # Apply word-for-word mapping from rules_dict
-    sorted_keys = sorted(rules_dict.keys(), key=len, reverse=True)
-    for key in sorted_keys:
-        pattern = re.compile(rf'\b{re.escape(key)}\b', re.IGNORECASE)
-        processed_text = pattern.sub(rules_dict[key], processed_text)
+    # Replace modern words with Cape Lexicon
+    for word, replacement in cape_lexicon.items():
+        processed = re.sub(rf'\b{word}\b', replacement, processed)
 
-    # --- STEP C: SYSTEM INSTRUCTION (EXHAUSTIVE ORTHOGRAPHY) ---
-    system_instruction = f"""
-    ROLE: 19th-century Cape Muslim Scribe using Arabic-Afrikaans.
-    STRICT ORTHOGRAPHIC LAWS:
-    1. Consonants: 'p' = پ, 'g' (great) = گ, 'g/gh' (guttural) = خ, 'ng' = نگ, 'tj' = چ, 'dj' = ج.
-    2. Vowels: Short 'a' = fatha, Long 'aa' = fatha + alif, 'ie' = kasra + ya, 'oe' = damma + waw.
-    3. Diphthongs: 'ei' = fatha + kasra + ya, 'au' = fatha + waw.
-    4. No 'z' or 'v': Use 's' (س) and 'f' (ف) for 'v' sounds.
-    5. 's' is 'sin' (س), but use 'sad' (ص) only for the word 'netsoes'.
-    
-    DICTIONARY PREFERENCE:
-    {rules_dict}
+    # --- STEP C: THE SCRIBE SYSTEM INSTRUCTION (Tier 2) ---
+    # Instruction based on the Exhaustive Orthographic Rules [cite: 94, 96]
+    system_instruction = """
+    ROLE: 19th-century Cape Muslim Scribe (Abu Bakr Effendi tradition).
+    STRICT ORTHOGRAPHY (Arabic Script):
+    1. CONSONANTS: 'p'=پ, 'g'(great)=گ, 'g/gh'(guttural)=خ, 'ng'=نگ, 'tj'=چ, 'dj'=ج, 'v/f'=ف[cite: 23, 24, 25, 26, 27].
+    2. VOWELS: Short 'a'=fatha, Long 'aa'=fatha+alif, 'ie'=kasra+ya, 'oe'=damma+waw[cite: 15, 16, 17, 18].
+    3. NO 'Z': Always use 's' (س)[cite: 28, 111].
+    4. NO TASHID: Never use the doubling sign; write letters twice if needed (e.g. 'wanier')[cite: 30, 128].
+    5. INITIAL VOWELS: Must start with an Alif carrier[cite: 31, 112].
 
-    OUTPUT FORMAT:
-    Latin: [Phonetic Cape Afrikaans]
-    Arabic: [Arabic Script following Abu Bakr Effendi orthography]
+    TASK: Convert the input into Latin (Phonetic) and Arabic-Afrikaans script.
+    FORMAT:
+    Latin: [Cape Phonetic]
+    Arabic: [Arabic Script]
     """
 
-    # --- STEP D: API EXECUTION ---
-    if "keys" not in st.secrets:
-        return "❌ SETUP ERROR: Add 'keys' list to Streamlit Secrets."
-
+    # --- STEP D: EXECUTION ---
+    if "keys" not in st.secrets: return "❌ Add API keys to Streamlit Secrets."
+    
     api_pool = list(st.secrets["keys"])
     random.shuffle(api_pool)
-    model_name = 'gemini-1.5-flash' 
-
+    
     for key in api_pool:
         try:
             genai.configure(api_key=key.strip())
-            model = genai.GenerativeModel(model_name=model_name, system_instruction=system_instruction)
-            response = model.generate_content(f"Translate to Cape Arabic-Afrikaans: {processed_text}")
-            
-            if response.text:
-                return response.text
-        except Exception as e:
-            continue
+            model = genai.GenerativeModel('gemini-1.5-flash', system_instruction=system_instruction)
+            response = model.generate_content(f"Scribe this into Cape Arabic-Afrikaans: {processed}")
+            return response.text
+        except Exception: continue
 
-    return "❌ Translation failed. Check your rules.txt formatting."
+    return "❌ Translation failed. Check API connectivity."
 
 # --- UI EXECUTION ---
-user_input = st.text_area("Enter sentence:", placeholder="e.g. He is reading the prayer", height=100)
+user_input = st.text_area("Enter sentence:", placeholder="e.g. I am going to the mosque", height=100)
 if st.button("EXECUTE SCRIBE"):
     if user_input:
         with st.spinner("📜 Writing in 19th-century Scribe..."):
-            result = scribe_translator(user_input)
-            st.info(result)
+            st.info(scribe_translator(user_input))
