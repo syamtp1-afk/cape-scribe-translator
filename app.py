@@ -1,12 +1,15 @@
 import streamlit as st
+import google.generativeai as genai
 import re
+import random
+import time
 
 # --- UI ---
-st.set_page_config(page_title="Cape Arabic-Afrikaans Scribe", page_icon="🕌")
-st.title("🕌 Arabic-Afrikaans Translator")
+st.set_page_config(page_title="Arabic-Afrikaans Translator", page_icon="🕌")
+st.title("🕌 Arabic-Afrikaans Translator (Advanced AI Engine)")
 
 # =========================
-# 📜 PASTE YOUR FULL RULES.TXT BELOW
+# 📜 PASTE FULL RULES HERE
 # =========================
 
 RULES_TEXT = """
@@ -1048,78 +1051,104 @@ Adab, Aadaab- (manners, respect and politeness) [Adaab also used to emphasize th
 """
 
 # =========================
-# 🧠 PARSER (AUTO-CONVERTS TO DICTIONARY)
+# 🧠 PARSER
 # =========================
 
 def parse_rules(text):
     rules = {}
-    lines = text.split("\n")
-
-    for line in lines:
+    for line in text.split("\n"):
         line = line.strip()
-
-        # skip empty or comments
         if not line or line.startswith("#"):
             continue
-
         if "=" in line:
-            key, val = line.split("=", 1)
-            rules[key.strip().lower()] = val.strip()
-
+            k, v = line.split("=", 1)
+            rules[k.strip().lower()] = v.strip()
     return rules
 
 RULES_DICT = parse_rules(RULES_TEXT)
 
 # =========================
-# 🧠 RULE ENGINE (PHRASE-AWARE)
+# 🧠 APPLY RULES (PHRASE FIRST)
 # =========================
 
 def apply_rules(text):
     text = text.lower()
 
-    # longest match first (VERY IMPORTANT)
     for key in sorted(RULES_DICT.keys(), key=len, reverse=True):
         text = re.sub(rf'\b{re.escape(key)}\b', RULES_DICT[key], text)
-
-    # optional Islamic style enforcement
-    if "allaah" in text and not text.startswith("bismillah"):
-        text = "bismillah, " + text
-
-    if not text.endswith("alhamdulillah"):
-        text = text + " alhamdulillah"
 
     return text
 
 # =========================
-# 🧠 SIMPLE ARABIC SCRIPT ENGINE
+# 🧠 AI SENTENCE ENGINE (CRITICAL)
 # =========================
 
-ARABIC_MAP = {
-    "a": "ا","b": "ب","t": "ت","s": "س","d": "د",
-    "r": "ر","l": "ل","m": "م","n": "ن","h": "ه",
-    "w": "و","y": "ي","k": "ك","g": "غ","f": "ف","q": "ق"
-}
+def ai_generate(text):
 
-def to_arabic(text):
-    result = ""
-    for ch in text:
-        result += ARABIC_MAP.get(ch, ch)
-    return result
+    if "keys" not in st.secrets:
+        return f"""1. Latin 1860s transcription:
+{text}
+
+2. Arabic script version:
+[Add API key for full translation]
+"""
+
+    keys = list(st.secrets["keys"])
+    random.shuffle(keys)
+
+    prompt = f"""
+You are an expert in 19th century Cape Arabic-Afrikaans.
+
+TASK:
+- Convert the input into FULLY CORRECT Arabic-Afrikaans
+- Fix grammar completely
+- Frame a natural sentence
+- Use Cape Muslim style
+- Use Arabic vocabulary (40–50%)
+- NEVER output English
+
+STRICT FORMAT:
+1. Latin 1860s transcription: ...
+2. Arabic script version: ...
+
+INPUT:
+{text}
+"""
+
+    for key in keys:
+        try:
+            genai.configure(api_key=key.strip())
+            model = genai.GenerativeModel("gemini-1.5-pro")
+
+            response = model.generate_content(prompt)
+
+            if response and response.text:
+                return response.text
+
+        except:
+            time.sleep(1)
+            continue
+
+    return f"""1. Latin 1860s transcription:
+{text}
+
+2. Arabic script version:
+[API failed]
+"""
 
 # =========================
-# 🚀 MAIN TRANSLATOR
+# 🚀 MAIN PIPELINE
 # =========================
 
 def translate(user_input):
+
+    # Step 1: apply your rules
     processed = apply_rules(user_input)
-    arabic = to_arabic(processed)
 
-    return f"""1. Latin 1860s transcription:
-{processed}
+    # Step 2: AI generates proper sentence
+    final_output = ai_generate(processed)
 
-2. Arabic script version:
-{arabic}
-"""
+    return final_output
 
 # =========================
 # UI
@@ -1127,12 +1156,12 @@ def translate(user_input):
 
 user_input = st.text_area(
     "Enter sentence:",
-    placeholder="e.g. He is reading the prayer after the fast",
+    placeholder="e.g. How are you after the fast?",
     height=120
 )
 
 if st.button("TRANSLATE"):
     if user_input.strip():
-        with st.spinner("📜 Translating..."):
+        with st.spinner("📜 Generating correct manuscript..."):
             result = translate(user_input)
             st.success(result)
