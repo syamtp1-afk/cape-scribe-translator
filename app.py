@@ -9,44 +9,46 @@ st.set_page_config(page_title="1860s Cape Arabic-Afrikaans Scribe", page_icon="�
 st.title("🕌 1860s Cape Arabic-Afrikaans Translator")
 
 def scribe_translator(text_input):
-    # --- STEP A: DICTIONARY LOOKUP ---
-    # Manually defined from your exhaustive source text to ensure 100% accuracy
-    cape_lexicon = {
-        "onions": "eiwe", "nobody": "ghaniemand", "mosque": "masiet", 
-        "fast": "poewasa", "morning prayer": "soeboeg", "read": "batcha",
-        "after": "aghtir", "wait": "aitwagh", "thank you": "tramakasie",
-        "please": "kanalla", "died": "gamaningal", "bath": "mannie"
+    # --- STEP A: CORE CAPE LEXICON (From provided sources) ---
+    # These mappings ensure key cultural terms are never missed [cite: 32, 35, 71]
+    cape_mapping = {
+        "onions": "eiwe", "fast": "poewasa", "morning prayer": "soeboeg", 
+        "mosque": "masiet", "read": "batcha", "thank you": "tramakasie",
+        "please": "kanalla", "died": "gamaningal", "bath": "mannie",
+        "after": "aghtir", "nobody": "ghaniemand", "on purpose": "aspris"
     }
 
-    # --- STEP B: PRE-PROCESS PHONOLOGY (Tier 1) ---
-    # Applying the core Cape Muslim Afrikaans shifts [cite: 5, 7]
+    # --- STEP B: PRE-PROCESS PHONOLOGY & LEXICON ---
     processed = text_input.lower()
-    processed = processed.replace("ui", "ei")  # ui > ei 
-    processed = processed.replace("ge-", "ga-") # ge- > ga- [cite: 6]
     
-    # Replace modern words with Cape Lexicon
-    for word, replacement in cape_lexicon.items():
+    # 1. Apply Hard-Coded Phonological Rules [cite: 5, 6, 7]
+    processed = processed.replace("ui", "ei")      # ui > ei shift [cite: 5]
+    processed = processed.replace("ge-", "ga-")    # ge- > ga- past tense [cite: 6]
+    processed = re.sub(r'([dt])\1', 'rr', processed) # double d/t > rr (e.g. middag > marrag) [cite: 7]
+    
+    # 2. Apply Word-for-Word Cape Mapping [cite: 32, 71]
+    for word, replacement in cape_mapping.items():
         processed = re.sub(rf'\b{word}\b', replacement, processed)
 
-    # --- STEP C: THE SCRIBE SYSTEM INSTRUCTION (Tier 2) ---
-    # Instruction based on the Exhaustive Orthographic Rules [cite: 94, 96]
+    # --- STEP C: THE "IRONCLAD" SYSTEM INSTRUCTION ---
+    # Based on exhaustive orthographic and punctuation rules [cite: 94, 96]
     system_instruction = """
     ROLE: 19th-century Cape Muslim Scribe (Abu Bakr Effendi tradition).
     STRICT ORTHOGRAPHY (Arabic Script):
-    1. CONSONANTS: 'p'=پ, 'g'(great)=گ, 'g/gh'(guttural)=خ, 'ng'=نگ, 'tj'=چ, 'dj'=ج, 'v/f'=ف[cite: 23, 24, 25, 26, 27].
-    2. VOWELS: Short 'a'=fatha, Long 'aa'=fatha+alif, 'ie'=kasra+ya, 'oe'=damma+waw[cite: 15, 16, 17, 18].
-    3. NO 'Z': Always use 's' (س)[cite: 28, 111].
-    4. NO TASHID: Never use the doubling sign; write letters twice if needed (e.g. 'wanier')[cite: 30, 128].
-    5. INITIAL VOWELS: Must start with an Alif carrier[cite: 31, 112].
+    - CONSONANTS: 'p'=پ, 'g'(great)=گ, 'g/gh'(guttural)=خ, 'ng'=نگ, 'tj'=چ, 'dj'=ج, 'v/f'=ف[cite: 98, 100, 105, 108, 109].
+    - VOWELS: Short 'a'=fatha, Long 'aa'=fatha+alif, 'ie'=kasra+ya, 'oe'=damma+waw[cite: 113, 114, 118, 119].
+    - NO 'Z': Represent 'z' with 's' (س)[cite: 111].
+    - NO TASHID: Do not double consonants using signs; write the letter twice (e.g. 'wanier')[cite: 128].
+    - EMPHATIC 'S': Use 'sad' (ص) ONLY for 'netsoes' or 'soes'[cite: 107].
 
-    TASK: Convert the input into Latin (Phonetic) and Arabic-Afrikaans script.
+    TASK: Convert the input into Latin (Phonetic Cape) and Arabic-Afrikaans script.
     FORMAT:
-    Latin: [Cape Phonetic]
-    Arabic: [Arabic Script]
+    Latin: [Cape Phonetic Transcription]
+    Arabic: [Correct Arabic-Afrikaans Script]
     """
 
-    # --- STEP D: EXECUTION ---
-    if "keys" not in st.secrets: return "❌ Add API keys to Streamlit Secrets."
+    # --- STEP D: API EXECUTION ---
+    if "keys" not in st.secrets: return "❌ SETUP ERROR: Add API keys to Secrets."
     
     api_pool = list(st.secrets["keys"])
     random.shuffle(api_pool)
@@ -59,11 +61,11 @@ def scribe_translator(text_input):
             return response.text
         except Exception: continue
 
-    return "❌ Translation failed. Check API connectivity."
+    return "❌ All attempts failed. Check API connectivity or limits."
 
 # --- UI EXECUTION ---
 user_input = st.text_area("Enter sentence:", placeholder="e.g. I am going to the mosque", height=100)
 if st.button("EXECUTE SCRIBE"):
     if user_input:
         with st.spinner("📜 Writing in 19th-century Scribe..."):
-            st.info(scribe_translator(user_input))
+            st.markdown(scribe_translator(user_input))
