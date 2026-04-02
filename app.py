@@ -9,47 +9,50 @@ st.set_page_config(page_title="1860s Cape Arabic-Afrikaans Scribe", page_icon="�
 st.title("🕌 1860s Cape Arabic-Afrikaans Translator")
 
 def scribe_translator(text_input):
-    # --- STEP A: CORE CAPE LEXICON (From provided sources) ---
-    # These mappings ensure key cultural terms are never missed [cite: 32, 35, 71]
-    cape_mapping = {
-        "onions": "eiwe", "fast": "poewasa", "morning prayer": "soeboeg", 
-        "mosque": "masiet", "read": "batcha", "thank you": "tramakasie",
-        "please": "kanalla", "died": "gamaningal", "bath": "mannie",
-        "after": "aghtir", "nobody": "ghaniemand", "on purpose": "aspris"
-    }
+    # --- STEP A: DICTIONARY EXTRACTION ---
+    # We use a robust regex to pull "Modern = Ancient" from your text file
+    rules_dict = {}
+    if os.path.exists("rules.txt"):
+        with open("rules.txt", "r", encoding="utf-8") as f:
+            content = f.read()
+            # Finds lines like "onions = eiwe" or "fast = poewasa"
+            matches = re.findall(r'^([\w\s]+)\s*=\s*([\w\s\-]+)', content, re.MULTILINE)
+            for key, val in matches:
+                rules_dict[key.strip().lower()] = val.strip()
 
-    # --- STEP B: PRE-PROCESS PHONOLOGY & LEXICON ---
+    # --- STEP B: PRE-PROCESS (Tier 1: Historical Mapping) ---
     processed = text_input.lower()
-    
-    # 1. Apply Hard-Coded Phonological Rules [cite: 5, 6, 7]
-    processed = processed.replace("ui", "ei")      # ui > ei shift [cite: 5]
-    processed = processed.replace("ge-", "ga-")    # ge- > ga- past tense [cite: 6]
-    processed = re.sub(r'([dt])\1', 'rr', processed) # double d/t > rr (e.g. middag > marrag) [cite: 7]
-    
-    # 2. Apply Word-for-Word Cape Mapping [cite: 32, 71]
-    for word, replacement in cape_mapping.items():
-        processed = re.sub(rf'\b{word}\b', replacement, processed)
+    sorted_keys = sorted(rules_dict.keys(), key=len, reverse=True)
+    for key in sorted_keys:
+        pattern = re.compile(rf'\b{re.escape(key)}\b', re.IGNORECASE)
+        processed = pattern.sub(rules_dict[key], processed)
 
-    # --- STEP C: THE "IRONCLAD" SYSTEM INSTRUCTION ---
-    # Based on exhaustive orthographic and punctuation rules [cite: 94, 96]
-    system_instruction = """
+    # --- STEP C: THE SCRIBE BRAIN (Tier 2: Generative AI) ---
+    # This system instruction forces the AI to "think" like an 1860s Cape Muslim scholar
+    system_instruction = f"""
     ROLE: 19th-century Cape Muslim Scribe (Abu Bakr Effendi tradition).
-    STRICT ORTHOGRAPHY (Arabic Script):
-    - CONSONANTS: 'p'=پ, 'g'(great)=گ, 'g/gh'(guttural)=خ, 'ng'=نگ, 'tj'=چ, 'dj'=ج, 'v/f'=ف[cite: 98, 100, 105, 108, 109].
-    - VOWELS: Short 'a'=fatha, Long 'aa'=fatha+alif, 'ie'=kasra+ya, 'oe'=damma+waw[cite: 113, 114, 118, 119].
-    - NO 'Z': Represent 'z' with 's' (س)[cite: 111].
-    - NO TASHID: Do not double consonants using signs; write the letter twice (e.g. 'wanier')[cite: 128].
-    - EMPHATIC 'S': Use 'sad' (ص) ONLY for 'netsoes' or 'soes'[cite: 107].
-
-    TASK: Convert the input into Latin (Phonetic Cape) and Arabic-Afrikaans script.
-    FORMAT:
-    Latin: [Cape Phonetic Transcription]
-    Arabic: [Correct Arabic-Afrikaans Script]
+    CONTEXT: You are translating into 'Arabic-Afrikaans' (Cape Muslim dialect).
+    
+    STRICT LINGUISTIC LAWS:
+    1. PHONOLOGY: Double 'd' or 't' becomes 'rr' (middag > marrag). 'ui' becomes 'ei' (uiwe > eiwe). Past tense prefix is 'ga-' (ga-maak).
+    2. ARABIC ORTHOGRAPHY: 
+       - Consonants: P=پ, G(great)=گ, G(guttural)=خ, NG=نگ, TJ=چ, DJ=ج, V/F=ف.
+       - Vowels: Short 'a'=fatha, Long 'aa'=fatha+alif, 'ie'=kasra+ya, 'oe'=damma+waw.
+    3. NO 'Z' OR TASHID: Never use 'z' (use 's') or the doubling sign (write letter twice).
+    4. SYNTAX: Use Afrikaans Subject-Object-Verb (SOV) order.
+    
+    DICTIONARY (PRIORITIZE):
+    {rules_dict}
+    
+    TASK: Translate the input. If a word isn't in the dictionary, use your AI brain to apply the 1860s Cape phonology rules to create a period-accurate transcription.
+    
+    OUTPUT FORMAT:
+    Latin: [Cape Phonetic]
+    Arabic: [Arabic-Afrikaans Script]
     """
 
-    # --- STEP D: API EXECUTION ---
-    if "keys" not in st.secrets: return "❌ SETUP ERROR: Add API keys to Secrets."
-    
+    # --- STEP D: API POOL EXECUTION ---
+    if "keys" not in st.secrets: return "❌ ERROR: Add API keys to Secrets."
     api_pool = list(st.secrets["keys"])
     random.shuffle(api_pool)
     
@@ -57,15 +60,14 @@ def scribe_translator(text_input):
         try:
             genai.configure(api_key=key.strip())
             model = genai.GenerativeModel('gemini-1.5-flash', system_instruction=system_instruction)
-            response = model.generate_content(f"Scribe this into Cape Arabic-Afrikaans: {processed}")
+            response = model.generate_content(f"Scribe this: {processed}")
             return response.text
         except Exception: continue
-
-    return "❌ All attempts failed. Check API connectivity or limits."
+    return "❌ API Limit reached. Add more keys for unlimited use."
 
 # --- UI EXECUTION ---
-user_input = st.text_area("Enter sentence:", placeholder="e.g. I am going to the mosque", height=100)
+user_input = st.text_area("Enter sentence:", placeholder="e.g. He is reading the prayer after the fast", height=100)
 if st.button("EXECUTE SCRIBE"):
     if user_input:
         with st.spinner("📜 Writing in 19th-century Scribe..."):
-            st.markdown(scribe_translator(user_input))
+            st.info(scribe_translator(user_input))
